@@ -126,7 +126,7 @@
         </table>  
         <hr>
         <span>Remark</span>
-        <textarea rows="4" cols="168" #txt placeholder="Enter your remark here..." (input)="getRemark(txt.value,item.QuestionSerialNumber)" [value]="item.Remark"></textarea>
+        <textarea rows="4" cols="168" #txt placeholder="Enter your remark here..." (input)="getRemark(txt.value,item.QuestionSerialNumber)">{{item.Remarks}}</textarea>
  
         </div>
       </div>

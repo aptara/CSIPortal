@@ -1,14 +1,18 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { environment } from '../Environment';
 @Injectable({
   providedIn: 'root'
 })
 export class FilterClientListService {
-  private url='http://localhost:62220/api/GetClient/GetClientList';
-  private url2='http://localhost:62220/api/GetClient/GetClientDetailsList'
+  // private url='http://localhost:62220/api/GetClient/GetClientList';
+  // private url2='http://localhost:62220/api/GetClient/GetClientDetailsList'
+  
   constructor(private httpClient: HttpClient) { }
-
+  apiurl=environment.baseUrl;
+  private url=this.apiurl+'GetClient/GetClientList';
+  private url2=this.apiurl+'GetClient/GetClientDetailsList';
+  
   getClientList(){
     return this.httpClient.get(this.url);     
   }

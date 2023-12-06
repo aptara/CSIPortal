@@ -23,13 +23,13 @@ export class GetQuestionDetailService {
     
   }
   
-  private PostUrl ='http://localhost:62220/api/GetQuestion/PostQuestionDetail'
+  private PostUrl =this.apiURL +'GetQuestion/PostQuestionDetail'
   PostAllDetail(Detail:any){
     var req=this.PostUrl;
     return this.httpClient.post(req,Detail);
   }
   //Get Client by Id
-  private GetClientUrl ='http://localhost:62220/api/GetClient/GetClientForTop'
+  private GetClientUrl =this.apiURL +'GetClient/GetClientForTop'
   GetClient(clientId: number){
     const requestData = { ClientId: clientId }; // Assuming your API expects an object with the property 'ClientId'
 
