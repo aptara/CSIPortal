@@ -2,21 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from './Environment';
 @Injectable({
   providedIn: 'root'
 })
 export class GetQuestionDetailService {
 
-  
-  private url='http://localhost:62220/api/GetQuestion/GetQuestionDetail';
-  constructor(private httpClient: HttpClient, private router:Router) { }
 
+ // private url='http://localhost:62220/api/GetQuestion/GetQuestionDetail';
+  constructor(private httpClient: HttpClient,
+     private router:Router){}
+    
+     
+     apiURL = environment.baseUrl;
+
+    url = this.apiURL + 'GetQuestion/GetQuestionDetail'
   getAllDetail(){
     console.log(JSON.stringify(this.httpClient.get(this.url)))
     return this.httpClient.get(this.url); 
     
   }
-
+  
   private PostUrl ='http://localhost:62220/api/GetQuestion/PostQuestionDetail'
   PostAllDetail(Detail:any){
     var req=this.PostUrl;

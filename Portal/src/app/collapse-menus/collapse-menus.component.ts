@@ -40,7 +40,7 @@ export class CollapseMenusComponent {
   ViewerName:string=""
   ViewerEmail:string=""
   isFormSubmitted = false;
-  header :any;
+  header:any =[];
   list:any
   ngOnInit(){
     this.GetQuestion()
@@ -257,29 +257,6 @@ getEmail(txt: string) {
   //this.SelectedRankings();
 }
 
-// private SelectedRankings() {
-//   if (this.ViewerName && this.ViewerEmail) {
-//     this.selectedRankings.push({
-//       ReviewerName: this.ViewerName,
-//       ReviewerEmail: this.ViewerEmail,
-//       ClientId: '2',
-//       CorrectEvaluation: '10',
-//     });
-
-//     // Reset the values after pushing
-//     this.ViewerName = '';
-//     this.ViewerEmail = '';
-//   }
-// }
 }
 
 
-// {
-//   "CreatedBy": 1,
-//   "ClientId": 2,
-//   "QuestionId": 2,
-//   "Remarks": "ok",
-//   "CorrectEvaluation": 8,
-//   "SubmittedEvaluation": 8,
-//   "IsActive": 1
-// }
