@@ -132,7 +132,8 @@ export class MenuReadComponent {
           , Evaluation9: element.Evaluation9
           , Evaluation10: element.Evaluation10
           , QuestionSerialNumber: element.QuestionSerialNumber
-          
+          ,Remarks:element.Remarks
+          ,SubmittedEvaluation:element.SubmittedEvaluation
         };
       });
     });
@@ -176,7 +177,8 @@ export class MenuReadComponent {
         next: (data: any) => {
           this.resultData = data;
           this.resultData.Data.forEach((element: any) => {            
-            this.accordianItems.push(element.Remarks)
+            // this.accordianItems.push(element.Remarks)
+
           });
         
         }
@@ -201,6 +203,9 @@ export class MenuReadComponent {
 
   }
 
+  navigateBack(){
+    window.location.href = './filterClientList';
+  }
 }
 
 // {

@@ -18,6 +18,7 @@ export class GetQuestionDetailService {
 
     url = this.apiURL + 'GetQuestion/GetQuestionDetail'
   getAllDetail(){
+    
     console.log(JSON.stringify(this.httpClient.get(this.url)))
     return this.httpClient.get(this.url); 
     
