@@ -24,8 +24,9 @@ const routes: Routes = [
   { path: 'HeaderFirst', component: HeaderFirstComponent },
   { path: 'MenuReadComponent/Show/:id', component: MenuReadComponent  },
   {path:'filterClientList', component:FilterClientListComponent},
-  {path:'', redirectTo:'/filterClientList',pathMatch:'full'},
-  {path:'loginapp', component:LoginAppComponent}
+  {path:'', redirectTo:'/loginapp',pathMatch:'full'},
+  {path:'loginapp', component:LoginAppComponent},
+ // {path:'**', component:LoginAppComponent}
    
 
 ];

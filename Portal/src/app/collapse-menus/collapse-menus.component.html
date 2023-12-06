@@ -13,18 +13,18 @@
     
         <!-- Your input boxes go here -->
         <div class="row g-1">
-          <!-- <div class="col"> -->
-            <label for="ReviewerName">Reviewer Name:</label>
-            </div>
-            <div class="row g-2">
-            <input type="text" class="form-control" #Reviewer placeholder="Reviewer Name" id="ReviewerName"
+          <div class="col">
+            <label for="ReviewerName"><strong>Reviewer Name : </strong></label>
+            <input type="text" class="custom-input" #Reviewer placeholder="Reviewer Name" id="ReviewerName"
               (input)="getName(Reviewer.value)" formControlName="ReviewerName">
           </div>
-          <!-- <div class="col"> -->
-            <label for="ReviewerEmail">Reviewer Email:</label>
-            <input type="text" class="form-control" #Email placeholder="Reviewer Email" id="ReviewerEmail"
+          <div class="col">
+            <label for="ReviewerEmail"><strong>Reviewer Email : </strong> </label>
+            <input type="text" class="custom-input" #Email placeholder="Reviewer Email" id="ReviewerEmail"
               (input)="getEmail(Email.value)" formControlName="ReviewerEmail">
-          <!-- </div> -->
+          </div>
+        </div>
+        
        
       </div>
     </div>

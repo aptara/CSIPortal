@@ -10,6 +10,7 @@ import { LoginAppService } from './login-app.service';
 export class LoginAppComponent {
   UserMasterDetails: FormGroup | any;
   isFormSubmitted = false;
+  loginDetails :any = [];
 
   constructor(private loginAppService: LoginAppService,
     private fb: FormBuilder) {
@@ -23,14 +24,19 @@ export class LoginAppComponent {
     this.isFormSubmitted = true;
     if (this.UserMasterDetails.valid) {
       this.loginAppService.GetUsermasterDetails(this.UserMasterDetails.value).subscribe(res => {
-        if (res !== null) {
+        this.loginDetails = res;
+        console.log(this.loginDetails);
+        if (this.loginDetails.Data[0].EmailId == this.UserMasterDetails.value.EmailId && this.loginDetails.Data[0].Password == this.UserMasterDetails.value.Password) {
           alert("Login Succesfull")
           window.location.href='/filterClientList/';
+        }
+        else{
+          alert("Please Enter Valid Username and Password")
         }
       })
     }
     else {
-      alert("Please Enter Valid Username and Password")
+      alert("Please fill Username and Password")
     }
   }
 
