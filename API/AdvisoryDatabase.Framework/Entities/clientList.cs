@@ -17,21 +17,21 @@ namespace AdvisoryDatabase.Framework.Entities
       public string AptaraContact2 { get; set; }
 
   }
-  public class clientDetailsList : BaseEntity<Int32>
-  {
-    public int ClientId { get; set; }
-    public long ClientRefId { get; set; }
-    public string ClientName { get; set; }
-    public string ProjectName { get; set; }
-    public string AptaraContact { get; set; }
-    public DateTime FromDate { get; set; }
-    public DateTime ToDate { get; set; }
-    public string Question { get; set; }
-    public DateTime ClientDate { get; set; }
+    public class clientDetailsList : BaseEntity<Int32>
+    {
+        public int ClientId { get; set; }
+        public long ClientRefId { get; set; }
+        public string ClientName { get; set; }
+        public string ProjectName { get; set; }
+        public string AptaraContact { get; set; }
+        public string FromDate { get; set; }
+        public string ToDate { get; set; }
+        public string Question { get; set; }
+        public string ClientDate { get; set; }
 
-  }
+    }
 
-  public class clientFeedback : BaseEntity<Int32>
+    public class clientFeedback : BaseEntity<Int32>
   {
     public int ClientId { get; set; }
     public int QuestionId { get; set; }

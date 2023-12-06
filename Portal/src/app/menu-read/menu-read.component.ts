@@ -35,23 +35,10 @@ export class MenuReadComponent {
   private sub: any;
   clientId:any
   resultData: any=[];
+  selectedRadioValue: any;
   ngOnInit() {
     this.GetQuestion()
-    this.GetDescription()
-    
-    // this.AddQuestionAnswer = this.fb.array({
-    //   radio1: [false],
-    //   radio2: [false],
-    //   radio3: [false],
-    //   radio4: [false],  
-    //   radio5: [false],
-    //   radio6: [false],
-    //   radio7: [false],  
-    //   radio8: [false],
-    //   radio9: [false],
-    //   radio10: [false],
-    //   radio11: [false]
-    // })
+    this.GetDescription()    
     
     // this.AddQuestionAnswer.array([
     //   this.AddQuestionAnswer.group({
@@ -64,14 +51,11 @@ export class MenuReadComponent {
       this.menuservice.getClientFeedback( this.clientId).subscribe({
         next: (data: any) => {
          this.resultData = data.Data; 
-        //  this.accordianItems.forEach((item: { selectedValue: any; }, index: string | number) => {
-        //   item.selectedValue = this.resultData[index]?.SubmittedEvaluation || ''; // Adjust this based on your data structure
-         
-        // });
         this.accordianItems.forEach((item: { QuestionSerialNumber: any; selectedValue: any; },index:any)=>{
           // this.checkRadioButton( this.resultData[index]?.SubmittedEvaluation,this.resultData[index]?.QuestionId);
-           this.accordianItems[index].SelectedRadioValue = this.resultData[index]?.SubmittedEvaluation;
-          this.accordianItems[index].Remark = this.resultData[index]?.Remarks;
+          //  this.accordianItems[index].SelectedRadioValue = this.resultData[index]?.SubmittedEvaluation;
+           this.accordianItems[index].Remark = this.resultData[index]?.Remarks;
+          this.selectedRadioValue=this.resultData[index]?.SubmittedEvaluation;
         //   if(index!=0){
         //   this.accordianItems[item.QuestionSerialNumber].evaluation[index].setValue(this.resultData[index]?.SubmittedEvaluation);
         // }
@@ -146,6 +130,7 @@ handleRadioButtonSelection(value: string, queId: string): void {
           ,Evaluation9:element.Evaluation9
           ,Evaluation10:element.Evaluation10
           ,QuestionSerialNumber:element.QuestionSerialNumber
+          ,Remark:element.Remark
         };
       });
     });
