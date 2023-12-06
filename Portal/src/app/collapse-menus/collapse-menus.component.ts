@@ -20,7 +20,7 @@ export class CollapseMenusComponent {
         //Email: new FormControl(null,Validators.required),
         //Evaluation: new FormControl(null,Validators.required),
         //'Remark' : new FormControl(null,Validators.required)
-        'Remark': this.fb.array([]),
+       // 'Remark': this.fb.array([]),
       });
     }
  //accordianItems = [
@@ -40,14 +40,23 @@ export class CollapseMenusComponent {
   ViewerName:string=""
   ViewerEmail:string=""
   isFormSubmitted = false;
+  header :any;
+  list:any
   ngOnInit(){
     this.GetQuestion()
     this.GetDescription()
     
  // Assuming you have a list of questions in `questionsList`
-this.accordianItems.Data.forEach((Question:any) => {
-  const remarkControl = this.fb.control(null, Validators.required);
-   (this.AddQuestionAnswer.get('Remark') as FormArray).push(remarkControl);
+
+
+
+this.service.GetClient(2).subscribe(res => {
+  this.header= res
+ console.log(this.header.ProjectName) 
+ this.header.Data.forEach((Element: any) => {
+  console.log(Element.ProjectName)
+  this.list=Element.ProjectName
+ });
 });
 
   }
@@ -143,31 +152,32 @@ return this.GetBasicInfo.controls[queId].value;
 }
 
 
-onsubmit(){
-  this.isFormSubmitted = true;
-  console.log(this.AddQuestionAnswer)
- console.log(this.selectedRankings)
-  this.selectedRankings.forEach(element=>{
-   element.ClientId = "2"
-   element.CorrectEvaluation ="10"
-   element.ReviewerName= this.ViewerName
-   element.ReviewerEmail = this.ViewerEmail
-    console.log(element)
+// onsubmit(){
+//   this.isFormSubmitted = true;
+//   console.log(this.AddQuestionAnswer)
+//  console.log(this.selectedRankings)
+//   this.selectedRankings.forEach(element=>{
+//    element.ClientId = "2"
+//    element.CorrectEvaluation ="10"
+//    element.ReviewerName= this.ViewerName
+//    element.ReviewerEmail = this.ViewerEmail
+//     console.log(element)
    
-  })
-  if(this.AddQuestionAnswer.valid){
-  this.service.PostAllDetail(this.selectedRankings).subscribe(res=>{
-    if(res!==null){
-     // this.selectedRankings = [];
-      alert("submitted")
+//   })
+// if(this.selectedRankings)
+//   this.service.PostAllDetail(this.selectedRankings).subscribe(res=>{
+//     if(res!==null){
+//      // this.selectedRankings = [];
      
-    }
-  })
-}
-  else{
-    alert("not submitted")
-  }
- }
+//       alert("submitted")
+     
+//     }
+//   })
+
+//   else{
+//     alert("not submitted")
+//   }
+//  }
 
 // onsubmit() {
 //   // Check if any required field is empty
@@ -202,6 +212,39 @@ onsubmit(){
 //     }
 //   });
 // }
+
+onsubmit() {
+  this.isFormSubmitted = true;
+
+  // Check if the form is valid
+  if (this.AddQuestionAnswer.valid) {
+    const accordianItemCount = this.accordianItems.length;
+    const selectedRankingsCount = this.selectedRankings.length;
+
+    // Check if the counts match
+    if (accordianItemCount === selectedRankingsCount) {
+      this.selectedRankings.forEach(element => {
+        element.ClientId = "2";
+        element.CorrectEvaluation = "10";
+        element.ReviewerName = this.ViewerName;
+        element.ReviewerEmail = this.ViewerEmail;
+        console.log(element);
+      });
+
+      this.service.PostAllDetail(this.selectedRankings).subscribe(res => {
+        if (res !== null) {
+          alert("Submitted");
+        } else {
+          alert("Not submitted");
+        }
+      });
+    } else {
+      alert("Question counts do not match. Please answer all questions.");
+    }
+  } else {
+    alert("Please enter Reviewer Name and Email.");
+  }
+}
 
 
  getName(txt: string) {

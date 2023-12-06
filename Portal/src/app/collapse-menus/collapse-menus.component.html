@@ -1,34 +1,36 @@
 <div class="container">
   <form [formGroup]="AddQuestionAnswer" (ngSubmit)="onsubmit()">
-    <div class="accordion-container mb-2">
-      <div class="accordion" id="newAccordion">
-        <div class="accordion-item">
-          <div class="text-center">
-            <h2 class="accordion-header">
-              <button class="accordion-button text-center" type="button"
-                style="font-family: 'Times New Roman', serif; font-size: 24px; font-weight: bold;">
-                <strong>Customer Satisfaction Index</strong>
-              </button>
-            </h2>
-          </div>
-          <div class="accordion-collapse collapse show">
-            <div class="accordion-body">
-              <!-- Your input boxes go here -->
-              <div class="row g-3">
-                <div class="col">
-                  Reviewer Name: <input type="text" class="form-control" #Reviewer placeholder="Reviewer Name"
-                    (input)="getName(Reviewer.value)" formControlName="ReviewerName">
-                </div>
-                <div class="col">
-                  Reviewer Email: <input type="text" class="form-control" #Email placeholder="Reviewer Email"
-                    (input)="getEmail(Email.value)" formControlName="ReviewerEmail">
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="mb-2">
+      <div style="padding: 10px;">
+        <h2 style="background-color: #cfe2ff; font-family: 'Times New Roman', serif; font-size: 24px; font-weight: bold; text-align: left; padding: 10px;">
+          <strong>Customer Satisfaction Index</strong>
+        </h2>
+    
+        <div class="content-text" *ngFor="let element of header.Data" style="display: flex;">
+          <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span>
+          <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span>
         </div>
+    
+        <!-- Your input boxes go here -->
+        <div class="row g-1">
+          <!-- <div class="col"> -->
+            <label for="ReviewerName">Reviewer Name:</label>
+            </div>
+            <div class="row g-2">
+            <input type="text" class="form-control" #Reviewer placeholder="Reviewer Name" id="ReviewerName"
+              (input)="getName(Reviewer.value)" formControlName="ReviewerName">
+          </div>
+          <!-- <div class="col"> -->
+            <label for="ReviewerEmail">Reviewer Email:</label>
+            <input type="text" class="form-control" #Email placeholder="Reviewer Email" id="ReviewerEmail"
+              (input)="getEmail(Email.value)" formControlName="ReviewerEmail">
+          <!-- </div> -->
+       
       </div>
     </div>
+    
+    
+    
 
     <div class="accordion" id="accordionExample">
       <div class="accordion-item" *ngFor="let item of accordianItems; let i = index">
@@ -36,7 +38,7 @@
           <button class="accordion-button" type="button" data-bs-toggle="collapse"
             [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="i === 0"
             [attr.aria-controls]="'collapse' + i">
-            <strong>{{item.QuestionSerialNumber}}. {{ item.question }}</strong>
+            <strong>{{item.QuestionSerialNumber}}.{{ item.question }}</strong>
           </button>
         </h2>
         <div [id]="'collapse' + i" class="accordion-collapse collapse" [ngClass]="{'show': i === 0}">
@@ -171,15 +173,15 @@
             </tbody>
             </table>
             <hr>
-            <div formArrayName="Remark">
-              <div *ngFor="let remarkControl of GetBasicInfo.controls;let i = index">
+            <div >
+              <div>
                 <span>Remark</span>
                 <textarea rows="4" cols="168" #txt placeholder="Enter your remark here..." 
-                  (input)="getRemark(txt.value,i)"></textarea>
-                  <div class="error textError"
+                  (input)="getRemark(txt.value,item.QuestionSerialNumber)"></textarea>
+                  <!-- <div class="error textError"
                   *ngIf="remarkControl.hasError('required') && (remarkControl.dirty || remarkControl.touched || isFormSubmitted)">
                Please enter a remark.
-             </div>
+             </div> -->
               </div>
             </div>
 

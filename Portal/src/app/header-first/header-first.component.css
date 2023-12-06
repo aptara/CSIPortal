@@ -5,13 +5,10 @@ span {
 font-style: inherit;
 }
 
-.content-container {
-    display: flex;
-    align-items: center;
-}
+
 
 .content-text {
-    margin-right: 30px;
+    margin-right: 0px;
 }
 
 .content-container img {
@@ -28,5 +25,5 @@ body {
 }
 
 .image {
-    margin-right: 700px; /* Adjust the spacing as needed */
+    margin-left: 0px; /* Adjust the spacing as needed */
 }
