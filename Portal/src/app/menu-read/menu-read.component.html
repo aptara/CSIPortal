@@ -1,138 +1,137 @@
 <div class="container">
-    <form [formGroup]= "AddQuestionAnswer" (ngSubmit)="onsubmit()" *ngIf="AddQuestionAnswer">
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item" *ngFor="let item of accordianItems; let i = index">
-        <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="true" [attr.aria-controls]="'collapse' + i"
-         >
-           <strong>{{item.QuestionSerialNumber}}. {{ item.question }}</strong>
-          </button>
-        </h2>
-        <div [id]="'collapse' + i" class="accordion-collapse collapse show" >
-          <div class="accordion-body">
-        
-            <table>
-              <tbody>
-                  <tr>
-                      <td style="height: 100px; width: 50%;">
-                          <table>
-                              <tbody>
-                                  <tr>
-                                      <td>
-                                         <strong>Description</strong>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td style="align-items: left;">
-                                        {{ item.description }}
-                                      </td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </td>
-                      <table>
-                          <tbody>
-                              <tr>
-                                  <td><strong>Evaluation</strong></td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                     <tbody>
-                                      <tr>
-                                          <td class="table-cell" style="border-right: 1px solid #9aa09e;">{{item.Evaluation}}</td>
-                                          <td class="table-cell">{{item.Evaluation1}}</td>
-                                          <td class="table-cell" style="border-right: 1px solid #9aa09e;">{{item.Evaluation2}}</td>
-                                          <td class="table-cell">{{item.Evaluation3}}</td>
-                                          <td class="table-cell" style="border-right: 1px solid #9aa09e;">{{item.Evaluation4}}</td>
-                                          <td class="table-cell">{{item.Evaluation5}}</td>
-                                          <td class="table-cell" >{{item.Evaluation6}}</td>
-                                          <td class="table-cell" style="border-right: 1px solid #9aa09e;">{{item.Evaluation7}}</td>
-                                          <td class="table-cell" >{{item.Evaluation8}}</td>
-                                          <td class="table-cell" style="border-right: 1px solid #9aa09e;">{{item.Evaluation9}}</td>
-                                          <td class="table-cell">{{item.Evaluation10}}</td>   
-                                      </tr>
-                                      <tr>
-                                         
-                                           
-  <td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;" >
-    <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" [value]="item.SelectedRadioValue" (click)="handleRadioButtonSelection('-', item.QuestionSerialNumber)">
-  </td>
-  <td class="radio-cell" #radioButtonGroup>
-    <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" [value]="item.SelectedRadioValue" (click)="handleRadioButtonSelection('1', item.QuestionSerialNumber)">
-  </td>
-  <td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
-    <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" [value]="item.SelectedRadioValue" (click)="handleRadioButtonSelection('2', item.QuestionSerialNumber)">
-  </td>
-  <td class="radio-cell" #radioButtonGroup>
-    <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" [value]="item.SelectedRadioValue" (click)="handleRadioButtonSelection('3', item.QuestionSerialNumber)">
-  </td>
-  <td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
-    <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" [value]="item.SelectedRadioValue" (click)="handleRadioButtonSelection('4', item.QuestionSerialNumber)">
-  </td>
-  <td class="radio-cell" #radioButtonGroup>
-    <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" [value]="item.SelectedRadioValue" (click)="handleRadioButtonSelection('5', item.QuestionSerialNumber)">
-  </td>
-  <td class="radio-cell" #radioButtonGroup>
-    <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" [value]="item.SelectedRadioValue" (click)="handleRadioButtonSelection('6', item.QuestionSerialNumber)">
-  </td>
-  <td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
-    <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" [value]="item.SelectedRadioValue" (click)="handleRadioButtonSelection('7', item.QuestionSerialNumber)">
-  </td>
-  <td class="radio-cell" #radioButtonGroup>
-    <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" [value]="item.SelectedRadioValue" (click)="handleRadioButtonSelection('8', item.QuestionSerialNumber)">
-  </td>
-  <td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
-    <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" [value]="item.SelectedRadioValue" (click)="handleRadioButtonSelection('9', item.QuestionSerialNumber)">
-  </td>
-  <td class="radio-cell" #radioButtonGroup>
-    <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" [value]="item.SelectedRadioValue" (click)="handleRadioButtonSelection('10', item.QuestionSerialNumber)">
-  </td>
-                                            </tr>
-                                            
-                                  <tr>
-                                          <td class="table-cell" style="border-right: 1px solid #9aa09e;" ><strong>NA</strong></td>
-                                          <td class="table-cell" colspan="2" style="border-right: 1px solid #9aa09e;"><strong>Never</strong></td>
-                                          <td class="table-cell" colspan="2" style="border-right: 1px solid #9aa09e;"><strong>Rarely</strong></td>
-                                          <td class="table-cell" colspan="3" style="border-right: 1px solid #9aa09e;"><strong>Sometimes</strong></td>
-                                          <td class="table-cell" colspan="2" style="border-right: 1px solid #9aa09e;"><strong>Mostly</strong></td>
-                                          <td class="table-cell" colspan="1"><strong>Always</strong></td>
-                                       
-                                        
-                                  </tr>
-          
-                                  <tr>
-                                      <td class="belowcolor" valign="middle" height="10" bgcolor="#9d9d9d" align="center"></td>
-                                      <td valign="middle" bgcolor="#ff0000" align="center"></td>
-                                      <td valign="middle" bgcolor="#ff0000" align="center"></td>
-                                      <td valign="middle" bgcolor="#ff0000" align="center"></td>
-                                      <td valign="middle" bgcolor="#ff0000" align="center"></td>
-                                      <td valign="middle" bgcolor="#ff0000" align="center"></td>
-                                      <td valign="middle" bgcolor="#ff0000" align="center"></td>
-                                      <td valign="middle" bgcolor="#ff0000" align="center"></td>
-                                      <td valign="middle" bgcolor="#FFFF00" align="center"colspan="2"></td>
-                                      <td valign="middle" bgcolor="#06cd00" align="center" colspan="2"></td>
+  <form [formGroup]= "AddQuestionAnswer" (ngSubmit)="onsubmit()" >
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item" *ngFor="let item of accordianItems; let i = index">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="true" [attr.aria-controls]="'collapse' + i"
+       >
+         <strong>{{item.QuestionSerialNumber}}. {{ item.question }}</strong>
+        </button>
+      </h2>
+      <div [id]="'collapse' + i" class="accordion-collapse collapse show" >
+        <div class="accordion-body">
+      
+          <table>
+            <tbody>
+                <tr>
+                    <td style="height: 100px; width: 50%;">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                       <strong>Description</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="align-items: left;">
+                                      {{ item.description }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><strong>Evaluation</strong></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                   <tbody>
+                                    <tr>
+                                        <td class="table-cell" style="border-right: 1px solid #9aa09e;">{{item.Evaluation}}</td>
+                                        <td class="table-cell">{{item.Evaluation1}}</td>
+                                        <td class="table-cell" style="border-right: 1px solid #9aa09e;">{{item.Evaluation2}}</td>
+                                        <td class="table-cell">{{item.Evaluation3}}</td>
+                                        <td class="table-cell" style="border-right: 1px solid #9aa09e;">{{item.Evaluation4}}</td>
+                                        <td class="table-cell">{{item.Evaluation5}}</td>
+                                        <td class="table-cell" >{{item.Evaluation6}}</td>
+                                        <td class="table-cell" style="border-right: 1px solid #9aa09e;">{{item.Evaluation7}}</td>
+                                        <td class="table-cell" >{{item.Evaluation8}}</td>
+                                        <td class="table-cell" style="border-right: 1px solid #9aa09e;">{{item.Evaluation9}}</td>
+                                        <td class="table-cell">{{item.Evaluation10}}</td>   
                                     </tr>
-                                        
-                                     </tbody>
-                                  </td>
-                              </tr>
-          
-                          </tbody>
-                      </table>
-                  </tr>
-                  
-               
-              </tbody>
-          </table>  
-          <hr>
-          <span>Remark</span>
-          <textarea rows="4" cols="168" #txt placeholder="Enter your remark here..." (input)="getRemark(txt.value,item.QuestionSerialNumber)" [value]="item.Remark"></textarea>
-   
-          </div>
+                                    <tr>
+                                       
+                                         
+<td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;" >
+  <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="-" (click)="handleRadioButtonSelection('-', item.QuestionSerialNumber)" [checked]="selectedRadioValue === '-'">
+</td>
+<td class="radio-cell" #radioButtonGroup>
+  <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="1" (click)="handleRadioButtonSelection('1', item.QuestionSerialNumber)" [checked]="selectedRadioValue === '1'">
+</td>
+<td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
+  <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="2" (click)="handleRadioButtonSelection('2', item.QuestionSerialNumber)" [checked]="selectedRadioValue === '2'">
+</td>
+<td class="radio-cell" #radioButtonGroup>
+  <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="3" (click)="handleRadioButtonSelection('3', item.QuestionSerialNumber)" [checked]="selectedRadioValue === '3'">
+</td>
+<td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
+  <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="4" (click)="handleRadioButtonSelection('4', item.QuestionSerialNumber)" [checked]="selectedRadioValue === '4'">
+</td>
+<td class="radio-cell" #radioButtonGroup>
+  <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="5" (click)="handleRadioButtonSelection('5', item.QuestionSerialNumber)" [checked]="selectedRadioValue === '5'">
+</td>
+<td class="radio-cell" #radioButtonGroup>
+  <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="6" (click)="handleRadioButtonSelection('6', item.QuestionSerialNumber)" [checked]="selectedRadioValue === '6'">
+</td>
+<td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
+  <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="7" (click)="handleRadioButtonSelection('7', item.QuestionSerialNumber)" [checked]="selectedRadioValue === '7'">
+</td>
+<td class="radio-cell" #radioButtonGroup>
+  <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="8" (click)="handleRadioButtonSelection('8', item.QuestionSerialNumber)" [checked]="selectedRadioValue === '8'">
+</td>
+<td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
+  <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="9" (click)="handleRadioButtonSelection('9', item.QuestionSerialNumber)" [checked]="selectedRadioValue === '9'">
+</td>
+<td class="radio-cell" #radioButtonGroup>
+  <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="10" (click)="handleRadioButtonSelection('10', item.QuestionSerialNumber)" [checked]="selectedRadioValue === '10'">
+</td>
+                                          </tr>
+                                          
+                                <tr>
+                                        <td class="table-cell" style="border-right: 1px solid #9aa09e;" ><strong>NA</strong></td>
+                                        <td class="table-cell" colspan="2" style="border-right: 1px solid #9aa09e;"><strong>Never</strong></td>
+                                        <td class="table-cell" colspan="2" style="border-right: 1px solid #9aa09e;"><strong>Rarely</strong></td>
+                                        <td class="table-cell" colspan="3" style="border-right: 1px solid #9aa09e;"><strong>Sometimes</strong></td>
+                                        <td class="table-cell" colspan="2" style="border-right: 1px solid #9aa09e;"><strong>Mostly</strong></td>
+                                        <td class="table-cell" colspan="1"><strong>Always</strong></td>
+                                     
+                                      
+                                </tr>
+        
+                                <tr>
+                                    <td class="belowcolor" valign="middle" height="10" bgcolor="#9d9d9d" align="center"></td>
+                                    <td valign="middle" bgcolor="#ff0000" align="center"></td>
+                                    <td valign="middle" bgcolor="#ff0000" align="center"></td>
+                                    <td valign="middle" bgcolor="#ff0000" align="center"></td>
+                                    <td valign="middle" bgcolor="#ff0000" align="center"></td>
+                                    <td valign="middle" bgcolor="#ff0000" align="center"></td>
+                                    <td valign="middle" bgcolor="#ff0000" align="center"></td>
+                                    <td valign="middle" bgcolor="#ff0000" align="center"></td>
+                                    <td valign="middle" bgcolor="#FFFF00" align="center"colspan="2"></td>
+                                    <td valign="middle" bgcolor="#06cd00" align="center" colspan="2"></td>
+                                  </tr>
+                                      
+                                   </tbody>
+                                </td>
+                            </tr>
+        
+                        </tbody>
+                    </table>
+                </tr>
+                
+             
+            </tbody>
+        </table>  
+        <hr>
+        <span>Remark</span>
+        <textarea rows="4" cols="168" #txt placeholder="Enter your remark here..." (input)="getRemark(txt.value,item.QuestionSerialNumber)" [value]="item.Remark"></textarea>
+ 
         </div>
       </div>
-      <!-- <button type="submit">Submit</button> -->
     </div>
-  </form>
+    <!-- <button type="submit">Submit</button> -->
   </div>
-  
+</form>
+</div>

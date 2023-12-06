@@ -76,7 +76,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
         ClientName = data.ReadString("ClientName"),
         ProjectName = data.ReadString("ProjectName"),
         AptaraContact = data.ReadString("AptaraContact"),
-        ClientDate = data.Read<DateTime>("LastUpdatedOn")
+        ClientDate = data.ReadString("LastUpdatedOnString")
       };
     }
   }
