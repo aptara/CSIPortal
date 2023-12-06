@@ -1,0 +1,82 @@
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap Table with Add and Delete Row Feature</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+</head>
+<body>   
+<div class="container">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar fixed-top navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" routerLink="/editEmp/:UserMasterID">Edit Employee</a>
+          
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                  <a class="navbar-brand"routerLink="/AddEmployee">Add employee </a>
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand" routerLink="/workbench">Workbench</a>
+                </li>
+              </ul>
+            <div>
+                <a class="navbar-brand form-inline my-2 my-lg-0 " href="#"><span>Log Out</span><i class="fa fa-home"></i></a>
+            </div>
+            </div>
+          </nav>
+    </div>
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Employee <b>Details</b></h2></div>
+                   
+                </div>
+                
+            </div>
+            <table class="table table-bordered" id="dtBasicExample" >
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email ID</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let emp of empDetail| paginate : {itemsPerPage:10,currentPage: p};">
+                        <td>{{emp.FirstName}}</td>
+                        <td>{{emp.LastName}}</td>
+                        <td>{{emp.EmailId}}</td>
+                        <td>
+                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons" routerLink="/editEmp/{{emp.UserMasterID}}" target="_blank">&#xE254;</i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" (click)="onDelete(emp)"><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <div class="pagination">
+                <pagination-controls (pageChange) = " p = $event"></pagination-controls>
+                </div>
+            </table>
+        </div>
+    </div>
+</div>  
+</body>
+</html>

@@ -1,0 +1,22 @@
+
+<body>
+    <div class="content-container" *ngIf="header && header.Data && header.Data.length > 0">
+        <img src="assets/logo.jpg" alt="Image Alt Text" class="image">
+        <div class="content-text" *ngFor="let element of header.Data">
+            <span><strong>Project : </strong> {{element.ProjectName}}</span><br>
+            
+            <span> <strong> Aptara Contact : </strong> {{element.AptaraContact}}</span>
+        </div>
+    </div>
+</body>
+ 
+<!-- <div class="content-container" *ngIf="header && header.Data && header.Data.length > 0">
+    <img src="assets/logo.jpg" alt="Image Alt Text" class="image">
+    <div class="content-text">
+        <span><strong>Project : </strong> {{ header.ProjectName }}</span><br>
+        <div *ngFor="let element of header.Data">
+            <span><strong> Project : </strong> {{ element.ProjectName }}</span><br>
+        </div>
+    </div>
+</div> -->
+

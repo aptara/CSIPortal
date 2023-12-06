@@ -1,0 +1,74 @@
+.main{
+    padding: 0;
+    background-color: rgb(199, 197, 197);
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.primary{
+    height: 100vh;
+    width: 70%;
+    background-color: white; 
+    display: flex;
+    justify-content: center;
+}
+.secondary{
+    height: 20vh;
+}
+
+
+.btn
+{
+    width: 140px;
+    height: 30px;
+    border: none;
+    background-color: rgb(51, 108, 51);
+    color: white;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.intext{
+    width: 300px;
+    height: 30px;
+    border: none;
+    display: block;
+    padding-left: 8px;
+    margin: 10px;
+}
+
+
+.forgetPass{
+    font-size: 10pt;
+    text-decoration: none;
+    cursor: pointer;
+    color: rgb(9, 63, 21);
+    transition: all ease 0.3s;
+}
+
+.forgetPass:hover{
+    font-size: 15pt;
+    color:rgb(54, 121, 43); 
+}
+
+.forgetPass:active{
+    color:aquamarine;
+}
+
+
+.btn-info{
+background: none!important;
+border: none;
+padding: 0!important;
+font-family: arial, sans-serif;
+color: #069;
+text-decoration: underline;
+cursor: pointer;
+}
+
+.modal-body{
+    background-color: rgb(238, 209, 173);
+}
+
+

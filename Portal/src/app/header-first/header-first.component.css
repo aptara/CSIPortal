@@ -1,0 +1,32 @@
+span {
+    text-align: center;
+    display: block;
+    margin: 0 auto; /* This centers the span horizontally */
+font-style: inherit;
+}
+
+.content-container {
+    display: flex;
+    align-items: center;
+}
+
+.content-text {
+    margin-right: 30px;
+}
+
+.content-container img {
+    margin-left: 10px; /* Optional: Add some spacing between the image and text */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white; /* Light gray background color */
+}
+
+.image {
+    margin-right: 700px; /* Adjust the spacing as needed */
+}

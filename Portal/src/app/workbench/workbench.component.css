@@ -1,0 +1,34 @@
+.bt{
+float: left;
+width: 200px;
+padding-left: 100px;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+.container{
+    width: 90%;
+    height: 90vh;
+    background-color: aliceblue;
+    margin-top: 30px;
+    border-radius: 12px;
+    border-color: aquamarine;
+    border-style: groove;
+   
+}
+.wrapper{
+    width: 50%;
+    height: 50vh;
+    align-items: center;
+    justify-content: center;
+    margin-left: 350px;
+    scroll-behavior: auto;
+}
+.formAdd{
+    justify-content: center;
+    margin-top: 30px;
+}
+.btn{
+    width: 100px;
+}

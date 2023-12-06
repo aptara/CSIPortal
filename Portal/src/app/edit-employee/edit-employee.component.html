@@ -1,0 +1,201 @@
+<div class="formbold-main-wrapper">
+    
+    <div class="formbold-form-wrapper">
+      
+    
+  
+      <form [formGroup]="update" (ngSubmit)="onUpdate()">
+        <div class="formbold-form-title">
+          <h2 class="">Edit Profile</h2>
+          
+        </div>
+
+        <div class="formbold-input-flex">
+          <div>
+            <label for="ClientMasterID" class="formbold-form-label">
+                ClientMaster ID
+            </label>
+            <input
+              type="text"
+            formControlName="ClientMasterID"
+              class="formbold-form-input disabled"
+
+            />
+          </div>
+          <div>
+            <label for="CreatedBy" class="formbold-form-label">Created By </label>
+            <input
+              type="text"
+              formControlName="CreatedBy"
+              class="formbold-form-input disabled"
+            />
+          </div>
+        </div>
+  
+        <div class="formbold-input-flex">
+          <div>
+            <label for="CreatedOn" class="formbold-form-label"> Created On </label>
+            <input
+          
+              type="text"
+             formControlName="CreatedOn"
+              class="formbold-form-input disabled"
+            />
+          </div>
+          <div>
+            <label for="UserMasterID" class="formbold-form-label"> UserMaster ID</label>
+            <input
+              type="text"
+              class="formbold-form-input disabled"
+              formControlName="UserMasterID"
+            />
+          </div>
+          <div>
+            <label for="StatusID" class="formbold-form-label"> Status ID</label>
+            <input
+              type="text"
+              class="formbold-form-input disabled"
+              formControlName="StatusID"
+            />
+          </div>
+        </div>
+        <div class="formbold-input-flex">
+            <div>
+              <label for="emailId" class="formbold-form-label"> Email ID </label>
+              <input
+                type="text"
+               formControlName="EmailId"
+                class="formbold-form-input"
+              />
+            </div>
+            <div>
+              <label for="Password" class="formbold-form-label"> Password</label>
+              <input
+                type="password"
+                class="formbold-form-input disabled"
+                formControlName="Password"
+              />
+            </div>
+          </div>
+
+        <div class="formbold-input-flex">
+        <div>
+          <label for="FailedLoginAttempts" class="formbold-form-label">
+            FailedLogin Attempts
+          </label>
+          <input
+            type="text"
+            class="formbold-form-input disabled"
+            formControlName="FailedLoginAttempts"
+          />
+        </div>
+  
+        <div>
+          <label for="LastLoggedIn" class="formbold-form-label">
+            Last Logged In
+          </label>
+          <input
+            type="text"
+          formControlName="LastLoggedIn"
+            class="formbold-form-input disabled"
+          />
+        </div>
+  </div>
+        <div class="formbold-input-flex">
+          <div>
+            <label for="FirstName" class="formbold-form-label"> First Name </label>
+            <input
+              type="text"
+              formControlName="FirstName"
+              class="formbold-form-input"
+            />
+          </div>
+          <div>
+            <label for="LastName" class="formbold-form-label"> Last Name </label>
+            <input
+              type="text"
+             formControlName="LastName"
+              class="formbold-form-input"
+            />
+          </div>
+        </div>
+  
+        <div class="formbold-input-flex">
+          <div>
+            <label for="LocationId" class="formbold-form-label"> LocationId </label>
+            <input
+             formControlName="LocationId"
+              id="post"
+              class="formbold-form-input disabled"
+            />
+          </div>
+          <div>
+            <label for="LoginBlockedDateTime" class="formbold-form-label">LoginBlockedDateTime</label>
+            <input
+              type="text"
+             formControlName="LoginBlockedDateTime"
+              class="formbold-form-input disabled"
+            />
+          </div>
+          <div>
+            <label for="OTP" class="formbold-form-label"> OTP</label>
+            <input
+              type="text"
+             formControlName="OTP"
+              class="formbold-form-input disabled disabled"
+            />
+          </div>
+        </div>
+       
+        <div class="formbold-input-flex">
+            <div>
+              <label for="OTPAttemptCount" class="formbold-form-label"> OTPAttemptCount </label>
+              <input
+               formControlName="OTPAttemptCount"
+                
+                class="formbold-form-input disabled"
+              />
+            </div>
+            <div>
+              <label for="OTPExpiryDate" class="formbold-form-label">OTPExpiryDate</label>
+              <input
+                type="text"
+               formControlName="OTPExpiryDate"
+                class="formbold-form-input disabled"
+              />
+            </div>
+            <div>
+              <label for="OTPGeneratedOn" class="formbold-form-label"> OTPGeneratedOn</label>
+              <input
+                type="text"
+               formControlName="OTPGeneratedOn"
+                class="formbold-form-input disabled"
+              />
+            </div>
+          </div>
+          <div class="formbold-input-flex">
+            <div>
+              <label for="UpdatedBy" class="formbold-form-label"> Updated By </label>
+              <input
+               formControlName="UpdatedBy"
+               
+                class="formbold-form-input disabled"
+              />
+            </div>
+            <div>
+              <label for="UpdatedOn" class="formbold-form-label">UpdatedOn</label>
+              <input
+                type="text"
+               formControlName="UpdatedOn"
+                class="formbold-form-input disabled"
+              />
+            </div>
+            </div>
+       
+        <button class="formbold-btn">Update</button>
+      </form>
+    </div>
+  </div>
+  <style>
+  
+  </style>

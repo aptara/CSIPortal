@@ -1,0 +1,93 @@
+<div class="formbold-main-wrapper">
+    
+    <div class="formbold-form-wrapper">
+      <form [formGroup]= "AddEmployee" (ngSubmit)="onsubmit()">
+        <div class="formbold-form-title">
+          <h2 class="">Add Profile</h2> 
+        </div>
+        <div class="formbold-input-flex">
+          <div>
+            <label for="CreatedBy" class="formbold-form-label">Created By </label>
+            <input
+              type="text"
+              formControlName="CreatedBy"
+              class="formbold-form-input "
+            />
+          </div>
+          <div>
+            <label for="CreatedBy" class="formbold-form-label">ClientID </label>
+            <input
+              type="text"
+              formControlName="ClientMasterID"
+              class="formbold-form-input "
+            />
+          </div>
+        </div>
+  
+        <div class="formbold-input-flex">
+          <div>
+            <label for="CreatedOn" class="formbold-form-label"> Created On </label>
+            <input
+          
+              type="date"
+             formControlName="CreatedOn"
+              class="formbold-form-input "
+            />
+          </div>
+       
+        </div>
+        <div class="formbold-input-flex">
+            <div>
+              <label for="emailId" class="formbold-form-label"> Email ID </label>
+              <input
+                type="text"
+               formControlName="EmailId"
+                class="formbold-form-input"
+              />
+            </div>
+            <div>
+              <label for="Password" class="formbold-form-label"> Password</label>
+              <input
+                type="password"
+                class="formbold-form-input "
+                formControlName="Password"
+              />
+            </div>
+          </div>
+
+        <div class="formbold-input-flex">
+  </div>
+        <div class="formbold-input-flex">
+          <div>
+            <label for="FirstName" class="formbold-form-label"> First Name </label>
+            <input
+              type="text"
+              formControlName="FirstName"
+              class="formbold-form-input"
+            />
+          </div>
+          <div>
+            <label for="LastName" class="formbold-form-label"> Last Name </label>
+            <input
+              type="text"
+             formControlName="LastName"
+              class="formbold-form-input"
+            />
+          </div>
+        </div>
+  
+     
+       
+     
+       
+      
+         
+       
+        <button class="formbold-btn">Save</button>
+      </form>
+    </div>
+  </div>
+  <style>
+  
+  </style>
+
