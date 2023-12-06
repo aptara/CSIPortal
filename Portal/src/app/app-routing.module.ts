@@ -10,6 +10,7 @@ import { MainComponent } from './main/main.component';
 import { HeaderFirstComponent } from './header-first/header-first.component';
 import { FilterClientListComponent } from './filter-client-list/filter-client-list.component';
 import { MenuReadComponent } from './menu-read/menu-read.component';
+import { LoginAppComponent } from './login-app/login-app.component';
 MenuReadComponent
 const routes: Routes = [
   { path: 'main/:ClientId', component: MainComponent },
@@ -24,7 +25,7 @@ const routes: Routes = [
   { path: 'MenuReadComponent/Show/:id', component: MenuReadComponent  },
   {path:'filterClientList', component:FilterClientListComponent},
   {path:'', redirectTo:'/filterClientList',pathMatch:'full'},
-   
+  {path:'loginapp', component:LoginAppComponent}
    
 
 ];

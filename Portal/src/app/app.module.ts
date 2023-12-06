@@ -26,6 +26,7 @@ import { FilterClientListComponent } from './filter-client-list/filter-client-li
 import { FilterClientListService } from './filter-client-list/filter-client-list.service';
 import { GetQuestionDetailService } from './get-question-detail.service';
 import { MenuReadComponent } from './menu-read/menu-read.component';
+import { LoginAppComponent } from './login-app/login-app.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { MenuReadComponent } from './menu-read/menu-read.component';
     CollapseBodyComponent,
     PhoenixListingComponent,
     FilterClientListComponent,
-    MenuReadComponent
+    MenuReadComponent,
+    LoginAppComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,6 @@ import { MenuReadComponent } from './menu-read/menu-read.component';
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    Ng2OrderModule,
     Ng2SearchPipeModule,
     CommonModule,
     BrowserAnimationsModule,
