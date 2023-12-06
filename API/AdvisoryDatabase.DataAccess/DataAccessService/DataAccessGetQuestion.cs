@@ -58,7 +58,8 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
 
         QuestionDescription = data.ReadString("QuestionDescription"),
         CorrectAnswer = data.ReadString("CorrectAnswer"),
-
+          SubmittedEvaluation = data.Read<Int32>("SubmittedEvaluation"),
+          Remarks=data.ReadString("Remarks")
 
       };
     }
@@ -88,7 +89,9 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                   Evaluation8 = row.Read<int>("Evaluation8"),
                   Evaluation9 = row.Read<int>("Evaluation9"),
                   Evaluation10 = row.Read<int>("Evaluation10"),
-                  Evaluation = row.ReadString("Evaluation")
+                  Evaluation = row.ReadString("Evaluation"),
+                    SubmittedEvaluation = row.Read<int>("SubmittedEvaluation"),
+                    Remarks = row.ReadString("Remarks")
 
 
                 }).ToList();
