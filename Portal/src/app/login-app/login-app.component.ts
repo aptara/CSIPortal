@@ -26,9 +26,8 @@ export class LoginAppComponent {
       this.loginAppService.GetUsermasterDetails(this.UserMasterDetails.value).subscribe(res => {
         this.loginDetails = res;
         console.log(this.loginDetails);
-        if (this.loginDetails.Data[0].EmailId == this.UserMasterDetails.value.EmailId && this.loginDetails.Data[0].Password == this.UserMasterDetails.value.Password) {
-          alert("Login Succesfull")
-          window.location.href='/filterClientList/';
+        if (this.loginDetails.Data[0].EmailId == this.UserMasterDetails.value.EmailId && this.loginDetails.Data[0].Password == this.UserMasterDetails.value.Password) {         
+          window.location.href='/Dashboard/';
         }
         else{
           alert("Please Enter Valid Username and Password")

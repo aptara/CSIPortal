@@ -40,4 +40,7 @@ body{
     background-color: #5369f8;
     border-color: #5369f8;
     color: #fff;
+    min-width: 429px;
+    text-align: center;
+    margin-left: 3px;
 }

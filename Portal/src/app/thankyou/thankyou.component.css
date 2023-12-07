@@ -1,0 +1,14 @@
+.ft {
+    background-color: #6f5eb3;
+    color: #fff;
+    text-align: center;
+    padding: 8px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .display-3{
+    font-weight: bold;
+    text-align: center;
+  }

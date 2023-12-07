@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
 constructor(private service:GetQuestionDetailService
   ,private route:ActivatedRoute
-  ,private router: Router){}
+  ,public router: Router){}
 
 ngOnInit() {
  

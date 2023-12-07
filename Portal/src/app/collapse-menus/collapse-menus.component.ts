@@ -16,7 +16,7 @@ export class CollapseMenusComponent {
     private fb:FormBuilder){
       this.AddQuestionAnswer = new FormGroup({
         'ReviewerName': new FormControl(null,Validators.required),
-        'ReviewerEmail': new FormControl(null,Validators.required),
+        'ReviewerEmail': new FormControl(null,[Validators.required, Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$")]),
         //Email: new FormControl(null,Validators.required),
         //Evaluation: new FormControl(null,Validators.required),
         //'Remark' : new FormControl(null,Validators.required)
@@ -234,6 +234,7 @@ onsubmit() {
       this.service.PostAllDetail(this.selectedRankings).subscribe(res => {
         if (res !== null) {
           alert("Submitted");
+          window.location.href='/ThankYou/';
         } else {
           alert("Not submitted");
         }

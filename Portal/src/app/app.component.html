@@ -1,5 +1,8 @@
 
  <!-- <app-main></app-main>  -->
+<app-header *ngIf="router.url!='/Login' && router.url!='/ThankYou' && router.url!='/main/2'  && router.url!='/Responce'"></app-header>
 <router-outlet></router-outlet> 
+<app-footer *ngIf="router.url!='/Login'"></app-footer>
 <!-- <app-login></app-login> -->
  <!-- <app-filter-client-list></app-filter-client-list> -->
+ <!-- <app-header></app-header> -->
