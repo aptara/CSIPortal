@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'resetpassword', component: ResetpasswordComponent },
 //  { path: 'FilterClientList', component: FilterClientListComponent },
   { path: 'HeaderFirst', component: HeaderFirstComponent },
-  { path: 'MenuReadComponent/Show/:id', component: MenuReadComponent  },
+  { path: 'Feedback/Show/:id', component: MenuReadComponent  },
   {path:'Dashboard', component:FilterClientListComponent},
   {path:'', redirectTo:'/Login',pathMatch:'full'},
   {path:'Login', component:LoginAppComponent},

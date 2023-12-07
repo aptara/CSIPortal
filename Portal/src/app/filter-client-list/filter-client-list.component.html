@@ -52,7 +52,7 @@
             <td>{{client.AptaraContact}}</td>             
             <td>{{client.ClientDate}}</td>
             <td>{{client.IsSurveySubmitted}}</td>            
-            <td *ngIf="client.IsSurveySubmitted === 'Yes'"><button type="button" class="btn btn-info" [routerLink]="['/MenuReadComponent/Show',client.ClientId]" >View</button></td>     
+            <td *ngIf="client.IsSurveySubmitted === 'Yes'"><button type="button" class="btn btn-info" [routerLink]="['/Feedback/Show',client.ClientId]" >View</button></td>     
             <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#linkModal" (click)="openLinkModal(client)">Generate Link</button></td>     
           </tr>
         </tbody>

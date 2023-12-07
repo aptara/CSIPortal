@@ -151,7 +151,7 @@ export class MenuReadComponent {
   }
 
   navigateBack(){
-    window.location.href = './clientDashboard';
+    window.location.href = './Dashboard';
   }
 }
 
