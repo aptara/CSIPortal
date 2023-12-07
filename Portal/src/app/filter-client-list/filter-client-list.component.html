@@ -32,27 +32,98 @@
         <thead>
           <tr>
             <!-- <th>ClientId</th>-->
-            <th>Project Id</th> 
+            <!-- <th>Project Id</th>  -->
             <th>Client Name</th>
             <th>Project Name</th>
-            <th>Aptara Contact</th>
-            <th>Date</th>
+            <th>Contact Name</th>
+            <th>Email</th>            
+            <th>Survey On</th>
+            <th>Is Survey Submitted</th>
           
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let client of resultList">
             <!-- <td>{{client.ClientId}}</td>-->
-            <td>{{client.ClientRefId}}</td> 
+            <!-- <td>{{client.ClientRefId}}</td>  -->
             <td>{{client.ClientName}}</td>
             <td>{{client.ProjectName}}</td>
-            <td>{{client.AptaraContact}}</td> 
-            <td>{{client.ClientDate}}</td>            
-            <!-- <td><button type="button" class="btn btn-info" [routerLink]="['/MenuReadComponent/Show',client.ClientId]" (click)="showFeedback(client.ClientId)">View</button></td>     
-            <td><button type="button" class="btn btn-info" >Generate Link</button></td>      -->
+            <td>{{client.AptaraContactName}}</td>
+            <td>{{client.AptaraContact}}</td>             
+            <td>{{client.ClientDate}}</td>
+            <td>{{client.IsSurveySubmitted}}</td>            
+            <td *ngIf="client.IsSurveySubmitted === 'Yes'"><button type="button" class="btn btn-info" [routerLink]="['/MenuReadComponent/Show',client.ClientId]" >View</button></td>     
+            <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#linkModal" (click)="openLinkModal(client)">Generate Link</button></td>     
           </tr>
         </tbody>
       </table>
     </div>
   </div>
  
+<form [formGroup]="linkModalData"  >
+  <div class="modal fade" id="linkModal" tabindex="-1" aria-labelledby="linkModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-5 ">Share Link</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+          <input type="text" class="form-control" formControlName="ClientId" hidden>
+          <input type="text" class="form-control" formControlName="ProjectId" hidden>
+          
+            <div class="row mt-3 ">
+              <div class="col ">
+                <h6 class="text-secondary">Client Name</h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" formControlName="ClientName">
+              </div>
+            </div>
+
+            <div class="row mt-3 ">
+              <div class="col ">
+                <h6 class="text-secondary">Project</h6>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" formControlName="ProjectName" >
+              </div>
+            </div>
+
+            <div class="row mt-3 ">
+              <div class="col ">
+                <h6 class="text-secondary">Email</h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" formControlName="Clientemail">
+                <span class="note" data-note="Important note here"><small>Add more than email addresses with semicolon</small>(;)</span>
+              </div>
+            </div>        
+
+          <div class="row mt-3 ">
+            <div class="col ">
+              <h6 class="text-secondary">Remark</h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <textarea rows="3" cols="80" #txt placeholder="Enter your remark here..." class="form-control" formControlName="Remark">
+              </textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submitModalForm($event)">Share</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

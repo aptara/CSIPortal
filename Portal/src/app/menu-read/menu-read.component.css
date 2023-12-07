@@ -38,5 +38,9 @@
     border-right: none; 
   }
   
-  
-  
+  input[type="radio"][disabled]{
+    opacity: 1.5;
+    cursor: not-allowed;
+  }
+
+ 

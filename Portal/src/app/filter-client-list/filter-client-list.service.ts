@@ -12,11 +12,11 @@ export class FilterClientListService {
   apiurl=environment.baseUrl;
   private url=this.apiurl+'GetClient/GetClientList';
   private url2=this.apiurl+'GetClient/GetClientDetailsList';
-  
+  private url3=this.apiurl+'GenerateLink/GenerateLink';
   getClientList(){
     return this.httpClient.get(this.url);     
   }
-  getClientDetails(fromDate: Date, toDate: Date, clientId: any){
+  getClientDetails(fromDate: any, toDate: any, clientId: any){
     // let params = new HttpParams()
     //   .set('startDate', startDate)
     //   .set('endDate', endDate)
@@ -27,5 +27,12 @@ export class FilterClientListService {
     // Set Content-Type header to application/json
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post(this.url2, body, { headers: headers });
+  }
+
+  submitModalData(formData:any){
+    const body = { formData };
+  
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.url3, formData);
   }
 }

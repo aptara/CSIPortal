@@ -24,6 +24,8 @@ namespace AdvisoryDatabase.Framework.Entities
         public string ClientName { get; set; }
         public string ProjectName { get; set; }
         public string AptaraContact { get; set; }
+        public string AptaraContactName { get; set; }
+        public string IsSurveySubmitted { get; set; }
         public string FromDate { get; set; }
         public string ToDate { get; set; }
         public string Question { get; set; }
@@ -39,6 +41,25 @@ namespace AdvisoryDatabase.Framework.Entities
     public string Remarks { get; set; }
     public string ReviewerEmail { get; set; }
     public string ReviewerName { get; set; }
-  }
+        public Int64 QuestionSerialNumber { get; set; }
+        public string Question { get; set; }
+        public string QuestionDescription { get; set; }
+        public string CorrectAnswer { get; set; }
+        public int Evaluation1 { get; set; }
+        public int Evaluation2 { get; set; }
+        public int Evaluation3 { get; set; }
+        public int Evaluation4 { get; set; }
+        public int Evaluation5 { get; set; }
+        public int Evaluation6 { get; set; }
+        public int Evaluation7 { get; set; }
+        public int Evaluation8 { get; set; }
+        public int Evaluation9 { get; set; }
+        public int Evaluation10 { get; set; }
+        public string Evaluation { get; set; }
+        /* public bool IsActive { get; set; }*/
+        // public List<GetQuestionList> GetQuestionList { get; set; }
+        public int CorrectEvaluation { get; set; }
+        public string PostQuestionXML { get; set; }
+    }
 }
 

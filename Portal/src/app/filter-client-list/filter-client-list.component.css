@@ -1,0 +1,9 @@
+.modal-header, .modal-footer {
+    border: none;
+  }
+
+  .note {
+    position: relative;
+    display: inline-block;
+  }
+
