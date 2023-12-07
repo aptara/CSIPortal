@@ -30,7 +30,7 @@ export class FilterClientListComponent {
  
   fromDate!: any;
   toDate!: any;
-  selectedClient:any;
+  selectedClient=1;
   @Input() selectedOutputClient: any;
   clients: any=[];
   resultList: any=[];
