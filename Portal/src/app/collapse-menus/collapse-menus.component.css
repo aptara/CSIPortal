@@ -1,6 +1,4 @@
-.container {
-    display: flex;
-  }
+
   
   .first, .second, .divider {
     flex: 1;
@@ -45,4 +43,6 @@
     /* Add any other styling you want */
   }
   
-  
+  .rotate-icon {
+    transform: rotate(180deg);
+  }

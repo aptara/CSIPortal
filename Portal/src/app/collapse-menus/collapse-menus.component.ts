@@ -2,6 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, Input } from '@angular/core';
 import { GetQuestionDetailService } from '../get-question-detail.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 declare var bootbox: any;
 @Component({
   selector: 'app-collapse-menus',
@@ -12,8 +13,20 @@ declare var bootbox: any;
 export class CollapseMenusComponent {
   AddQuestionAnswer: FormGroup|any;
 
+
+  openAccordionIndex = 0;
+
+  toggleAccordion(index: number): void {
+    this.openAccordionIndex = (this.openAccordionIndex === index) ? -1 : index;
+  }
+
+  isAccordionOpen(index: number): boolean {
+    return this.openAccordionIndex === index;
+  }
+
   constructor(private service:GetQuestionDetailService,
-    private fb:FormBuilder){
+    private fb:FormBuilder,
+    private path: ActivatedRoute){
       this.AddQuestionAnswer = new FormGroup({
         'ReviewerName': new FormControl(null,Validators.required),
         'ReviewerEmail': new FormControl(null,[Validators.required, Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$")]),
@@ -42,19 +55,26 @@ export class CollapseMenusComponent {
   isFormSubmitted = false;
   header:any =[];
   list:any
+  ClientId:any;
   ngOnInit(){
     this.GetQuestion()
     this.GetDescription()
     
  // Assuming you have a list of questions in `questionsList`
+ let sub = this.path.paramMap.subscribe(params => {
+  this.ClientId = 0;
+  this.ClientId = params.get('ClientId');        
+});
 
 
-
-this.service.GetClient(2).subscribe(res => {
+this.service.GetClient(this.ClientId).subscribe(res => {
   this.header= res
  console.log(this.header.ProjectName) 
  this.header.Data.forEach((Element: any) => {
   console.log(Element.ProjectName)
+  if(Element.IsSurveySubmitted == true ){
+    window.location.href='/Responce';
+  }
   this.list=Element.ProjectName
  });
 });
