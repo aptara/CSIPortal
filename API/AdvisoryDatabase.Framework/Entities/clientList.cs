@@ -15,8 +15,8 @@ namespace AdvisoryDatabase.Framework.Entities
       public string ProjectName { get; set; }
       public string AptaraContact { get; set; }
       public string AptaraContact2 { get; set; }
-
-  }
+      public Boolean IsSurveySubmitted { get; set; }
+    }
     public class clientDetailsList : BaseEntity<Int32>
     {
         public int ClientId { get; set; }

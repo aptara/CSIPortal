@@ -27,6 +27,10 @@ import { FilterClientListService } from './filter-client-list/filter-client-list
 import { GetQuestionDetailService } from './get-question-detail.service';
 import { MenuReadComponent } from './menu-read/menu-read.component';
 import { LoginAppComponent } from './login-app/login-app.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
+import { ResponceComponent } from './responce/responce.component';
 
 
 @NgModule({
@@ -45,7 +49,11 @@ import { LoginAppComponent } from './login-app/login-app.component';
     PhoenixListingComponent,
     FilterClientListComponent,
     MenuReadComponent,
-    LoginAppComponent
+    LoginAppComponent,
+    HeaderComponent,
+    FooterComponent,
+    ThankyouComponent,
+    ResponceComponent
   ],
   imports: [
     BrowserModule,

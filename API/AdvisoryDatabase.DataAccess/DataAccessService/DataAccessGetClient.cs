@@ -116,8 +116,8 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
 
         ProjectName = data.ReadString("ProjectName"),
         AptaraContact = data.ReadString("AptaraContact"),
-        AptaraContact2 = data.ReadString("AptaraContact2")
-
+        AptaraContact2 = data.ReadString("AptaraContact2"),
+         IsSurveySubmitted = data.Read<bool>("IsSurveySubmitted"),
       };
     }
   }

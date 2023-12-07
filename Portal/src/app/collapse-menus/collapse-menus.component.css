@@ -1,6 +1,4 @@
-.container {
-    display: flex;
-  }
+
   
   .first, .second, .divider {
     flex: 1;
@@ -38,5 +36,13 @@
     border-right: none; 
   }
   
+  .custom-input {
+    width: 400px; /* Adjust the width as needed */
+    padding: 5px;
+    border-radius: 6px;
+    /* Add any other styling you want */
+  }
   
-  
+  .rotate-icon {
+    transform: rotate(180deg);
+  }

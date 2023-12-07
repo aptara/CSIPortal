@@ -11,6 +11,10 @@ import { HeaderFirstComponent } from './header-first/header-first.component';
 import { FilterClientListComponent } from './filter-client-list/filter-client-list.component';
 import { MenuReadComponent } from './menu-read/menu-read.component';
 import { LoginAppComponent } from './login-app/login-app.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
+import { ResponceComponent } from './responce/responce.component';
 MenuReadComponent
 const routes: Routes = [
   { path: 'main/:ClientId', component: MainComponent },
@@ -23,11 +27,15 @@ const routes: Routes = [
 //  { path: 'FilterClientList', component: FilterClientListComponent },
   { path: 'HeaderFirst', component: HeaderFirstComponent },
   { path: 'MenuReadComponent/Show/:id', component: MenuReadComponent  },
-  {path:'filterClientList', component:FilterClientListComponent},
-  {path:'', redirectTo:'/filterClientList',pathMatch:'full'},
-  {path:'loginapp', component:LoginAppComponent}
+  {path:'Dashboard', component:FilterClientListComponent},
+  {path:'', redirectTo:'/Login',pathMatch:'full'},
+  {path:'Login', component:LoginAppComponent},
+  {path:'Header', component:HeaderComponent},
+  {path:'Footer', component:FooterComponent},
+  {path:'ThankYou', component:ThankyouComponent},
+  {path:'Responce', component:ResponceComponent}
+  
    
-
 ];
 
 @NgModule({
