@@ -31,14 +31,14 @@ export class GetQuestionDetailService {
   }
   //Get Client by Id
   private GetClientUrl =this.apiURL +'GetClient/GetClientForTop'
-  GetClient(clientId: number){
-    const requestData = { ClientId: clientId }; // Assuming your API expects an object with the property 'ClientId'
+  GetClient(LinkGUID: number){
+    const requestData = { LinkGUID: LinkGUID }; // Assuming your API expects an object with the property 'ClientId'
 
     return this.httpClient.post(this.GetClientUrl, requestData);
   }
 
-  navigateToMainWithClientId(clientId: number) {
-    this.router.navigate(['/main', clientId]);
+  navigateToMainWithClientId(LinkGUID: number) {
+    this.router.navigate(['/main', LinkGUID]);
   }
 
 }

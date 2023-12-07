@@ -55,24 +55,27 @@ export class CollapseMenusComponent {
   isFormSubmitted = false;
   header:any =[];
   list:any
-  ClientId:any;
+  LinkGUID:any;
+  ProjectId :any;
   ngOnInit(){
     this.GetQuestion()
     this.GetDescription()
     
  // Assuming you have a list of questions in `questionsList`
  let sub = this.path.paramMap.subscribe(params => {
-  this.ClientId = 0;
-  this.ClientId = params.get('ClientId');        
+  this.LinkGUID = 0;
+  this.LinkGUID = params.get('LinkGUID');        
 });
 
 
-this.service.GetClient(this.ClientId).subscribe(res => {
+this.service.GetClient(this.LinkGUID).subscribe(res => {
   this.header= res
  console.log(this.header.ProjectName) 
  this.header.Data.forEach((Element: any) => {
   console.log(Element.ProjectName)
-  if(Element.IsSurveySubmitted == true ){
+  console.log(Element.ProjectID)
+this.ProjectId = Element.ProjectID
+  if(Element.IsSurveySubmitted == 'Yes' ){
     window.location.href='/Responce';
   }
   this.list=Element.ProjectName
@@ -248,6 +251,9 @@ onsubmit() {
         element.CorrectEvaluation = "10";
         element.ReviewerName = this.ViewerName;
         element.ReviewerEmail = this.ViewerEmail;
+        element.LinkGUID = this.LinkGUID;
+        element.ProjectID = this.ProjectId;
+
         console.log(element);
       });
 

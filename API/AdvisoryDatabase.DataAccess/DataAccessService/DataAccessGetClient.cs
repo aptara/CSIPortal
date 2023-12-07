@@ -90,7 +90,8 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
   {
     protected override void FillParameters(OperationType operation, clientList instance, List<DbParameter> parameters)
     {
-      parameters.Add(DbHelper.CreateParameter("ClientId", instance.ClientId));
+      parameters.Add(DbHelper.CreateParameter("LinkGUID", instance.LinkGUID));
+
     }
 
     protected override string GetProcedureName(OperationType operation)
@@ -116,8 +117,10 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
 
         ProjectName = data.ReadString("ProjectName"),
         AptaraContact = data.ReadString("AptaraContact"),
-        AptaraContact2 = data.ReadString("AptaraContact2"),
-         IsSurveySubmitted = data.Read<bool>("IsSurveySubmitted"),
+          AptaraContactName = data.ReadString("AptaraContactName"),
+        IsSurveySubmitted = data.ReadString("IsSurveySubmitted"),
+         ProjectID = data.Read<Int64>("ProjectID")
+
       };
     }
   }

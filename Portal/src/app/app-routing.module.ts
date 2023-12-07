@@ -17,7 +17,7 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
 import { ResponceComponent } from './responce/responce.component';
 MenuReadComponent
 const routes: Routes = [
-  { path: 'main/:ClientId', component: MainComponent },
+  { path: 'main/:LinkGUID', component: MainComponent },
  // { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'editEmp/:UserMasterID', component: EditEmployeeComponent },
