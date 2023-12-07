@@ -46,12 +46,14 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\GetClientController.cs" />
     <Compile Include="Controllers\GetQuestionController.cs" />
+    <Compile Include="Controllers\UserLoginController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Security\CryptoServices.cs" />
     <Compile Include="Service\GetClientService.cs" />
     <Compile Include="Service\GetQuestionService.cs" />
+    <Compile Include="Service\GetUserLoginService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdvisoryDatabase.DataAccess\AdvisoryDatabase.DataAccess.csproj">

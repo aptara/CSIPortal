@@ -88,6 +88,7 @@
     <Compile Include="Entities\clientList.cs" />
     <Compile Include="Entities\GetQuestion.cs" />
     <Compile Include="Entities\LoginResponse.cs" />
+    <Compile Include="Entities\UserLogin.cs" />
     <Compile Include="Logger\Log4NetLogger.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
