@@ -31,6 +31,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { ResponceComponent } from './responce/responce.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ResponceComponent } from './responce/responce.component';
     HeaderComponent,
     FooterComponent,
     ThankyouComponent,
-    ResponceComponent
+    ResponceComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

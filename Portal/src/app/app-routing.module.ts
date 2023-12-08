@@ -15,6 +15,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { ResponceComponent } from './responce/responce.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 MenuReadComponent
 const routes: Routes = [
   { path: 'main/:LinkGUID', component: MainComponent },
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path:'Header', component:HeaderComponent},
   {path:'Footer', component:FooterComponent},
   {path:'ThankYou', component:ThankyouComponent},
-  {path:'Responce', component:ResponceComponent}
+  {path:'SubmittedResponse', component:ResponceComponent},
+  {path:'BadResponse', component:PageNotFoundComponent}
   
    
 ];

@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginAppService } from './login-app.service';
 
+interface UserData {
+  EmailId: string;
+  Password: string;
+  // Add other properties as needed
+}
+
 @Component({
   selector: 'app-login-app',
   templateUrl: './login-app.component.html',
@@ -10,7 +16,7 @@ import { LoginAppService } from './login-app.service';
 export class LoginAppComponent {
   UserMasterDetails: FormGroup | any;
   isFormSubmitted = false;
-  loginDetails :any = [];
+  loginDetails: any = [];
 
   constructor(private loginAppService: LoginAppService,
     private fb: FormBuilder) {
@@ -22,21 +28,26 @@ export class LoginAppComponent {
 
   onsubmit() {
     this.isFormSubmitted = true;
+
     if (this.UserMasterDetails.valid) {
       this.loginAppService.GetUsermasterDetails(this.UserMasterDetails.value).subscribe(res => {
         this.loginDetails = res;
         console.log(this.loginDetails);
-        if (this.loginDetails.Data[0].EmailId == this.UserMasterDetails.value.EmailId && this.loginDetails.Data[0].Password == this.UserMasterDetails.value.Password) {         
-          window.location.href='/Dashboard/';
+
+        // Check each user's credentials
+        const validUser = this.loginDetails.Data.find((user: UserData) =>
+          user.EmailId === this.UserMasterDetails.value.EmailId &&
+          user.Password === this.UserMasterDetails.value.Password
+        );
+
+        if (validUser) {
+          window.location.href = '/Dashboard/';
+        } else {
+          alert("Please Enter Valid Username and Password");
         }
-        else{
-          alert("Please Enter Valid Username and Password")
-        }
-      })
-    }
-    else {
-      alert("Please fill Username and Password")
+      });
+    } else {
+      alert("Please fill Username and Password");
     }
   }
-
 }
