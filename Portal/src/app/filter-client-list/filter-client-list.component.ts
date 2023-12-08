@@ -1,7 +1,8 @@
 // import { Component, ViewChild } from '@angular/core';
 import { FilterClientListService } from './filter-client-list.service';
-import { Component, ElementRef, Input, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, Input, OnInit, Renderer2, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-filter-client-list',
   templateUrl: './filter-client-list.component.html',
@@ -11,21 +12,23 @@ export class FilterClientListComponent {
   linkModalData: FormGroup | any;
   constructor(private service:FilterClientListService,
     private fb: FormBuilder){
-    // this.linkModalData =  this.fb.group({
-    //   Clientemail: [''],
-    //   ClientName: [''],
-    //   ProjectName: [''],
-    //   Remark : ['']
-    // });
+    this.linkModalData =  this.fb.group({
+      ClientId:[''],
+      ProjectId:[''],
+      Clientemail: ['', [Validators.required, this.multipleEmailsValidator]],
+      ClientName: [''],
+      ProjectName: [''],
+      Remark : ['']
+    });
     
-    this.linkModalData = new FormGroup({
-      ClientId:new FormControl(),
-      ProjectId:new FormControl(),
-      Clientemail: new FormControl(),
-      ClientName: new FormControl(),
-      ProjectName: new FormControl(),
-      Remark: new FormControl()
-  });
+  //   this.linkModalData = new FormGroup({
+  //     ClientId:new FormControl(),
+  //     ProjectId:new FormControl(),
+  //     Clientemail: new FormControl(),
+  //     ClientName: new FormControl(),
+  //     ProjectName: new FormControl(),
+  //     Remark: new FormControl()
+  // });
   }
  
   fromDate!: any;
@@ -33,13 +36,11 @@ export class FilterClientListComponent {
   selectedClient=1;
   @Input() selectedOutputClient: any;
   clients: any=[];
-  resultList: any=[];
-  // Clientemail:any;
-  // ClientName: any; 
-  // ProjectName: any; 
+  resultList: any=[]; 
  
   ngOnInit(){
-    this.GetClient()
+    this.GetClient();
+    // this.submitForm();
     //  this.linkModalData =  this.fb.group({
     //   Clientemail: [''],
     //   ClientName: [''],
@@ -75,21 +76,33 @@ export class FilterClientListComponent {
     });
   }
 
-  submitModalForm(event:any){
+  submitModalForm(event: any) {
+
     this.service.submitModalData(this.linkModalData.value).subscribe({
       next: (data: any) => {
-       this.resultList = data.Data; 
-       event.preventDefault();
-       return false;
+        this.resultList = data.Data;        
+      },
+      error: (error: any) => {
+        console.error('Error submitting form:', error);
       }
-    });
+    });    
+    // event.preventDefault();
+    // return false;
+  }
 
-    // this.service.getClientDetails(null,null,this.linkModalData.value.ClientId).subscribe({
-    //   next: (data: any) => {
-    //    this.resultList = data.Data; 
-    //   }
-    // });
-    event.preventDefault();
-    return false;
+  //  multipleEmailsValidator(control: AbstractControl): { [key: string]: any } | null {
+  //   const emails = control.value.split(';').map((email: string) => email.trim());
+  
+  //   const valid = emails.every((email: any) => Validators.email(new FormControl(email)));
+  
+  //   return valid ? null : { invalidEmails: true };
+  // }
+
+   multipleEmailsValidator(control: AbstractControl): { [key: string]: any } | null {
+    const emails = (control.value as string).split(',').map(email => email.trim());
+
+    const valid = emails.every(email => Validators.email(new FormControl(email)) == null);
+  
+    return valid ? null : { invalidEmails: true };
   }
 }

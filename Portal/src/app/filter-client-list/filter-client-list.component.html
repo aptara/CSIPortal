@@ -11,15 +11,13 @@
           <label for="toDate">End Date:</label>
           <input type="date" id="toDate" name="toDate" [(ngModel)]="toDate" required class="form-control">
         </div>
-      <!-- </div> -->
-      <!-- <div class="row"> -->
+
         <div class="form-group col-md-4">
           <label for="category">Client:</label>
           <select id="category" name="category" [selectedIndex]="1" [(ngModel)]="selectedClient" required class="form-control">
             <option *ngFor="let client of clients" [value]="client.ClientId">{{ client.ClientName }}</option>
           </select>
-          <!-- Use ng-select if needed -->
-          <!-- <ng-select [items]="clients" bindLabel="category" [(ngModel)]="selectedClient" placeholder="Select a client"></ng-select> -->
+          
         </div>
       </div>
       <br>
@@ -27,7 +25,7 @@
     </form>
   
     <div *ngIf="resultList && resultList.length > 0" class="mt-4">
-      <h2>Client List:</h2>
+      <!-- <h2>Client List:</h2> -->
       <table class="table">
         <thead>
           <tr>
@@ -37,7 +35,7 @@
             <th>Project Name</th>
             <th>Contact Name</th>
             <th>Email</th>            
-            <th>Survey On</th>
+            <th>Survey Submitted On</th>
             <th>Is Survey Submitted?</th>
           
           </tr>
@@ -92,7 +90,7 @@
 
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" formControlName="ProjectName" >
+                <input type="text" class="form-control" formControlName="ProjectName">
               </div>
             </div>
 
@@ -103,8 +101,17 @@
             </div>
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" formControlName="Clientemail">
-                <span class="note" data-note="Important note here"><small>Add more than email addresses with semicolon</small>(;)</span>
+                <input type="text" class="form-control" formControlName="Clientemail" id="Clientemail">
+                <div *ngIf="linkModalData.get('Clientemail').hasError('required') && linkModalData.get('Clientemail').touched" class="text-danger">
+                  Email is required.
+                </div>
+                <div *ngIf="linkModalData.get('Clientemail').hasError('email') && linkModalData.get('Clientemail').touched" class="text-danger">
+                  Invalid email format.
+                </div>
+                <div *ngIf="linkModalData.get('Clientemail').hasError('invalidEmails') && linkModalData.get('Clientemail').touched" class="text-danger">
+                  Invalid email addresses. Use a valid email format and separate multiple emails with a comma.
+                </div>
+                <span class="note" data-note="Important note here"><small>Add more than email addresses with comma(,)</small></span>
               </div>
             </div>        
 
