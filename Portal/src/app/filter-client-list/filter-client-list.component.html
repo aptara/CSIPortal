@@ -15,7 +15,7 @@
       <!-- <div class="row"> -->
         <div class="form-group col-md-4">
           <label for="category">Client:</label>
-          <select id="category" name="category" [(ngModel)]="selectedClient" required class="form-control">
+          <select id="category" name="category" [selectedIndex]="1" [(ngModel)]="selectedClient" required class="form-control">
             <option *ngFor="let client of clients" [value]="client.ClientId">{{ client.ClientName }}</option>
           </select>
           <!-- Use ng-select if needed -->
@@ -38,7 +38,7 @@
             <th>Contact Name</th>
             <th>Email</th>            
             <th>Survey On</th>
-            <th>Is Survey Submitted</th>
+            <th>Is Survey Submitted?</th>
           
           </tr>
         </thead>
