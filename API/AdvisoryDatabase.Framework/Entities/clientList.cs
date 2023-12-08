@@ -10,17 +10,18 @@ namespace AdvisoryDatabase.Framework.Entities
 
     public class clientList : BaseEntity<Int32>
     {
-      public int ClientId { get; set; }
-      public string ClientName { get; set; }
-      public string ProjectName { get; set; }
-      public string AptaraContact { get; set; }
-      public string AptaraContactName { get; set; }
-      public string IsSurveySubmitted { get; set; }
-      public string LinkGUID { get; set; }
-      public long ProjectID { get; set; }
-     
+        public int ClientId { get; set; }
+        public string ClientName { get; set; }
+        public string ProjectName { get; set; }
+        public string AptaraContact { get; set; }
+        public string AptaraContactName { get; set; }
+        public string IsSurveySubmitted { get; set; }
+        public string LinkGUID { get; set; }
+        public long ProjectID { get; set; }
+        public string InValidRequest { get; set; }
     }
-    public class clientDetailsList : BaseEntity<Int32>
+
+        public class clientDetailsList : BaseEntity<Int32>
     {
         public int ClientId { get; set; }
         public long ClientRefId { get; set; }

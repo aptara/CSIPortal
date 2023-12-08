@@ -35,7 +35,8 @@ namespace AdvisoryDatabase.WebAPI.Controllers
 
     [System.Web.Http.HttpPost]
     public APIResponse<List<clientList>> GetClientForTop([FromBody] clientList obj)
-    {
+    
+        {
       AdvisoryDatabase.Business.Controllers.GetClientController GetClientController = new Business.Controllers.GetClientController();
       return GetClientController.GetClientForTop(obj);
     }
