@@ -10,6 +10,10 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 })
 export class FilterClientListComponent {
   linkModalData: FormGroup | any;
+  sortField: any;
+  sortOrder: any;
+
+
   constructor(private service:FilterClientListService,
     private fb: FormBuilder){
     this.linkModalData =  this.fb.group({
@@ -30,7 +34,13 @@ export class FilterClientListComponent {
   //     Remark: new FormControl()
   // });
   }
- 
+  onSort(event: any) {
+    // Handle sorting
+    this.sortField = event.field;
+    this.sortOrder = event.order;
+    // Reload data or perform sorting logic
+  
+  }
   fromDate!: any;
   toDate!: any;
   selectedClient=1;

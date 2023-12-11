@@ -25,38 +25,36 @@
     </form>
   
     <div *ngIf="resultList && resultList.length > 0" class="mt-4">
-      <!-- <h2>Client List:</h2> -->
-      <table class="table">
-        <thead>
+      <p-table [value]="resultList" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 50, 100]" [showCurrentPageReport]="true">
+        <ng-template pTemplate="header">
           <tr>
-            <!-- <th>ClientId</th>-->
-            <!-- <th>Project Id</th>  -->
-            <th>Client Name</th>
-            <th>Project Name</th>
-            <th>Contact Name</th>
-            <th>Email</th>            
-            <th>Survey Submitted On</th>
-            <th>Is Survey Submitted?</th>
-          
+            <th pSortableColumn="ClientName" style="min-width:200px">Client Name <p-sortIcon field="ClientName"></p-sortIcon></th>
+            <th pSortableColumn="ProjectName"style="min-width:200px">Project Name <p-sortIcon field="ProjectName"></p-sortIcon></th>
+            <th pSortableColumn="ConatactName"style="min-width:200px">Contact Name <p-sortIcon field="ConatactName"></p-sortIcon></th>
+            <th pSortableColumn="Email"style="min-width:200px">Email <p-sortIcon field="Email"></p-sortIcon></th>
+            <th pSortableColumn="IsSurveySubmittedOn"style="min-width:200px">Survey Submitted On<p-sortIcon field="IsSurveySubmittedOn"></p-sortIcon></th>
+            <th pSortableColumn="IsSurveySubmitted" style="min-width:200px">Is Survey Submitted?<p-sortIcon field="IsSurveySubmitted"></p-sortIcon></th>
+            <th>Actions</th>
           </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let client of resultList">
-            <!-- <td>{{client.ClientId}}</td>-->
-            <!-- <td>{{client.ClientRefId}}</td>  -->
-            <td>{{client.ClientName}}</td>
-            <td>{{client.ProjectName}}</td>
-            <td>{{client.AptaraContactName}}</td>
-            <td>{{client.AptaraContact}}</td>             
-            <td>{{client.ClientDate}}</td>
-            <td>{{client.IsSurveySubmitted}}</td>            
-            <td *ngIf="client.IsSurveySubmitted === 'Yes'"><button type="button" class="btn btn-info" [routerLink]="['/Feedback/Show',client.ClientId]" >View</button></td>     
-            <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#linkModal" (click)="openLinkModal(client)">Generate Link</button></td>     
+        </ng-template>
+        <ng-template pTemplate="body" let-client>
+          <tr>
+            <td>{{ client.ClientName }}</td>
+            <td>{{ client.ProjectName }}</td>
+            <td>{{ client.AptaraContactName }}</td>
+            <td>{{ client.AptaraContact }}</td>
+            <td>{{ client.ClientDate }}</td>
+            <td>{{ client.IsSurveySubmitted }}</td>
+            <td>
+              <button *ngIf="client.IsSurveySubmitted === 'Yes'" pButton type="button" class="p-button-info" [routerLink]="['/Feedback/Show', client.ClientId]">View</button>
+              <button pButton type="button" class="p-button-info" data-bs-toggle="modal" data-bs-target="#linkModal" (click)="openLinkModal(client)">Generate Link</button>
+            </td>
           </tr>
-        </tbody>
-      </table>
+        </ng-template>
+      </p-table>
     </div>
-  </div>
+    
+
  
 <form [formGroup]="linkModalData"  >
   <div class="modal fade" id="linkModal" tabindex="-1" aria-labelledby="linkModalLabel" aria-hidden="true">

@@ -3,6 +3,8 @@ import { Component, Input } from '@angular/core';
 import { GetQuestionDetailService } from '../get-question-detail.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { MessageService } from 'primeng/api';
+
 declare var bootbox: any;
 @Component({
   selector: 'app-collapse-menus',
@@ -26,7 +28,8 @@ export class CollapseMenusComponent {
 
   constructor(private service: GetQuestionDetailService,
     private fb: FormBuilder,
-    private path: ActivatedRoute) {
+    private path: ActivatedRoute,
+    private messageService: MessageService) {
     this.AddQuestionAnswer = new FormGroup({
       'ReviewerName': new FormControl(null, Validators.required),
       'ReviewerEmail': new FormControl(null, [Validators.required, Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$")]),
@@ -248,7 +251,7 @@ export class CollapseMenusComponent {
   //   });
   // }
 
-  onsubmit() {
+  onSubmit() {
     this.isFormSubmitted = true;
 
     // Check if the form is valid
@@ -282,7 +285,7 @@ export class CollapseMenusComponent {
         alert("Question counts do not match. Please answer all questions.");
       }
     } else {
-      alert("Please enter Reviewer Name and Email.");
+      bootbox.alert("Please enter Reviewer Name and Email.");
     }
   }
 

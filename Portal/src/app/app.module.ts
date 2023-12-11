@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -32,8 +33,12 @@ import { FooterComponent } from './footer/footer.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { ResponceComponent } from './responce/responce.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
-
+import {ButtonModule} from 'primeng/button';
+import { PrimeIcons } from 'primeng/api';
+import {CardModule} from 'primeng/card';
+import { TableModule } from 'primeng/table';
+import { MessageService } from 'primeng/api';
+PrimeIcons
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +61,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ThankyouComponent,
     ResponceComponent,
     PageNotFoundComponent
+ 
   ],
   imports: [
     BrowserModule,
@@ -67,8 +73,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     Ng2SearchPipeModule,
     CommonModule,
     BrowserAnimationsModule,
+    ButtonModule,
+    CardModule,
+    TableModule
+    
   ],
-  providers: [LogindataService,workbench,FilterClientListService],
+  providers: [LogindataService,workbench,FilterClientListService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
