@@ -50,6 +50,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
     {
       parameters.Add(DbHelper.CreateParameter("FromDate", instance.FromDate));
       parameters.Add(DbHelper.CreateParameter("ToDate", instance.ToDate));
+      parameters.Add(DbHelper.CreateParameter("ProjectId", instance.ProjectId));
       parameters.Add(DbHelper.CreateParameter("ClientId", instance.ClientId));
     }
 
@@ -79,6 +80,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
         AptaraContact = data.ReadString("AptaraContact"),
         AptaraContactName = data.ReadString("AptaraContactName"),
         ClientDate = data.ReadString("LastUpdatedOnString"),
+        SurveyCreatedOn = data.ReadString("CreatedOnString"),
         IsSurveySubmitted = data.ReadString("IsSurveySubmitted"),
       };
     }

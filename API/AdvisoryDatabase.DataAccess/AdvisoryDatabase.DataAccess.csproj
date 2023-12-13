@@ -55,6 +55,7 @@
     <Compile Include="DataAccessService\DataAccessGetClient.cs" />
     <Compile Include="DataAccessService\DataAccessGetQuestion.cs" />
     <Compile Include="DataAccessService\DataAccessGetUserLogin.cs" />
+    <Compile Include="DataAccessService\GetProjectDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DataAccessRepository.cs" />
     <Compile Include="Repository\IDataAccessRepository.cs" />

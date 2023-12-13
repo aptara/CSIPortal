@@ -37,12 +37,34 @@
   }
   
   .custom-input {
-    width: 400px; /* Adjust the width as needed */
+    width: 400px; 
     padding: 5px;
     border-radius: 6px;
-    /* Add any other styling you want */
+   
   }
   
-  .rotate-icon {
-    transform: rotate(180deg);
+  .accordion-button {
+    display: flex;
+    justify-content: space-between;
   }
+  
+  .accordion-button strong {
+    order: 2; /* Move the number to the right */
+  }
+  
+  .accordion-button .bi-chevron-down {
+    order: 2; /* Move the icon to the left */
+  }
+  .accordion-button {
+    justify-content: end !important;
+  }
+  
+  .accordion-button::after {
+    /* margin-right: 200px;
+    margin-left: 0 !important; */
+    background-image: url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="%23212529"%3e%3cpolygon points="64 3.992 4.111 124.142 123.889 124.142"%3e%3c/polygon%3e%3c/svg%3e');
+} 
+
+
+
+  

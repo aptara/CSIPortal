@@ -35,9 +35,7 @@ const routes: Routes = [
   {path:'Footer', component:FooterComponent},
   {path:'ThankYou', component:ThankyouComponent},
   {path:'SubmittedResponse', component:ResponceComponent},
-  {path:'BadResponse', component:PageNotFoundComponent}
-  
-   
+  {path:'BadResponse', component:PageNotFoundComponent}   
 ];
 
 @NgModule({

@@ -1,64 +1,60 @@
 <div style="margin-bottom: 11vh;">
   <nav class="navbar fixed-top" style="background-color: #e3f2fd;">
-      <div class="container-fluid">
-          <a class="navbar-brand" href="#"><img src="assets/logo.jpg" alt="Image Alt Text" class="image"></a>
-      </div>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="assets/logo.jpg" alt="Image Alt Text" class="image"></a>
+    </div>
   </nav>
 </div>
-<div class="container" >
+<div class="container">
   <form [formGroup]="AddQuestionAnswer" (ngSubmit)="onSubmit()">
     <div class="mb-2">
       <div style="padding: 10px;">
-        <h2 style="background-color: #cfe2ff; font-family: 'Times New Roman', serif; font-size: 24px; font-weight: bold; text-align: left; padding: 10px;">
+        <h2
+          style="background-color: #cfe2ff; font-family: 'Times New Roman', serif; font-size: 24px; font-weight: bold; text-align: left; padding: 10px;">
           <strong>Customer Satisfaction Survey</strong>
         </h2>
-    
+
         <div class="content-text" *ngFor="let element of header.Data" style="display: flex;">
           <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
-         <div class="col-6 mb-3 mt-3 ">
-          <label><strong>Project </strong></label>
-          <input class="custom-input" type="text" value="{{element.ProjectName}}" style="margin-left: 100px;" readonly>
-         </div>
+          <div class="col-6 mb-3 mt-3 ">
+            <label><strong>Project </strong></label>
+            <input class="custom-input" type="text" value="{{element.ProjectName}}" style="margin-left: 100px;"
+              readonly>
+          </div>
           <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
           <div class="col-6 mb-3 mt-3 ">
             <label><strong>Aptara Contact </strong></label>
-          <input class="custom-input" type="text" value="{{element.AptaraContact}}" style="margin-left: 50px;">
+            <input class="custom-input" type="text" value="{{element.AptaraContact}}" style="margin-left: 50px;">
           </div>
         </div>
-    
         <!-- Your input boxes go here -->
         <div class="row g-1">
           <div class="col">
-            <label for="ReviewerName"><strong>Reviewer Name  </strong></label>
+            <label for="ReviewerName"><strong>Reviewer Name </strong></label>
             <input type="text" class="custom-input" #Reviewer placeholder="Reviewer Name" id="ReviewerName"
               (input)="getName(Reviewer.value)" formControlName="ReviewerName" style="margin-left: 35px;">
           </div>
           <div class="col">
-            <label for="ReviewerEmail"><strong>Reviewer Email  </strong> </label>
+            <label for="ReviewerEmail"><strong>Reviewer Email </strong> </label>
             <input type="text" class="custom-input" #Email placeholder="Reviewer Email" id="ReviewerEmail"
               (input)="getEmail(Email.value)" formControlName="ReviewerEmail" style="margin-left: 49px;">
           </div>
         </div>
-        
-       
       </div>
     </div>
-    
-    
-    
 
     <div class="accordion" id="accordionExample">
       <div class="accordion-item" *ngFor="let item of accordianItems; let i = index">
         <h2 class="accordion-header">
-          <button class="accordion-button d-flex justify-content-between align-items-center" type="button" 
-                  (click)="toggleAccordion(i)" 
-                  [attr.aria-expanded]="isAccordionOpen(i)" 
-                  [attr.aria-controls]="'collapse' + i">
-            <span>
-              <strong>{{item.QuestionSerialNumber}}.{{ item.question }}</strong>
-            </span>
-            <span>
+          <button class="accordion-button d-flex justify-content-between align-items-center" type="button"
+            (click)="toggleAccordion(i)" [attr.aria-expanded]="isAccordionOpen(i)"
+            [attr.aria-controls]="'collapse' + i"  >
+            <!-- <span class="icon-container">
               <i class="bi bi-chevron-down" [ngClass]="{'rotate-icon': isAccordionOpen(i)}"></i>
+            </span> -->
+            <span>
+             
+              <strong>{{item.QuestionSerialNumber}}.{{ item.question }}</strong>
             </span>
           </button>
         </h2>
@@ -156,13 +152,17 @@
                       <tr>
                         <td class="table-cell" style="border-right: 1px solid #9aa09e;"><strong>NA</strong></td>
                         <td class="table-cell" colspan="2" style="border-right: 1px solid #9aa09e;">
-                          <strong>Never</strong></td>
+                          <strong>Never</strong>
+                        </td>
                         <td class="table-cell" colspan="2" style="border-right: 1px solid #9aa09e;">
-                          <strong>Rarely</strong></td>
+                          <strong>Rarely</strong>
+                        </td>
                         <td class="table-cell" colspan="3" style="border-right: 1px solid #9aa09e;">
-                          <strong>Sometimes</strong></td>
+                          <strong>Sometimes</strong>
+                        </td>
                         <td class="table-cell" colspan="2" style="border-right: 1px solid #9aa09e;">
-                          <strong>Mostly</strong></td>
+                          <strong>Mostly</strong>
+                        </td>
                         <td class="table-cell" colspan="1"><strong>Always</strong></td>
 
 
@@ -180,7 +180,6 @@
                         <td valign="middle" bgcolor="#FFFF00" align="center" colspan="2"></td>
                         <td valign="middle" bgcolor="#06cd00" align="center" colspan="2"></td>
                       </tr>
-
                     </tbody>
                     </td>
                 </tr>
@@ -192,12 +191,12 @@
 
             </tbody>
             </table>
-            <div >
+            <div>
               <div>
                 <span>Remark</span>
-                <textarea rows="4" cols="168" #txt placeholder="Enter your remark here..." 
-                (input)="getRemark(txt.value,item.QuestionSerialNumber)" style="resize: none;"></textarea>
-                  <!-- <div class="error textError"
+                <textarea rows="4" cols="168" #txt placeholder="Enter your remark here..."
+                  (input)="getRemark(txt.value,item.QuestionSerialNumber)" style="resize: none;"></textarea>
+                <!-- <div class="error textError"
                   *ngIf="remarkControl.hasError('required') && (remarkControl.dirty || remarkControl.touched || isFormSubmitted)">
                Please enter a remark.
              </div> -->
@@ -224,4 +223,3 @@
     </div>
   </form>
 </div>
-

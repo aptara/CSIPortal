@@ -253,12 +253,12 @@ export class CollapseMenusComponent {
 
   onSubmit() {
     this.isFormSubmitted = true;
-
+  
     // Check if the form is valid
     if (this.AddQuestionAnswer.valid) {
       const accordianItemCount = this.accordianItems.length;
       const selectedRankingsCount = this.selectedRankings.length;
-
+  
       // Check if the counts match
       if (accordianItemCount === selectedRankingsCount) {
         this.selectedRankings.forEach(element => {
@@ -268,26 +268,27 @@ export class CollapseMenusComponent {
           element.ReviewerEmail = this.ViewerEmail;
           element.LinkGUID = this.LinkGUID;
           element.ProjectID = this.ProjectId;
-         
-
+  
           console.log(element);
         });
-
+  
         this.service.PostAllDetail(this.selectedRankings).subscribe(res => {
           if (res !== null) {
-            alert("Submitted");
-            window.location.href = '/ThankYou/';
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Submitted' });
+            // Navigate to '/ThankYou/' using Angular Router instead of window.location.href
+            // this.router.navigate(['/ThankYou/']);
           } else {
-            alert("Not submitted");
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Not submitted' });
           }
         });
       } else {
-        alert("Question counts do not match. Please answer all questions.");
+        this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Question counts do not match. Please answer all questions.' });
       }
     } else {
-      bootbox.alert("Please enter Reviewer Name and Email.");
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please enter Reviewer Name and Email.' });
     }
   }
+  
 
 
   getName(txt: string) {

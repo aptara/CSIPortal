@@ -38,6 +38,7 @@ import { PrimeIcons } from 'primeng/api';
 import {CardModule} from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 PrimeIcons
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ PrimeIcons
     BrowserAnimationsModule,
     ButtonModule,
     CardModule,
-    TableModule
+    TableModule,
+    ToastModule
     
   ],
   providers: [LogindataService,workbench,FilterClientListService,MessageService],

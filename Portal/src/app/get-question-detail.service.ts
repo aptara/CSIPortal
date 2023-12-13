@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from './Environment';
+import { FilterClientListComponent } from './filter-client-list/filter-client-list.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -40,7 +41,7 @@ export class GetQuestionDetailService {
   navigateToMainWithClientId(LinkGUID: number) {
     this.router.navigate(['/main', LinkGUID]);
   }
-
+ 
 }
 
 

@@ -27,6 +27,7 @@ namespace AdvisoryDatabase.Framework.Entities
         public long ClientRefId { get; set; }
         public string ClientName { get; set; }
         public string ProjectName { get; set; }
+        public int ProjectId { get; set; }
         public string AptaraContact { get; set; }
         public string AptaraContactName { get; set; }
         public string IsSurveySubmitted { get; set; }
@@ -34,6 +35,7 @@ namespace AdvisoryDatabase.Framework.Entities
         public string ToDate { get; set; }
         public string Question { get; set; }
         public string ClientDate { get; set; }
+        public string SurveyCreatedOn { get; set; }
 
     }
 

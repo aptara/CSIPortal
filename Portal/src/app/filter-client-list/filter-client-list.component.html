@@ -1,54 +1,132 @@
   <div class="container">
     <form (ngSubmit)="submitForm()" class="mt-4">
-      <h2>Search Project</h2>
-      <div class="row">
-        <div class="form-group col-md-4">
+      <h2>Customer satisfaction survey </h2>
+     
+        <!-- <div class="form-group col-md-3">
           <label for="fromDate">Start Date:</label>
           <input type="date" id="fromDate" name="fromDate" [(ngModel)]="fromDate" required class="form-control">
         </div>
   
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
           <label for="toDate">End Date:</label>
           <input type="date" id="toDate" name="toDate" [(ngModel)]="toDate" required class="form-control">
-        </div>
+        </div> -->
 
-        <div class="form-group col-md-4">
-          <label for="category">Client:</label>
-          <select id="category" name="category" [selectedIndex]="1" [(ngModel)]="selectedClient" required class="form-control">
-            <option *ngFor="let client of clients" [value]="client.ClientId">{{ client.ClientName }}</option>
-          </select>
-          
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label for="category">Client:</label>
+            <select id="category" name="category" [(ngModel)]="selectedClient" (change)="onClientChange()" required class="form-control">
+              <option *ngFor="let client of clients" [value]="client.ClientId">{{ client.ClientName }}</option>
+            </select>
+          </div>
+        
+          <div class="form-group col-md-3">
+            <label for="project">Project:</label>
+            <select id="project" name="project"  required class="form-control"[(ngModel)]="selectedProject"(change)="onProjectChange(selectedProject)">
+              <option *ngFor="let pj of Project" [value]="pj.ProjectId" >{{ pj.ProjectName }}</option>
+            </select>
+          </div>
+        
+          <div class="form-group col-md-3">
+            <label for=""></label><br>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </div>
         </div>
-      </div>
-      <br>
-      <button type="submit" class="btn btn-primary">Search</button>
+        
+     
+   
     </form>
   
     <div *ngIf="resultList && resultList.length > 0" class="mt-4">
-      <p-table [value]="resultList" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 50, 100]" [showCurrentPageReport]="true">
+      <p-table #dt [value]="resultList" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[50]" [showCurrentPageReport]="true"
+      [resizableColumns]="true"
+      columnResizeMode="expand"  class="table-bordered"
+      [globalFilterFields]="['ProjectName', 'ClientName', 'Email','ConatactName','IsSurveySubmittedOn','IsSurveySubmitted']" >
         <ng-template pTemplate="header">
-          <tr>
-            <th pSortableColumn="ClientName" style="min-width:200px">Client Name <p-sortIcon field="ClientName"></p-sortIcon></th>
-            <th pSortableColumn="ProjectName"style="min-width:200px">Project Name <p-sortIcon field="ProjectName"></p-sortIcon></th>
-            <th pSortableColumn="ConatactName"style="min-width:200px">Contact Name <p-sortIcon field="ConatactName"></p-sortIcon></th>
-            <th pSortableColumn="Email"style="min-width:200px">Email <p-sortIcon field="Email"></p-sortIcon></th>
-            <th pSortableColumn="IsSurveySubmittedOn"style="min-width:200px">Survey Submitted On<p-sortIcon field="IsSurveySubmittedOn"></p-sortIcon></th>
-            <th pSortableColumn="IsSurveySubmitted" style="min-width:200px">Is Survey Submitted?<p-sortIcon field="IsSurveySubmitted"></p-sortIcon></th>
-            <th>Actions</th>
+          <div class="search-container">
+            <span class="p-input-icon-right">
+                <i class="pi pi-search"></i>
+                <input #fieldInput_1 pInputText type="text"
+                (input)="dt.filterGlobal(fieldInput_1.value, 'contains')" placeholder="Search keyword"
+                    style="width:200px;" class="form-control"/>
+            </span>
+        </div><br>
+          <tr style="border: 1px solid #ddd; background-color: #f2f2f2;">
+            <th>View</th>
+            <th>New feedback link</th>
+            <th style="min-width:200px; border: 1px solid #ddd;" field="ClientName" pResizableColumn pSortableColumn="ClientName" style="min-width:200px">Client Name <p-sortIcon ></p-sortIcon></th>
+            <th style="min-width:200px; border: 2px solid #ddd;" field="ProjectName" pResizableColumn pSortableColumn="ProjectName" style="min-width:200px">Project Name <p-sortIcon field="ProjectName"></p-sortIcon></th>
+            <th  style="min-width:200px; border: 1px solid #ddd;"field="ConatactName" pResizableColumn pSortableColumn="ConatactName" style="min-width:200px">Contact Name <p-sortIcon field="ConatactName"></p-sortIcon></th>
+            <th field="Email" pResizableColumn pSortableColumn="Email" style="min-width:200px">Email <p-sortIcon field="Email"></p-sortIcon></th>
+            <th field="IsSurveySubmittedOn" pResizableColumn pSortableColumn="IsSurveyCreatedOn" style="min-width:200px">Survey Created Date<p-sortIcon field="IsSurveySubmittedOn"></p-sortIcon></th>
+            <th field="IsSurveySubmittedOn" pResizableColumn pSortableColumn="IsSurveySubmittedOn" style="min-width:200px">Survey Feedback Date<p-sortIcon field="IsSurveySubmittedOn"></p-sortIcon></th>
+            <th field="IsSurveySubmitted" pResizableColumn pSortableColumn="IsSurveySubmitted" style="min-width:200px">Is Survey Submitted?<p-sortIcon field="IsSurveySubmitted"></p-sortIcon></th>
+            
           </tr>
+          <tr>
+            <th>
+
+            </th>
+            <th></th>
+
+            <th style="min-width:100px">
+                <div class="flex justify-content-between align-items-center">
+                    <p-columnFilter type="text" field="ClientName" matchMode="contains"></p-columnFilter>
+                </div>
+            </th>
+            <th style="min-width:150px">
+                <div class="flex justify-content-between align-items-center">
+                    <p-columnFilter type="text" field="ProjectName" matchMode="contains"></p-columnFilter>
+                </div>
+            </th>
+            <th style="min-width:150px">
+                <div class="flex justify-content-between align-items-center">
+                    <p-columnFilter type="text" field="ConatactName" matchMode="contains"></p-columnFilter>
+                </div>
+            </th>
+            <th style="min-width:150px">
+              <div class="flex justify-content-between align-items-center">
+                  <p-columnFilter type="text" field="Email" matchMode="contains"></p-columnFilter>
+              </div>
+          </th>
+          <th style="min-width:150px">
+            <div class="flex justify-content-between align-items-center">
+                <p-columnFilter type="text" field="IsSurveyCreatedOn" matchMode="contains"></p-columnFilter>
+            </div>
+        </th>
+          <th style="min-width:150px">
+            <div class="flex justify-content-between align-items-center">
+                <p-columnFilter type="text" field="IsSurveySubmittedOn" matchMode="contains"></p-columnFilter>
+            </div>
+        </th>
+        
+        <th style="min-width:150px">
+          <div class="flex justify-content-between align-items-center">
+              <p-columnFilter type="text" field="IsSurveySubmitted" matchMode="contains"></p-columnFilter>
+          </div>
+      </th>
+        </tr>
         </ng-template>
         <ng-template pTemplate="body" let-client>
-          <tr>
+          <tr >
+            <td>
+              <!-- "View" button column -->
+              <ng-container *ngIf="client.IsSurveySubmitted === 'Yes'">
+                <button pButton type="button" class="p-button-info" [routerLink]="['/Feedback/Show', client.ClientId]">View</button>
+              </ng-container>
+            </td>
+        
+            <td>
+              <!-- "Generate Link" button column -->
+              <button pButton type="button" class="p-button-info" data-bs-toggle="modal" data-bs-target="#linkModal" (click)="openLinkModal(client)">Generate Link</button>
+            </td>
             <td>{{ client.ClientName }}</td>
             <td>{{ client.ProjectName }}</td>
             <td>{{ client.AptaraContactName }}</td>
             <td>{{ client.AptaraContact }}</td>
+            <td>{{client.SurveyCreatedOn}}</td>
             <td>{{ client.ClientDate }}</td>
             <td>{{ client.IsSurveySubmitted }}</td>
-            <td>
-              <button *ngIf="client.IsSurveySubmitted === 'Yes'" pButton type="button" class="p-button-info" [routerLink]="['/Feedback/Show', client.ClientId]">View</button>
-              <button pButton type="button" class="p-button-info" data-bs-toggle="modal" data-bs-target="#linkModal" (click)="openLinkModal(client)">Generate Link</button>
-            </td>
           </tr>
         </ng-template>
       </p-table>
@@ -61,7 +139,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title fs-5 ">Share Link</h5>
+          <h5 class="modal-title fs-5 ">New Feedback Link</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -94,7 +172,7 @@
 
             <div class="row mt-3 ">
               <div class="col ">
-                <h6 class="text-secondary">Email</h6>
+                <h6 class="text-secondary">Client Email</h6>
               </div>
             </div>
             <div class="row">
@@ -115,12 +193,12 @@
 
           <div class="row mt-3 ">
             <div class="col ">
-              <h6 class="text-secondary">Remark</h6>
+              <h6 class="text-secondary">Comment</h6>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <textarea rows="3" cols="80" #txt placeholder="Enter your remark here..." class="form-control" formControlName="Remark">
+              <textarea rows="3" cols="80" #txt placeholder="Enter your comment here..." class="form-control" formControlName="Remark">
               </textarea>
             </div>
           </div>
