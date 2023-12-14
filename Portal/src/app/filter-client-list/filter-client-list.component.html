@@ -16,7 +16,7 @@
         <div class="form-group col-md-6">
           <label for="category"><strong>Client Name:</strong></label>
           <select id="category" name="category" [(ngModel)]="selectedClient"  #txt (change)="onClientChange(txt.value)" class="form-control">
-            <option *ngFor="let client of clients" [ngValue]="client.ClientId + ':' + client.ClientName">{{ client.ClientName }}</option>
+            <option *ngFor="let client of clients" [value]="client.ClientId" [ngValue]="client.ClientId + ':' + client.ClientName">{{ client.ClientName }}</option>
           </select>
         </div>
       

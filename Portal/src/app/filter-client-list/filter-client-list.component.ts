@@ -24,7 +24,7 @@ export class FilterClientListComponent {
     private messageService: MessageService,
     private zone: NgZone, private cdr: ChangeDetectorRef){
     this.linkModalData =  this.fb.group({
-      ClientId:[this.selectedClient],
+      ClientId:[this.ClientForLink],
       ProjectId:[this.projectId],
       Clientemail: ['', [Validators.required, this.multipleEmailsValidator]],
       ClientName: [''],
@@ -167,7 +167,7 @@ export class FilterClientListComponent {
     });
   }
   submitForm() {
-    this.service.getClientDetails(this.fromDate, this.toDate,this.projectId, this.selectedClient).subscribe({
+    this.service.getClientDetails(this.fromDate, this.toDate,this.projectId, this.ClientForLink).subscribe({
       next: (data: any) => {
        this.resultList = data.Data; 
       }
@@ -179,7 +179,7 @@ export class FilterClientListComponent {
     if (client) {
       this.selectedOutputClient = client; // Assign the selected client to the variable
       this.linkModalData.patchValue({
-        ClientId: this.selectedClient,
+        ClientId: this.ClientForLink,
         ProjectId: this.projectId,
         ClientName: this.selectedOutputClient.ClientName || '', // Use default value if undefined
         ProjectName: this.selectedOutputClient.ProjectName || '', // Use default value if undefined
