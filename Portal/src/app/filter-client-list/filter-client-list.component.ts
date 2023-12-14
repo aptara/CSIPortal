@@ -5,7 +5,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import * as XLSX from 'xlsx';
-
+import { NgZone, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-filter-client-list',
@@ -21,7 +21,8 @@ export class FilterClientListComponent {
 
   constructor(private service:FilterClientListService,
     private fb: FormBuilder,
-    private messageService: MessageService,){
+    private messageService: MessageService,
+    private zone: NgZone, private cdr: ChangeDetectorRef){
     this.linkModalData =  this.fb.group({
       ClientId:[this.selectedClient],
       ProjectId:[this.projectId],
@@ -107,7 +108,7 @@ export class FilterClientListComponent {
     // });
   }
   onProjectChange(SelectedProjectTemp:string):void{
-debugger
+
    //this.projectId = SelectedProjectTemp
    const [selectedClientI, selectedClientNam] = SelectedProjectTemp.split(':');
    const [selectedClientId, selectedClientName] = selectedClientNam.split(':');
@@ -118,8 +119,9 @@ debugger
    console.log(this.projectId)
    
   }
+  ClientForLink:any
   onClientChange(selectedClientTemp:any): void {
-    debugger
+   
    // this.selectedClientName = selectedClientTemp.ClientName;
    // this.selectedClient = selectedClientTemp.ClientId
     const [selectedClientI, selectedClientNam] = selectedClientTemp.split(':');
@@ -127,14 +129,14 @@ debugger
     console.log(selectedClientId,selectedClientName)
     const ClientArr =this.selectedClient.split(':')
    console.log(ClientArr)
-   this.selectedClient=ClientArr[0]
+   this.ClientForLink=ClientArr[0]
    this.ClientNameForLink= ClientArr[1]
    console.log(this.ClientNameForLink)
     // Call your API service here and pass the selected client ID
-    if (this.selectedClient) {
+    if (this.ClientForLink) {
     
-      console.log(this.selectedClient)
-      this.service.GetProject(this.selectedClient).subscribe({
+      console.log(this.ClientForLink)
+      this.service.GetProject(this.ClientForLink).subscribe({
         next :(response:any) => {
         // Handle the API response here
        
@@ -149,6 +151,7 @@ debugger
         }
       });
     }
+    
   }
 
   GetClient(){

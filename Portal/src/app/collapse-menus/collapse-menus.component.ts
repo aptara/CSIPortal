@@ -91,12 +91,14 @@ export class CollapseMenusComponent {
             this.ProjectId = Element.ProjectID
             this.ClientId = Element.ClientId
             this.InValidRequest = Element.InValidRequest
+            this.ViewerName = Element.ReviewerName;
+            this.ViewerEmail = Element.ReviewerEmail;
           }
    
         this.list = Element.ProjectName
       });
     });
-
+console.log(this.ViewerName,this.ViewerEmail)
   }
   get GetBasicInfo(): FormArray {
     return this.AddQuestionAnswer.get('Remark') as FormArray;
