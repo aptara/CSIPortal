@@ -40,10 +40,10 @@
     </div>
 
   
-    <div *ngIf="resultList && resultList.length > 0" class="mt-4">
+    <div class="mt-4">
       <p-table #dt [value]="resultList" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[50]" [showCurrentPageReport]="true"
       [resizableColumns]="true" [ngStyle]="{'width': '100%'}"styleClass="p-datatable-gridlines"
-      columnResizeMode="expand"  class="table-bordered" [tableStyle]="{'min-height': '15rem'}"
+      columnResizeMode="expand"  class="table-bordered" [tableStyle]="{'min-height': '10rem'}"
       [globalFilterFields]="['ProjectName', 'ClientName', 'Email','ConatactName','IsSurveySubmittedOn','IsSurveySubmitted']" >
       
       <ng-template pTemplate="caption">
@@ -91,7 +91,7 @@
             </th>
             <th pFrozenColumn style="min-width:150px">
                 <div class="flex justify-content-between align-items-center">
-                    <p-columnFilter type="text" field="ProjectName" matchMode="contains"></p-columnFilter>
+                    <p-columnFilter  field="ProjectName" matchMode="contains"></p-columnFilter>
                 </div>
             </th>
             <th style="min-width:150px">
@@ -142,13 +142,14 @@
             <td>{{ client.IsSurveySubmitted }}</td>
           </tr>
         </ng-template>
-        <ng-template pTemplate="emptymessage">
+        <ng-template pTemplate="emptymessage" >
           <tr>
               <td colspan="8">No Records found.</td>
           </tr>
       </ng-template>
       </p-table>
     </div>
+ 
     
 
  
