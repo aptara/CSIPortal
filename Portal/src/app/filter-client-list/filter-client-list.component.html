@@ -1,61 +1,76 @@
-  <div class="container">
-    <form (ngSubmit)="submitForm()" class="mt-4">
-      <h2>Customer satisfaction survey </h2>
-     
-        <!-- <div class="form-group col-md-3">
-          <label for="fromDate">Start Date:</label>
-          <input type="date" id="fromDate" name="fromDate" [(ngModel)]="fromDate" required class="form-control">
-        </div>
-  
-        <div class="form-group col-md-3">
-          <label for="toDate">End Date:</label>
-          <input type="date" id="toDate" name="toDate" [(ngModel)]="toDate" required class="form-control">
-        </div> -->
-
-        <div class="row">
-          <div class="form-group col-md-3">
-            <label for="category">Client:</label>
-            <select id="category" name="category" [(ngModel)]="selectedClient" (change)="onClientChange()" required class="form-control">
-              <option *ngFor="let client of clients" [value]="client.ClientId">{{ client.ClientName }}</option>
-            </select>
-          </div>
-        
-          <div class="form-group col-md-3">
-            <label for="project">Project:</label>
-            <select id="project" name="project"  required class="form-control"[(ngModel)]="selectedProject"(change)="onProjectChange(selectedProject)">
-              <option *ngFor="let pj of Project" [value]="pj.ProjectId" >{{ pj.ProjectName }}</option>
-            </select>
-          </div>
-        
-          <div class="form-group col-md-3">
-            <label for=""></label><br>
-            <button type="submit" class="btn btn-primary">Search</button>
-          </div>
-        </div>
-        
-     
+<div class="container">
+  <form (ngSubmit)="submitForm()" class="mt-4" >
+    <h2>Customer satisfaction survey </h2>
    
-    </form>
+      <!-- <div class="form-group col-md-3">
+        <label for="fromDate">Start Date:</label>
+        <input type="date" id="fromDate" name="fromDate" [(ngModel)]="fromDate" required class="form-control">
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="toDate">End Date:</label>
+        <input type="date" id="toDate" name="toDate" [(ngModel)]="toDate" required class="form-control">
+      </div> -->
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="category"><strong>Client Name:</strong></label>
+          <select id="category" name="category" [(ngModel)]="selectedClient"  #txt (change)="onClientChange(txt.value)" class="form-control">
+            <option *ngFor="let client of clients" [value]="client.ClientId" [ngValue]="client.ClientId + ':' + client.ClientName">{{ client.ClientName }}</option>
+          </select>
+        </div>
+      
+        <div class="form-group col-md-6">
+          <label for="project"><strong>Project Name:</strong></label>
+          <select id="project" name="project"  required class="form-control"[(ngModel)]="selectedProject" #Ac (change)="onProjectChange(Ac.value)">
+            <option *ngFor="let pj of Project" [value]="pj.ProjectId"  [ngValue]="pj.ProjectId+ ':' + pj.ProjectName">{{ pj.ProjectName }}</option>
+          </select>
+        </div>
+        </div>
+    <div class="row">
+        <div class="form-group col-md-3">
+          <label for=""></label><br>
+          <button pButton type="submit" class="p-button-info">Search</button>
+        </div>
+      
+      <div class="form-group col-md-3">
+        <label for=""></label><br>
+      <button pButton type="button" class="p-button-info" data-bs-toggle="modal" data-bs-target="#linkModal" (click)="openLinkModal(clients)"  style="margin-left :-200px;">New Feedback Link</button>
+    </div>
+    </div>
+
   
     <div *ngIf="resultList && resultList.length > 0" class="mt-4">
       <p-table #dt [value]="resultList" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[50]" [showCurrentPageReport]="true"
-      [resizableColumns]="true"
-      columnResizeMode="expand"  class="table-bordered"
+      [resizableColumns]="true" [ngStyle]="{'width': '100%'}"styleClass="p-datatable-gridlines"
+      columnResizeMode="expand"  class="table-bordered" [tableStyle]="{'min-height': '15rem'}"
       [globalFilterFields]="['ProjectName', 'ClientName', 'Email','ConatactName','IsSurveySubmittedOn','IsSurveySubmitted']" >
-        <ng-template pTemplate="header">
+      
+      <ng-template pTemplate="caption">
+        <div class="table-header">
           <div class="search-container">
             <span class="p-input-icon-right">
-                <i class="pi pi-search"></i>
-                <input #fieldInput_1 pInputText type="text"
-                (input)="dt.filterGlobal(fieldInput_1.value, 'contains')" placeholder="Search keyword"
-                    style="width:200px;" class="form-control"/>
+              <i class="pi pi-search"></i>
+              <input #fieldInput_1 pInputText type="text"
+                     (input)="dt.filterGlobal(fieldInput_1.value, 'contains')" placeholder="Search keyword"
+                     style="width: 200px; border: 1px solid rgb(31, 30, 30); background-color: white;" class="form-control"/>
             </span>
-        </div><br>
+            <!-- <button  type="button" class="btn-primary" (click)="exportData()">Export</button> -->
+          </div>
+         
+        </div>
+      </ng-template>
+      
+      
+      <ng-template pTemplate="header">
+       
+
+
           <tr style="border: 1px solid #ddd; background-color: #f2f2f2;">
-            <th>View</th>
-            <th>New feedback link</th>
-            <th style="min-width:200px; border: 1px solid #ddd;" field="ClientName" pResizableColumn pSortableColumn="ClientName" style="min-width:200px">Client Name <p-sortIcon ></p-sortIcon></th>
-            <th style="min-width:200px; border: 2px solid #ddd;" field="ProjectName" pResizableColumn pSortableColumn="ProjectName" style="min-width:200px">Project Name <p-sortIcon field="ProjectName"></p-sortIcon></th>
+            <th pFrozenColumn style="min-width:0px">View</th>
+            
+            <th pFrozenColumn style="min-width:200px; border: 1px solid #ddd;" field="ClientName" pResizableColumn pSortableColumn="ClientName" style="min-width:200px">Client Name <p-sortIcon ></p-sortIcon></th>
+            <th pFrozenColumn style="min-width:200px; border: 2px solid #ddd;" field="ProjectName" pResizableColumn pSortableColumn="ProjectName" style="min-width:200px">Project Name <p-sortIcon field="ProjectName"></p-sortIcon></th>
             <th  style="min-width:200px; border: 1px solid #ddd;"field="ConatactName" pResizableColumn pSortableColumn="ConatactName" style="min-width:200px">Contact Name <p-sortIcon field="ConatactName"></p-sortIcon></th>
             <th field="Email" pResizableColumn pSortableColumn="Email" style="min-width:200px">Email <p-sortIcon field="Email"></p-sortIcon></th>
             <th field="IsSurveySubmittedOn" pResizableColumn pSortableColumn="IsSurveyCreatedOn" style="min-width:200px">Survey Created Date<p-sortIcon field="IsSurveySubmittedOn"></p-sortIcon></th>
@@ -64,17 +79,17 @@
             
           </tr>
           <tr>
-            <th>
+            <th pFrozenColumn >
 
             </th>
-            <th></th>
+         
 
-            <th style="min-width:100px">
+            <th pFrozenColumn style="min-width:100px">
                 <div class="flex justify-content-between align-items-center">
                     <p-columnFilter type="text" field="ClientName" matchMode="contains"></p-columnFilter>
                 </div>
             </th>
-            <th style="min-width:150px">
+            <th pFrozenColumn style="min-width:150px">
                 <div class="flex justify-content-between align-items-center">
                     <p-columnFilter type="text" field="ProjectName" matchMode="contains"></p-columnFilter>
                 </div>
@@ -109,23 +124,21 @@
         </ng-template>
         <ng-template pTemplate="body" let-client>
           <tr >
-            <td>
+            <td pFrozenColumn>
+          
               <!-- "View" button column -->
               <ng-container *ngIf="client.IsSurveySubmitted === 'Yes'">
                 <button pButton type="button" class="p-button-info" [routerLink]="['/Feedback/Show', client.ClientId]">View</button>
               </ng-container>
             </td>
         
-            <td>
-              <!-- "Generate Link" button column -->
-              <button pButton type="button" class="p-button-info" data-bs-toggle="modal" data-bs-target="#linkModal" (click)="openLinkModal(client)">Generate Link</button>
-            </td>
-            <td>{{ client.ClientName }}</td>
-            <td>{{ client.ProjectName }}</td>
+          
+            <td pFrozenColumn>{{ client.ClientName }}</td>
+            <td pFrozenColumn>{{ client.ProjectName }}</td>
             <td>{{ client.AptaraContactName }}</td>
             <td>{{ client.AptaraContact }}</td>
             <td>{{client.SurveyCreatedOn}}</td>
-            <td>{{ client.ClientDate }}</td>
+            <td>{{ client.ClientDate }}</td> 
             <td>{{ client.IsSurveySubmitted }}</td>
           </tr>
         </ng-template>
@@ -154,7 +167,7 @@
             </div>
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" formControlName="ClientName">
+                <input type="text" class="form-control" value="{{ClientNameForLink}}" readonly>
               </div>
             </div>
 
@@ -166,7 +179,7 @@
 
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" formControlName="ProjectName">
+                <input type="text" class="form-control" value="{{ProjectNameForLink}}" readonly>
               </div>
             </div>
 
@@ -185,12 +198,44 @@
                   Invalid email format.
                 </div>
                 <div *ngIf="linkModalData.get('Clientemail').hasError('invalidEmails') && linkModalData.get('Clientemail').touched" class="text-danger">
-                  Invalid email addresses. Use a valid email format and separate multiple emails with a comma.
+                  Invalid email addresses.
                 </div>
-                <span class="note" data-note="Important note here"><small>Add more than email addresses with comma(,)</small></span>
+               
               </div>
             </div>        
+            <div class="row mt-3 ">
+              <div class="col ">
+                <h6 class="text-secondary">Reviewer Name</h6>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" formControlName="ReviewerName">
+              </div>
+            </div>
+            <div class="row mt-3 ">
+              <div class="col ">
+                <h6 class="text-secondary">Reviewer Email</h6>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" formControlName="ReviewerEmail" id="ReviewerEmail">
+               
+                <div *ngIf="linkModalData.get('ReviewerEmail').hasError('required') && linkModalData.get('ReviewerEmail').touched" class="text-danger">
+                  Email is required.
+                </div>
+                <div *ngIf="linkModalData.get('ReviewerEmail').hasError('email') && linkModalData.get('ReviewerEmail').touched" class="text-danger">
+                  Invalid email format.
+                </div>
+                <div *ngIf="linkModalData.get('ReviewerEmail').hasError('invalidEmails') && linkModalData.get('ReviewerEmail').touched" class="text-danger">
+                  Invalid email addresses.
+                </div>
+              </div>
+            </div>
           <div class="row mt-3 ">
             <div class="col ">
               <h6 class="text-secondary">Comment</h6>

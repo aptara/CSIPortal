@@ -10,7 +10,7 @@ declare var bootbox: any;
   selector: 'app-collapse-menus',
   templateUrl: './collapse-menus.component.html',
   styleUrls: ['./collapse-menus.component.css'],
-  // Ensure this closing bracket is in the correct position
+  
 })
 export class CollapseMenusComponent {
   AddQuestionAnswer: FormGroup | any;
@@ -82,6 +82,7 @@ export class CollapseMenusComponent {
           } 
           else if (Element.InValidRequest === '0')
            {
+            console.log(Element.InValidRequest)
             window.location.href = '/BadResponse';
           }
           else{
@@ -255,7 +256,7 @@ export class CollapseMenusComponent {
     this.isFormSubmitted = true;
   
     // Check if the form is valid
-    if (this.AddQuestionAnswer.valid) {
+     
       const accordianItemCount = this.accordianItems.length;
       const selectedRankingsCount = this.selectedRankings.length;
   
@@ -275,6 +276,7 @@ export class CollapseMenusComponent {
         this.service.PostAllDetail(this.selectedRankings).subscribe(res => {
           if (res !== null) {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Submitted' });
+         
             // Navigate to '/ThankYou/' using Angular Router instead of window.location.href
             // this.router.navigate(['/ThankYou/']);
           } else {
@@ -284,9 +286,7 @@ export class CollapseMenusComponent {
       } else {
         this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Question counts do not match. Please answer all questions.' });
       }
-    } else {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please enter Reviewer Name and Email.' });
-    }
+    
   }
   
 

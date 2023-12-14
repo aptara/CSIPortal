@@ -39,6 +39,7 @@ import {CardModule} from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { PreviewComponent } from './preview/preview.component';
 PrimeIcons
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ PrimeIcons
     FooterComponent,
     ThankyouComponent,
     ResponceComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PreviewComponent
  
   ],
   imports: [

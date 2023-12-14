@@ -17,32 +17,45 @@
         <div class="content-text" *ngFor="let element of header.Data" style="display: flex;">
           <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
           <div class="col-6 mb-3 mt-3 ">
-            <label><strong>Project </strong></label>
-            <input class="custom-input" type="text" value="{{element.ProjectName}}" style="margin-left: 100px;"
+            <label><strong>Client Name</strong></label>
+            <input class="custom-input" type="text" value="{{element.ClientName}}" style="margin-left: 100px;"
               readonly>
           </div>
           <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
           <div class="col-6 mb-3 mt-3 ">
-            <label><strong>Aptara Contact </strong></label>
-            <input class="custom-input" type="text" value="{{element.AptaraContact}}" style="margin-left: 50px;">
+            <label><strong>Project Name</strong></label>
+            <input class="custom-input" type="text" value="{{element.ProjectName}}" style="margin-left: 50px;" readonly>
           </div>
         </div>
         <!-- Your input boxes go here -->
-        <div class="row g-1">
-          <div class="col">
+        <div class="content-text" *ngFor="let element of header.Data"  style="display: flex;">
+          <div class="col-6 mb-3 mt-3 ">
             <label for="ReviewerName"><strong>Reviewer Name </strong></label>
-            <input type="text" class="custom-input" #Reviewer placeholder="Reviewer Name" id="ReviewerName"
-              (input)="getName(Reviewer.value)" formControlName="ReviewerName" style="margin-left: 35px;">
+            <input type="text" class="custom-input" 
+               style="margin-left: 35px;" value="{{element.ReviewerName}}" style="margin-left: 80px;" readonly>
           </div>
-          <div class="col">
+          <div class="col-6 mb-3 mt-3 ">
             <label for="ReviewerEmail"><strong>Reviewer Email </strong> </label>
-            <input type="text" class="custom-input" #Email placeholder="Reviewer Email" id="ReviewerEmail"
-              (input)="getEmail(Email.value)" formControlName="ReviewerEmail" style="margin-left: 49px;">
+            <input type="text" class="custom-input" 
+              value="{{element.ReviewerEmail}}" style="margin-left: 49px;" readonly>
           </div>
         </div>
       </div>
+  
+        <div class="row g-1"  *ngFor="let element of header.Data">
+          <div class="col">
+            <label for="ReviewerName"><strong>Aptara Contact Name</strong></label>
+            <input type="text" class="custom-input" value="{{element.AptaraContactName}}"
+              style="margin-left: 40px;" readonly>
+          </div>
+          <div class="col">
+            <label for="ReviewerEmail"><strong>Aptara Email</strong> </label>
+            <input type="text" class="custom-input"  value="{{element.AptaraContact}}"
+               style="margin-left: 65px;" readonly>
+          </div>
+       
     </div>
-
+  </div>
     <div class="accordion" id="accordionExample">
       <div class="accordion-item" *ngFor="let item of accordianItems; let i = index">
         <h2 class="accordion-header">

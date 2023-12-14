@@ -48,8 +48,8 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
   {
     protected override void FillParameters(OperationType operation, clientDetailsList instance, List<DbParameter> parameters)
     {
-      parameters.Add(DbHelper.CreateParameter("FromDate", instance.FromDate));
-      parameters.Add(DbHelper.CreateParameter("ToDate", instance.ToDate));
+      //parameters.Add(DbHelper.CreateParameter("FromDate", instance.FromDate));
+      //parameters.Add(DbHelper.CreateParameter("ToDate", instance.ToDate));
       parameters.Add(DbHelper.CreateParameter("ProjectId", instance.ProjectId));
       parameters.Add(DbHelper.CreateParameter("ClientId", instance.ClientId));
     }
@@ -122,8 +122,10 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
           AptaraContactName = data.ReadString("AptaraContactName"),
         IsSurveySubmitted = data.ReadString("IsSurveySubmitted"),
          ProjectID = data.Read<Int64>("ProjectID"),
-          InValidRequest = data.ReadString("InValidRequest")
-
+          InValidRequest = data.ReadString("InValidRequest"),
+          ReviewerName = data.ReadString("ReviewerName"),
+          ReviewerEmail = data.ReadString("ReviewerEmail"),
+          ClientName = data.ReadString("ClientName")
       };
     }
   }

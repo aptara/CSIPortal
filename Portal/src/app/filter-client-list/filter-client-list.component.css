@@ -6,4 +6,7 @@
     position: relative;
     display: inline-block;
   }
-
+  /* .table-header {
+    display: flex;
+    justify-content: space-between;
+} */

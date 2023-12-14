@@ -14,7 +14,7 @@ namespace AdvisoryDatabase.Framework.Entities
         public string Clientemail { get; set; }
         public string ProjectName { get; set; }
         public string Remark { get; set; }
-
-
+        public string ReviewerName { get; set; }
+        public string ReviewerEmail { get; set; }
     }
 }

@@ -17,14 +17,13 @@ export class FilterClientListService {
   getClientList(){
     return this.httpClient.get(this.url);     
   }
-  getClientDetails(ProjectId:any ,clientId: any){
+  getClientDetails(fromDate: any, toDate: any, ProjectId:any, ClientId: any){
     // let params = new HttpParams()
     //   .set('startDate', startDate)
     //   .set('endDate', endDate)
     //   .set('clientId', clientId);
     // this.url=`http://localhost:62220/api/GetClient/GetClientDetailsList?startDate=${startDate}&endDate=${endDate}&clientId=${clientId}`;
-    const body = { ProjectId, clientId };
-    
+    const body = { fromDate, toDate,  ProjectId,ClientId };
     // Set Content-Type header to application/json
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post(this.url2, body, { headers: headers });
