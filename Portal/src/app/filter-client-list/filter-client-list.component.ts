@@ -44,37 +44,41 @@ export class FilterClientListComponent {
   // });
   }
 
-  // exportData(): void {
-  //   if (this.resultList && this.resultList.length > 0) {
-  //     // Convert data to Excel format
-  //     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.resultList);
-
-  //     // Create a workbook with a single worksheet
-  //     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-  //     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-  //     // Create a Blob from the workbook
-  //     const blob: Blob = XLSX.write(wb, { bookType: 'xlsx', type: 'blob' as 'string' });
-
-  //     // Create a downloadable link
-  //     const url = URL.createObjectURL(blob);
-
-  //     // Create a link element and trigger a click event
-  //     const a = document.createElement('a');
-  //     a.href = url;
-  //     a.download = 'exported-data.xlsx';
-  //     a.click();
-
-  //     // Release the object URL to free up resources
-  //     URL.revokeObjectURL(url);
-
-  //     // Show a success message to the user
-  //     this.messageService.add({ severity: 'success', summary: 'Export Successful', detail: 'Data exported successfully.' });
-  //   } else {
-  //     // Show a warning message if there is no data to export
-  //     this.messageService.add({ severity: 'warn', summary: 'No Data', detail: 'There is no data to export.' });
-  //   }
-  // }
+  
+  exportData(): void {
+    if (this.resultList && this.resultList.length > 0) {
+      // Extracting selected columns from the data
+      const selectedColumns = this.resultList.map((item: { ClientName: any; ProjectName: any; AptaraContactName: any; AptaraContact: any; SurveyCreatedOn: any; ClientDate: any; IsSurveySubmitted: any; }) => ({
+        ClientName: item.ClientName,
+        ProjectName: item.ProjectName,
+        AptaraContactName: item.AptaraContactName,
+        AptaraContact: item.AptaraContact,
+        SurveyCreatedOn: item.SurveyCreatedOn,
+        ClientDate: item.ClientDate,
+        IsSurveySubmitted: item.IsSurveySubmitted
+        // Add other properties as needed
+      }));
+  
+      // Convert selected data to Excel format
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(selectedColumns);
+  
+      // Create a workbook with a single worksheet
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  
+      // Save the workbook to a file
+      XLSX.writeFile(wb, 'exported-data.xlsx');
+  
+      // Show a success message to the user
+      this.messageService.add({ severity: 'success', summary: 'Export Successful', detail: 'Data exported successfully.' });
+    } else {
+      // Show a warning message if there is no data to export
+      this.messageService.add({ severity: 'warn', summary: 'No Data', detail: 'There is no data to export.' });
+    }
+  }
+  
+  
+  
 
   onSort(event: any) {
     // Handle sorting
