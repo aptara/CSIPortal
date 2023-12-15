@@ -2,7 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, Input } from '@angular/core';
 import { GetQuestionDetailService } from '../get-question-detail.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 declare var bootbox: any;
@@ -29,7 +29,8 @@ export class CollapseMenusComponent {
   constructor(private service: GetQuestionDetailService,
     private fb: FormBuilder,
     private path: ActivatedRoute,
-    private messageService: MessageService) {
+    private messageService: MessageService
+    ,private router:Router) {
     this.AddQuestionAnswer = new FormGroup({
       'ReviewerName': new FormControl(null, Validators.required),
       'ReviewerEmail': new FormControl(null, [Validators.required, Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$")]),
@@ -280,7 +281,7 @@ console.log(this.ViewerName,this.ViewerEmail)
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Submitted' });
          
             // Navigate to '/ThankYou/' using Angular Router instead of window.location.href
-            // this.router.navigate(['/ThankYou/']);
+             this.router.navigate(['/ThankYou/']);
           } else {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Not submitted' });
           }

@@ -39,6 +39,8 @@ namespace AdvisoryDatabase.Framework.Entities
         public string Question { get; set; }
         public string ClientDate { get; set; }
         public string SurveyCreatedOn { get; set; }
+        public string LinkGUID { get; set; }
+        
 
     }
 
@@ -69,6 +71,13 @@ namespace AdvisoryDatabase.Framework.Entities
         // public List<GetQuestionList> GetQuestionList { get; set; }
         public int CorrectEvaluation { get; set; }
         public string PostQuestionXML { get; set; }
+        public string ClientName { get; set; }
+        public string ProjectName { get; set; }
+        public int ProjectId { get; set; }
+        public string AptaraContact { get; set; }
+        public string AptaraContactName { get; set; }
+        public string LinkGUID { get; set; }
+        
     }
 }
 

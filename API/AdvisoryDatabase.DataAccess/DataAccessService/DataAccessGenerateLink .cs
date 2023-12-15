@@ -21,10 +21,10 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                 case OperationType.Add:
                     parameters.Add(DbHelper.CreateParameter("ClientId", instance.ClientId));
                     parameters.Add(DbHelper.CreateParameter("ProjectId", instance.ProjectId));
-                    parameters.Add(DbHelper.CreateParameter("ClientEmailIDs", instance.Clientemail));
+                  
                     parameters.Add(DbHelper.CreateParameter("Remark", instance.Remark));
                     parameters.Add(DbHelper.CreateParameter("ReviewerName", instance.ReviewerName));
-                    parameters.Add(DbHelper.CreateParameter("ReviewerEmail", instance.ReviewerEmail));
+                    parameters.Add(DbHelper.CreateParameter("ReviewerEmail", instance.Clientemail));
                     break;
             }           
      

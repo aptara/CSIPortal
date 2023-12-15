@@ -16,6 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { ResponceComponent } from './responce/responce.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PreviewComponent } from './preview/preview.component';
 MenuReadComponent
 const routes: Routes = [
   { path: 'main/:LinkGUID', component: MainComponent },
@@ -27,7 +28,7 @@ const routes: Routes = [
   { path: 'resetpassword', component: ResetpasswordComponent },
 //  { path: 'FilterClientList', component: FilterClientListComponent },
   { path: 'HeaderFirst', component: HeaderFirstComponent },
-  { path: 'Feedback/Show/:id', component: MenuReadComponent  },
+  { path: 'Feedback/Show/:LinkGUID', component: MenuReadComponent  },
   {path:'Dashboard', component:FilterClientListComponent},
   {path:'', redirectTo:'/Login',pathMatch:'full'},
   {path:'Login', component:LoginAppComponent},
@@ -35,7 +36,8 @@ const routes: Routes = [
   {path:'Footer', component:FooterComponent},
   {path:'ThankYou', component:ThankyouComponent},
   {path:'SubmittedResponse', component:ResponceComponent},
-  {path:'BadResponse', component:PageNotFoundComponent}   
+  {path:'BadResponse', component:PageNotFoundComponent},
+  {path:'Preview', component:PreviewComponent}   
 ];
 
 @NgModule({

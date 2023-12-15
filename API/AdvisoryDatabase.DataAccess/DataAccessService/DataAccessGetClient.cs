@@ -82,6 +82,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
         ClientDate = data.ReadString("LastUpdatedOnString"),
         SurveyCreatedOn = data.ReadString("CreatedOnString"),
         IsSurveySubmitted = data.ReadString("IsSurveySubmitted"),
+          LinkGUID = data.ReadString("LinkGUID"),
       };
     }
   }
@@ -135,7 +136,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
   {
     protected override void FillParameters(OperationType operation, clientFeedback instance, List<DbParameter> parameters)
     {
-      parameters.Add(DbHelper.CreateParameter("ClientId", instance.ClientId));
+      parameters.Add(DbHelper.CreateParameter("LinkGUID", instance.LinkGUID));
     }
 
     protected override string GetProcedureName(OperationType operation)
@@ -208,7 +209,15 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                     Evaluation10 = row.Read<int>("Evaluation10"),
                     Evaluation = row.ReadString("Evaluation"),
                     SubmittedEvaluation = row.Read<int>("SubmittedEvaluation"),
-                    Remarks = row.ReadString("Remarks")
+                    Remarks = row.ReadString("Remarks"),
+                    ReviewerEmail = row.ReadString("ReviewerEmail"),
+                    ReviewerName = row.ReadString("ReviewerName"),
+                    AptaraContact = row.ReadString("AptaraContact"),
+                    AptaraContactName = row.ReadString("AptaraContactName"),
+                    ProjectName = row.ReadString("ProjectName"),
+                    ClientName = row.ReadString("ClientName"),
+                    ProjectId = row.Read<Int32>("ProjectId"),
+                    ClientId = row.Read<Int32>("ProjectId")
 
 
                 }).ToList();

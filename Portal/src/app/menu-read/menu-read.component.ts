@@ -33,14 +33,18 @@ export class MenuReadComponent {
   QueComment: {} = {}
   Remark: string = ""
   private sub: any;
-  clientId: any
+
   resultData: any = [];
   selectedRadioValue: any;
+  LinkGUID:any;
   ngOnInit() {
+  
+
     this.AddQuestionAnswer = this.fb.group({});
     this.sub = this.path.paramMap.subscribe(params => {
-      this.clientId = (params.get('id'));
-      this.GetSubmittedData(this.clientId);    
+      debugger
+      this.LinkGUID =params.get('LinkGUID');
+      this.GetSubmittedData(this.LinkGUID);    
     });
   }
   
@@ -125,9 +129,10 @@ export class MenuReadComponent {
 
   GetSubmittedData(cId:number){
 
-    this.menuservice.getClientFeedback(this.clientId).subscribe({
+    this.menuservice.getClientFeedback(this.LinkGUID).subscribe({
         next: (data: any) => {
           this.resultData = data;
+          console.log(this.resultData)
           this.accordianItems = this.resultData.Data.map((element: any) => {
             return {
               question: element.Question, description: element.QuestionDescription, Evaluation: element.Evaluation

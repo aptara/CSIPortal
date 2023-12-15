@@ -10,8 +10,9 @@ export class MenuReadService {
   apiurl=environment.baseUrl;
   private url3=this.apiurl+'GetClient/GetClientFeedback'
   
-  getClientFeedback(clientId:any){
-    const body = { clientId };    
+  getClientFeedback(LinkGUID:any){
+    debugger
+    const body = { LinkGUID };    
     // Set Content-Type header to application/json
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post(this.url3, body, { headers: headers });

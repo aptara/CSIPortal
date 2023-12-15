@@ -6,7 +6,82 @@
       <button type="submit" class="btn btn-primary" (click)="navigateBack()"
         style="margin-left:89%; width: 10%;">Home</button>
     </div>
-    <div class="mb-3"></div>
+    <div class="mb-2">
+      <div style="padding: 10px;">
+        <h2
+          style="background-color: #cfe2ff; font-family: 'Times New Roman', serif; font-size: 24px; font-weight: bold; text-align: left; padding: 10px;">
+          <strong>Customer Satisfaction Survey</strong>
+        </h2>
+
+        <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
+          <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
+          <div class="col-6 mb-3 mt-3 ">
+            <label><strong>Reviewer Name</strong></label>
+            <input class="custom-input" type="text" value="{{resultData.Data[0].ReviewerName}}" style="margin-left: 95px; width: 300px;"
+              readonly>
+          </div>
+          <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
+          <div class="col-6 mb-3 mt-3 ">
+            <label><strong>Reviewer Email</strong></label>
+            <input class="custom-input" type="text" value="{{resultData.Data[0].ReviewerEmail}}" style="margin-left: 100px;  width: 300px;" readonly>
+          </div>
+        </div>
+        <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
+          <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
+          <div class="col-6 mb-3 mt-3 ">
+            <label><strong>Aptara Contact Name</strong></label>
+            <input class="custom-input" type="text" value="{{resultData.Data[0].AptaraContactName}}" style="margin-left: 50px; width: 300px;"
+              readonly>
+          </div>
+          <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
+          <div class="col-6 mb-3 mt-3 ">
+            <label><strong>Aptara Contact</strong></label>
+            <input class="custom-input" type="text" value="{{resultData.Data[0].AptaraContact}}" style="margin-left: 100px;  width: 300px;" readonly>
+          </div>
+        </div>
+
+        <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
+          <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
+          <div class="col-6 mb-3 mt-3 ">
+            <label><strong>Client Name</strong></label>
+            <input class="custom-input" type="text" value="{{resultData.Data[0].ClientName}}" style="margin-left: 120px; width: 300px;"
+              readonly>
+          </div>
+          <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
+          <div class="col-6 mb-3 mt-3 ">
+            <label><strong>Project Name</strong></label>
+            <input class="custom-input" type="text" value="{{resultData.Data[0].ProjectName}}" style="margin-left: 110px;  width: 300px;" readonly>
+          </div>
+        </div>
+        <!-- Your input boxes go here -->
+        <!-- <div class="content-text" *ngFor="let element of resultData.Data"  style="display: flex;">
+          <div class="col-6 mb-3 mt-3 ">
+            <label for="ReviewerName"><strong>Reviewer Name </strong></label>
+            <input type="text" class="custom-input" 
+               style="margin-left: 35px;" value="{{element.ReviewerName}}" style="margin-left: 80px;" readonly>
+          </div>
+          <div class="col-6 mb-3 mt-3 ">
+            <label for="ReviewerEmail"><strong>Reviewer Email </strong> </label>
+            <input type="text" class="custom-input" 
+              value="{{element.ReviewerEmail}}" style="margin-left: 49px;" readonly>
+          </div>
+        </div>
+      </div>
+  
+        <div class="row g-1"  *ngFor="let element of resultData.Data">
+          <div class="col">
+            <label for="ReviewerName"><strong>Aptara Contact Name</strong></label>
+            <input type="text" class="custom-input" value="{{element.AptaraContactName}}"
+              style="margin-left: 40px;" readonly>
+          </div>
+          <div class="col">
+            <label for="ReviewerEmail"><strong>Aptara Email</strong> </label>
+            <input type="text" class="custom-input"  value="{{element.AptaraContact}}"
+               style="margin-left: 65px;" readonly>
+          </div> -->
+       
+    </div> 
+  </div>
     <div class="accordion" id="accordionExample">
       <div class="accordion-item" *ngFor="let item of accordianItems; let i = index">
         <h2 class="accordion-header">
@@ -14,7 +89,7 @@
             [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="true" [attr.aria-controls]="'collapse' + i">
             <div class="row">
               <div class="col-md">
-                <strong>{{item.QuestionSerialNumber}}. {{ item.question }}</strong>
+                <strong>{{item.QuestionSerialNumber}}. {{item.question}}</strong>
               </div>
               <div class="col-md" style="position: absolute; left: 80%;">Submitted Evaluation :
                 {{item.SubmittedEvaluation}}</div>
@@ -140,10 +215,7 @@
                           <strong>Mostly</strong>
                         </td>
                         <td class="table-cell" colspan="1"><strong>Always</strong></td>
-
-
                       </tr>
-
                       <tr>
                         <td class="belowcolor" valign="middle" height="10" bgcolor="#9d9d9d" align="center"></td>
                         <td valign="middle" bgcolor="#ff0000" align="center"></td>
@@ -156,7 +228,6 @@
                         <td valign="middle" bgcolor="#FFFF00" align="center" colspan="2"></td>
                         <td valign="middle" bgcolor="#06cd00" align="center" colspan="2"></td>
                       </tr>
-
                     </tbody>
                     </td>
                 </tr>
@@ -164,8 +235,6 @@
               </tbody>
             </table>
             </tr>
-
-
             </tbody>
             </table>
             <!-- <hr> -->
