@@ -2,13 +2,56 @@
 
     <form [formGroup]="AddQuestionAnswer">
       <div class="mb-3"></div>
-      <div class="row">
-        <button type="submit" class="btn btn-primary" (click)="navigateBack()"
-          style="margin-left:89%; width: 10%;">Home</button>
+      
+      <div class="mb-2">
+        <div style="padding: 10px;">
+          <h2
+            style="background-color: #cfe2ff; font-family: 'Times New Roman', serif; font-size: 24px; font-weight: bold; text-align: left; padding: 10px;">
+            <strong>Customer Satisfaction Survey</strong>
+          </h2>
+  
+          <div class="content-text" *ngFor="let element of header.Data" style="display: flex;">
+            <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
+            <div class="col-6 mb-3 mt-3 ">
+              <label><strong>Client Name</strong></label>
+              <input class="custom-input" type="text" value="{{element.ClientName}}" style="margin-left: 100px;"
+                readonly>
+            </div>
+            <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
+            <div class="col-6 mb-3 mt-3 ">
+              <label><strong>Project Name</strong></label>
+              <input class="custom-input" type="text" value="{{element.ProjectName}}" style="margin-left: 50px;" readonly>
+            </div>
+          </div>
+          <!-- Your input boxes go here -->
+          <div class="content-text" *ngFor="let element of header.Data"  style="display: flex;">
+            <div class="col-6 mb-3 mt-3 ">
+              <label for="ReviewerName"><strong>Reviewer Name </strong></label>
+              <input type="text" class="custom-input" 
+                 style="margin-left: 35px;" value="{{element.ReviewerName}}" style="margin-left: 80px;" readonly>
+            </div>
+            <div class="col-6 mb-3 mt-3 ">
+              <label for="ReviewerEmail"><strong>Reviewer Email </strong> </label>
+              <input type="text" class="custom-input" 
+                value="{{element.ReviewerEmail}}" style="margin-left: 49px;" readonly>
+            </div>
+          </div>
+        </div>
+    
+          <div class="row g-1"  *ngFor="let element of header.Data">
+            <div class="col">
+              <label for="ReviewerName"><strong>Aptara Contact Name</strong></label>
+              <input type="text" class="custom-input" value="{{element.AptaraContactName}}"
+                style="margin-left: 40px;" readonly>
+            </div>
+            <div class="col">
+              <label for="ReviewerEmail"><strong>Aptara Email</strong> </label>
+              <input type="text" class="custom-input"  value="{{element.AptaraContact}}"
+                 style="margin-left: 65px;" readonly>
+            </div>
+         
       </div>
-      <div class="mb-3">
-        
-      </div>
+    </div>
       <div class="accordion" id="accordionExample">
         <div class="accordion-item" *ngFor="let item of accordianItems; let i = index">
           <h2 class="accordion-header">
@@ -78,52 +121,52 @@
                           <td class="radio-cell" #radioButtonGroup>
                             <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="1"
                               (click)="handleRadioButtonSelection('1', item.QuestionSerialNumber)"
-                              [checked]="item.SubmittedEvaluation === 1" disabled>
+                              [checked]="item.SubmittedEvaluation === '1'" disabled>
                           </td>
                           <td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
                             <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="2"
                               (click)="handleRadioButtonSelection('2', item.QuestionSerialNumber)"
-                              [checked]="item.SubmittedEvaluation === 2" disabled>
+                              [checked]="item.SubmittedEvaluation === '2'" disabled>
                           </td>
                           <td class="radio-cell" #radioButtonGroup>
                             <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="3"
                               (click)="handleRadioButtonSelection('3', item.QuestionSerialNumber)"
-                              [checked]="item.SubmittedEvaluation === 3" disabled>
+                              [checked]="item.SubmittedEvaluation === '3'" disabled>
                           </td>
                           <td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
                             <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="4"
                               (click)="handleRadioButtonSelection('4', item.QuestionSerialNumber)"
-                              [checked]="item.SubmittedEvaluation === 4" disabled>
+                              [checked]="item.SubmittedEvaluation === '4'" disabled>
                           </td>
                           <td class="radio-cell" #radioButtonGroup>
                             <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="5"
                               (click)="handleRadioButtonSelection('5', item.QuestionSerialNumber)"
-                              [checked]="item.SubmittedEvaluation === 5" disabled>
+                              [checked]="item.SubmittedEvaluation === '5'" disabled>
                           </td>
                           <td class="radio-cell" #radioButtonGroup>
                             <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="6"
                               (click)="handleRadioButtonSelection('6', item.QuestionSerialNumber)"
-                              [checked]="item.SubmittedEvaluation === 6" disabled>
+                              [checked]="item.SubmittedEvaluation === '6'" disabled>
                           </td>
                           <td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
                             <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="7"
                               (click)="handleRadioButtonSelection('7', item.QuestionSerialNumber)"
-                              [checked]="item.SubmittedEvaluation === 7" disabled>
+                              [checked]="item.SubmittedEvaluation === '7'" disabled>
                           </td>
                           <td class="radio-cell" #radioButtonGroup>
                             <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="8"
                               (click)="handleRadioButtonSelection('8', item.QuestionSerialNumber)"
-                              [checked]="item.SubmittedEvaluation === 8" disabled>
+                              [checked]="item.SubmittedEvaluation === '8'" disabled>
                           </td>
                           <td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
                             <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="9"
                               (click)="handleRadioButtonSelection('9', item.QuestionSerialNumber)"
-                              [checked]="item.SubmittedEvaluation === 9" disabled>
+                              [checked]="item.SubmittedEvaluation === '9'" disabled>
                           </td>
                           <td class="radio-cell" #radioButtonGroup>
                             <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="10"
                               (click)="handleRadioButtonSelection('10', item.QuestionSerialNumber)"
-                              [checked]="item.SubmittedEvaluation === 10 " disabled>
+                              [checked]="item.SubmittedEvaluation === '10' " disabled>
                           </td>
                         </tr>
   
@@ -172,7 +215,8 @@
             </div>
           </div>
         </div>
-        <!-- <button type="submit">Submit</button> -->
+        <button pButton type="button" routerLink="/main/{{this.LinkGUID}}">Back to survey</button> 
+        <button pButton ="button" (click)="OnSubmitFromPreview()" style="margin-left: 10px;">Continue</button> 
       </div>
     </form>
   </div>

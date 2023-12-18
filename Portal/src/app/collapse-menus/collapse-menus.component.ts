@@ -4,6 +4,7 @@ import { GetQuestionDetailService } from '../get-question-detail.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute,Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { LocalStorageService } from '../localstorageService';
 
 declare var bootbox: any;
 @Component({
@@ -30,7 +31,8 @@ export class CollapseMenusComponent {
     private fb: FormBuilder,
     private path: ActivatedRoute,
     private messageService: MessageService
-    ,private router:Router) {
+    ,private router:Router
+    ,private LocalStorageService :LocalStorageService ) {
     this.AddQuestionAnswer = new FormGroup({
       'ReviewerName': new FormControl(null, Validators.required),
       'ReviewerEmail': new FormControl(null, [Validators.required, Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$")]),
@@ -186,7 +188,8 @@ console.log(this.ViewerName,this.ViewerEmail)
       // If the question is not in the array, add a new object to the array
       this.selectedRankings.push({
         QuestionId: queId,
-        Remarks: this.Remark
+        Remarks: this.Remark,
+        Question:this.question
       });
     }
     return this.GetBasicInfo.controls[queId].value;
@@ -255,44 +258,77 @@ console.log(this.ViewerName,this.ViewerEmail)
   //   });
   // }
 
-  onSubmit() {
-    this.isFormSubmitted = true;
+  // onSubmit() {
+  //   this.isFormSubmitted = true;
   
-    // Check if the form is valid
+  //   // Check if the form is valid
      
-      const accordianItemCount = this.accordianItems.length;
-      const selectedRankingsCount = this.selectedRankings.length;
+  //     const accordianItemCount = this.accordianItems.length;
+  //     const selectedRankingsCount = this.selectedRankings.length;
   
-      // Check if the counts match
-      if (accordianItemCount === selectedRankingsCount) {
-        this.selectedRankings.forEach(element => {
-          element.ClientId = this.ClientId;
-          element.CorrectEvaluation = "10";
-          element.ReviewerName = this.ViewerName;
-          element.ReviewerEmail = this.ViewerEmail;
-          element.LinkGUID = this.LinkGUID;
-          element.ProjectID = this.ProjectId;
+  //     // Check if the counts match
+  //    // if (accordianItemCount === selectedRankingsCount) {
+  //       this.selectedRankings.forEach(element => {
+  //         element.ClientId = this.ClientId;
+  //         element.CorrectEvaluation = "10";
+  //         element.ReviewerName = this.ViewerName;
+  //         element.ReviewerEmail = this.ViewerEmail;
+  //         element.LinkGUID = this.LinkGUID;
+  //         element.ProjectID = this.ProjectId;
   
-          console.log(element);
-        });
+  //         console.log(element);
+  //       });
   
-        this.service.PostAllDetail(this.selectedRankings).subscribe(res => {
-          if (res !== null) {
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Submitted' });
+  //       this.service.PostAllDetail(this.selectedRankings).subscribe(res => {
+  //         if (res !== null) {
+  //           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Submitted' });
          
-            // Navigate to '/ThankYou/' using Angular Router instead of window.location.href
-             this.router.navigate(['/ThankYou/']);
-          } else {
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Not submitted' });
-          }
-        });
-      } else {
-        this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Question counts do not match. Please answer all questions.' });
-      }
+  //           // Navigate to '/ThankYou/' using Angular Router instead of window.location.href
+  //            this.router.navigate(['/Preview/',this.LinkGUID]);
+  //         } 
+  //         // else {
+  //         //   this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Not submitted' });
+  //         // }
+  //       });
+  //    // }
+  //     //  else {
+  //     //   this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Question counts do not match. Please answer all questions.' });
+  //     // }
     
+  // }
+  submittedData:any []=[]
+  onSubmit() {
+    this.isFormSubmitted = false;
+  
+    const accordianItemCount = this.accordianItems.length;
+    const selectedRankingsCount = this.selectedRankings.length;
+  
+    // Check if the counts match
+    // if (accordianItemCount === selectedRankingsCount) {
+    this.selectedRankings.forEach(element => {
+      element.ClientId = this.ClientId;
+      element.CorrectEvaluation = "10";
+      element.ReviewerName = this.ViewerName;
+      element.ReviewerEmail = this.ViewerEmail;
+      element.LinkGUID = this.LinkGUID;
+      element.ProjectID = this.ProjectId;
+      element.question = this.question
+  
+      console.log(element);
+    });
+  
+   
+    console.log(this.selectedEvaluation)
+     this.submittedData = this.selectedRankings;
+     this.LocalStorageService.submittedData = this.submittedData; 
+    this.LocalStorageService.set('submittedData', this.submittedData);
+    this.router.navigate(['/Preview/', this.LinkGUID]);
+    // } 
+    // else {
+    //   this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Question counts do not match. Please answer all questions.' });
+    // }
   }
   
-
 
   getName(txt: string) {
     this.ViewerName = txt;

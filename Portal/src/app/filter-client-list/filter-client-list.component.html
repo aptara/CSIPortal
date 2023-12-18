@@ -155,9 +155,6 @@
       </p-table>
     </div>
  
-    
-
- 
 <form [formGroup]="linkModalData"  >
   <div class="modal fade" id="linkModal" tabindex="-1" aria-labelledby="linkModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -166,11 +163,9 @@
           <h5 class="modal-title fs-5 ">New Feedback Link</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          
+        <div class="modal-body">  
           <input type="text" class="form-control" formControlName="ClientId" hidden>
           <input type="text" class="form-control" formControlName="ProjectId" hidden>
-          
             <div class="row mt-3 ">
               <div class="col ">
                 <h6 class="text-secondary">Client Name</h6>
@@ -181,13 +176,11 @@
                 <input type="text" class="form-control" value="{{ClientNameForLink}}" readonly>
               </div>
             </div>
-
             <div class="row mt-3 ">
               <div class="col ">
                 <h6 class="text-secondary">Project</h6>
               </div>
             </div>
-
             <div class="row">
               <div class="col">
                 <input type="text" class="form-control" value="{{ProjectNameForLink}}" readonly>
@@ -198,7 +191,6 @@
                 <h6 class="text-secondary">Reviewer Name</h6>
               </div>
             </div>
-
            <div class="row">
               <div class="col">
                 <input type="text" class="form-control" formControlName="ReviewerName">

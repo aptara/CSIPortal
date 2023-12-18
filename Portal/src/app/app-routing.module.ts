@@ -37,7 +37,7 @@ const routes: Routes = [
   {path:'ThankYou', component:ThankyouComponent},
   {path:'SubmittedResponse', component:ResponceComponent},
   {path:'BadResponse', component:PageNotFoundComponent},
-  {path:'Preview', component:PreviewComponent}   
+  {path:'Preview/:LinkGUID', component:PreviewComponent}   
 ];
 
 @NgModule({
