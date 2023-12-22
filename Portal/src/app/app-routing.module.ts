@@ -19,7 +19,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PreviewComponent } from './preview/preview.component';
 MenuReadComponent
 const routes: Routes = [
-  { path: 'main/:LinkGUID', component: MainComponent },
+  { path: 'UserDashboard/:LinkGUID', component: MainComponent },
  // { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'editEmp/:UserMasterID', component: EditEmployeeComponent },

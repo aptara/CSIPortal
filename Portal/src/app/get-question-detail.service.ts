@@ -39,7 +39,7 @@ export class GetQuestionDetailService {
   }
 
   navigateToMainWithClientId(LinkGUID: number) {
-    this.router.navigate(['/main', LinkGUID]);
+    this.router.navigate(['/UserDashboard', LinkGUID]);
   }
  
 }

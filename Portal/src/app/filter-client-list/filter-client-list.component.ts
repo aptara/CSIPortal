@@ -70,10 +70,10 @@ export class FilterClientListComponent {
       XLSX.writeFile(wb, 'exported-data.xlsx');
   
       // Show a success message to the user
-      this.messageService.add({ severity: 'success', summary: 'Export Successful', detail: 'Data exported successfully.' });
+     // this.messageService.add({ severity: 'success', summary: 'Export Successful', detail: 'Data exported successfully.' });
     } else {
       // Show a warning message if there is no data to export
-      this.messageService.add({ severity: 'warn', summary: 'No Data', detail: 'There is no data to export.' });
+      //this.messageService.add({ severity: 'warn', summary: 'No Data', detail: 'There is no data to export.' });
     }
   }
   
@@ -90,13 +90,13 @@ export class FilterClientListComponent {
   fromDate!: any;
   toDate!: any;
   projectId:any;
-  selectedClient:any=[];
+  selectedClient: string = "0";
   @Input() selectedOutputClient: any;
   clients: any=[];
   resultList: any=[]; 
   Project:any=[]
   projectName:any=[]
-  selectedProject:any =[]
+  selectedProject:string = "0";
   selectedClientName:any
   ClientNameForLink:any
   ProjectNameForLink:any
@@ -125,13 +125,14 @@ export class FilterClientListComponent {
   }
   ClientForLink:any
   onClientChange(selectedClientTemp:any): void {
-   
+   debugger
    // this.selectedClientName = selectedClientTemp.ClientName;
    // this.selectedClient = selectedClientTemp.ClientId
-    const [selectedClientI, selectedClientNam] = selectedClientTemp.split(':');
-    const [selectedClientId, selectedClientName] = selectedClientNam.split(':');
-    console.log(selectedClientId,selectedClientName)
-    const ClientArr =this.selectedClient.split(':')
+    // const [selectedClientI, selectedClientNam] = selectedClientTemp.split(':');
+    // const [selectedClientId, selectedClientName] = selectedClientNam.split(':');
+    // console.log(selectedClientId,selectedClientName)
+    if(this.selectedClient.length>0){
+  const ClientArr =this.selectedClient.split(':')
    console.log(ClientArr)
    this.ClientForLink=ClientArr[0]
    this.ClientNameForLink= ClientArr[1]
@@ -155,9 +156,12 @@ export class FilterClientListComponent {
         }
       });
     }
+  }
     
   }
-
+  closeLinkModal(){
+    this.linkButtonClicked= false
+  }
   GetClient(){
     this.service.getClientList().subscribe({
       next: (data: any) => {
@@ -176,10 +180,14 @@ export class FilterClientListComponent {
        this.resultList = data.Data; 
       }
     });
+   // this.selectedClient=''
+   //this.ClientForLink=''
+   //this.projectId=''
   }
+  linkButtonClicked: boolean = false;
   openLinkModal(client: any): void {
     debugger;
-    
+    this.linkButtonClicked=true
     if (client) {
       this.selectedOutputClient = client; // Assign the selected client to the variable
       this.linkModalData.patchValue({
@@ -193,6 +201,7 @@ export class FilterClientListComponent {
     } else {
       console.error('Client object is undefined or null.');
     }
+    
   }
   
   submitModalForm(event: any) {

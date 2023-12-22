@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginAppService } from './login-app.service';
 import { MessageService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+import { DialogeComponent } from '../dialoge/dialoge.component';
 interface UserData {
   EmailId: string;
   Password: string;
@@ -20,7 +22,8 @@ export class LoginAppComponent {
 
   constructor(private loginAppService: LoginAppService,
     private messageService: MessageService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private dialogService: DialogService) {
     this.UserMasterDetails = new FormGroup({
       'EmailId': new FormControl(null, Validators.required),
       'Password': new FormControl(null, Validators.required),
@@ -46,12 +49,40 @@ export class LoginAppComponent {
         window.location.href = '/Dashboard/';
         } else {
        
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please Enter Valid Username and Password' });
+          this.showSuccessDialog();
         }
       });
     } else {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill Username and Password' });
-    
+     
+    this.showWarningDialog()
     }
+  }
+
+  private showSuccessDialog(): void {
+    const ref = this.dialogService.open(DialogeComponent, {
+      header: 'Warning',
+      width: '300px',
+      data: {
+        message: 'This user is not registered. Please contact to administrator.',
+      },
+    });
+
+    ref.onClose.subscribe(() => {
+      // Handle dialog closed event if needed
+    });
+  }
+
+  private showWarningDialog(): void {
+    const ref = this.dialogService.open(DialogeComponent, {
+      header: 'Warning',
+      width: '300px',
+      data: {
+        message: 'Please fill Username and Password.',
+      },
+    });
+
+    ref.onClose.subscribe(() => {
+      // Handle dialog closed event if needed
+    });
   }
 }

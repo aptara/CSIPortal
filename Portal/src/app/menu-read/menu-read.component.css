@@ -1,6 +1,4 @@
-.container {
-    display: flex;
-  }
+
   
   .first, .second, .divider {
     flex: 1;
@@ -43,4 +41,73 @@
     cursor: not-allowed;
   }
 
- 
+
+
+ .chart-container {
+  display: flex;
+  margin: 10px;
+}
+.question-column{
+  border: 2px solid #ccc;
+}
+.evaluation-column{
+width: 1000px;
+}
+.question-column{
+  width: 400px;
+}
+.question-column,
+.evaluation-column {
+
+  padding: 10px;
+  border: 1px solid #ccc; /* Add gray border */
+}
+.evaluation-header{
+  border-bottom: 1px solid #ccc;
+}
+.evaluation-header,
+.evaluation-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  /* Add gray border to the header */
+}
+
+.evaluation-header-item,
+.evaluation-cell {
+  flex: 1;
+  text-align: center;
+  
+}
+
+  /* Add the left-align class */
+.left-align {
+  text-align: left;
+}
+
+/* Add margin to the evaluation-header-item for better alignment */
+.evaluation-header-item {
+  margin-right: 5px;
+}
+.Vline{
+  border: 1px solid #ccc;
+}
+.question-column:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  background-color: #000; /* Vertical line color */
+}
+.button-container {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px; /* Optional: Add padding for a cleaner look */
+}
+.mb3{
+  border: 1px solid #ccc;
+  margin: 10px;
+}

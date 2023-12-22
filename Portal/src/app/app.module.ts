@@ -40,6 +40,10 @@ import { TableModule } from 'primeng/table';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { PreviewComponent } from './preview/preview.component';
+
+import { DialogModule } from 'primeng/dialog';
+import { DynamicDialogModule,DialogService } from 'primeng/dynamicdialog';
+import { DialogeComponent } from './dialoge/dialoge.component';
 PrimeIcons
 @NgModule({
   declarations: [
@@ -63,7 +67,8 @@ PrimeIcons
     ThankyouComponent,
     ResponceComponent,
     PageNotFoundComponent,
-    PreviewComponent
+    PreviewComponent,
+    DialogeComponent
  
   ],
   imports: [
@@ -79,10 +84,16 @@ PrimeIcons
     ButtonModule,
     CardModule,
     TableModule,
-    ToastModule
-    
+    ToastModule,
+    DialogModule,
+    DynamicDialogModule,
+   
   ],
-  providers: [LogindataService,workbench,FilterClientListService,MessageService],
-  bootstrap: [AppComponent]
+  providers: [LogindataService,workbench,FilterClientListService,MessageService, DialogService],
+  bootstrap: [AppComponent],
+ 
+  
+  entryComponents: [DialogeComponent],
+
 })
 export class AppModule { }

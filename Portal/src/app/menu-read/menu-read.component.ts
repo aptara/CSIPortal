@@ -1,18 +1,21 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { GetQuestionDetailService } from '../get-question-detail.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MenuReadService } from './menu-read.service';
 declare var bootbox: any;
+import { Chart } from 'chart.js/auto';
 @Component({
   selector: 'app-menu-read',
   templateUrl: './menu-read.component.html',
   styleUrls: ['./menu-read.component.css']
 })
 export class MenuReadComponent {
+  @ViewChild('myChart') myChart!: ElementRef;
   @ViewChild('radioButtonGroup') radioButtonGroup!: ElementRef;
   AddQuestionAnswer: FormGroup | any;
+i: any;
   constructor(private service: GetQuestionDetailService,
     private menuservice: MenuReadService,
     private path: ActivatedRoute,
@@ -38,8 +41,7 @@ export class MenuReadComponent {
   selectedRadioValue: any;
   LinkGUID:any;
   ngOnInit() {
-  
-
+  //this.generateChart()
     this.AddQuestionAnswer = this.fb.group({});
     this.sub = this.path.paramMap.subscribe(params => {
       debugger
@@ -47,7 +49,75 @@ export class MenuReadComponent {
       this.GetSubmittedData(this.LinkGUID);    
     });
   }
+  ngAfterViewInit() {
+    this.generateChart();
+  }
+
+  generateChart() {
+ 
+    const ctx = this.myChart.nativeElement.getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: this.resultData.map((item: { QuestionSerialNumber: any; question: any; }) => `${item.QuestionSerialNumber}. ${item.question}`),
+        datasets: [{
+          label: 'Selected Evaluation',
+          data: this.resultData.map((item: { selectedEvaluation: string | number; }) => +item.selectedEvaluation), // Convert to a numeric value
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+
+  // getEvaluationColor(selectedEvaluation: number): string {
+  //   // Determine background color based on selected evaluation
+  //   const threshold = 7; // Change this threshold as needed
+  //   return selectedEvaluation <= threshold ? 'red' : 'green';
+  // }
+  maxEvaluation: number = 10;
+  getNumbersArray(): number[] {
+    return Array.from({ length: this.maxEvaluation + 1 }, (_, i) => i);
+  }
+  getEvaluationColor(submittedEvaluation: number, headerValue: number): string {
+    if (headerValue > submittedEvaluation) {
+      return 'white';
+    } else if (submittedEvaluation <= 7) {
+      return 'red';
+    } else if (submittedEvaluation === 8) {
+      return 'yellow';
+    } else {
+      return 'green';
+    }
+  }
   
+  
+  
+  
+
+  toggleAccordion(item: any): void {
+    item.isOpen = !item.isOpen;
+  }
+
+  isAccordionOpen(item: any): boolean {
+    return item.isOpen;
+  }
+
+  expandAll(): void {
+    this.accordianItems.forEach((item: { isOpen: boolean; }) => (item.isOpen = true));
+  }
+
+  collapseAll(): void {
+    this.accordianItems.forEach((item: { isOpen: boolean; }) => (item.isOpen = false));
+  }
   // Define a class property to store the selected evaluations for each question
   selectedRankings: any[] = [];
 

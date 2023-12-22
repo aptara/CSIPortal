@@ -65,6 +65,79 @@
     background-image: url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="%23212529"%3e%3cpolygon points="64 3.992 4.111 124.142 123.889 124.142"%3e%3c/polygon%3e%3c/svg%3e');
 } 
 
+.ui-toast-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
+.button-container {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px; /* Optional: Add padding for a cleaner look */
+}
+.mb-2{
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+}
+.chart-container {
+  display: flex;
+  margin: 10px;
+}
+.question-column{
+  border: 2px solid #ccc;
+}
+.evaluation-column{
+width: 1000px;
+}
+.question-column{
+  width: 400px;
+}
+.question-column,
+.evaluation-column {
 
+  padding: 10px;
+  border: 1px solid #ccc; /* Add gray border */
+}
+.evaluation-header{
+  border-bottom: 1px solid #ccc;
+}
+.evaluation-header,
+.evaluation-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  /* Add gray border to the header */
+}
+
+.evaluation-header-item,
+.evaluation-cell {
+  flex: 1;
+  text-align: center;
   
+}
+
+  /* Add the left-align class */
+.left-align {
+  text-align: left;
+}
+
+/* Add margin to the evaluation-header-item for better alignment */
+.evaluation-header-item {
+  margin-right: 5px;
+}
+.Vline{
+  border: 1px solid #ccc;
+}
+.question-column:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  background-color: #000; /* Vertical line color */
+}

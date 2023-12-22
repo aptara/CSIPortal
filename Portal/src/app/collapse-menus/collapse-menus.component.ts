@@ -2,51 +2,70 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, Input } from '@angular/core';
 import { GetQuestionDetailService } from '../get-question-detail.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { LocalStorageService } from '../localstorageService';
-
 declare var bootbox: any;
+import { DialogService } from 'primeng/dynamicdialog';
+import { DialogeComponent } from '../dialoge/dialoge.component';
+import { MenuReadService } from '../menu-read/menu-read.service';
+MenuReadService
 @Component({
   selector: 'app-collapse-menus',
   templateUrl: './collapse-menus.component.html',
   styleUrls: ['./collapse-menus.component.css'],
-  
+
 })
 export class CollapseMenusComponent {
   AddQuestionAnswer: FormGroup | any;
 
 
-  openAccordionIndex = 0;
+  // isAllAccordionsOpen = true;
 
-  toggleAccordion(index: number): void {
-    this.openAccordionIndex = (this.openAccordionIndex === index) ? -1 : index;
-  }
+  // toggleAccordion(index: number): void {
+  //   this.isAllAccordionsOpen = false;
+  //   // Your existing toggle logic here
+  // }
 
-  isAccordionOpen(index: number): boolean {
-    return this.openAccordionIndex === index;
-  }
+  // isAccordionOpen(index: number): boolean {
+  //   return this.isAllAccordionsOpen 
+  // }
 
+  // toggleAllAccordions(): void {
+  //   this.isAllAccordionsOpen = !this.isAllAccordionsOpen;
+  // }
+  isAccordionItemOpen: boolean[] = [];
   constructor(private service: GetQuestionDetailService,
     private fb: FormBuilder,
     private path: ActivatedRoute,
     private messageService: MessageService
-    ,private router:Router
-    ,private LocalStorageService :LocalStorageService ) {
+    , private router: Router
+    , private LocalStorageService: LocalStorageService,
+    private dialogService: DialogService,
+    private MenuReadService: MenuReadService
+  ) {
     this.AddQuestionAnswer = new FormGroup({
       'ReviewerName': new FormControl(null, Validators.required),
       'ReviewerEmail': new FormControl(null, [Validators.required, Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$")]),
-      //Email: new FormControl(null,Validators.required),
-      //Evaluation: new FormControl(null,Validators.required),
-      //'Remark' : new FormControl(null,Validators.required)
-      // 'Remark': this.fb.array([]),
+
     });
+    //this.accordianItems.forEach(() => this.isAccordionItemOpen.push(true));
   }
-  //accordianItems = [
-  // { question: "1.Project Planning and Management  ", answer: "My name is Demo." },
-  // { question: "2.Schedule Adherence ", answer: "I generate responses based on the input I receive." },
-  // Add more items as needed
-  //];
+  toggleAccordion(item: any): void {
+    item.isOpen = !item.isOpen;
+  }
+
+  isAccordionOpen(item: any): boolean {
+    return item.isOpen;
+  }
+
+  expandAll(): void {
+    this.accordianItems.forEach((item: { isOpen: boolean; }) => (item.isOpen = true));
+  }
+
+  collapseAll(): void {
+    this.accordianItems.forEach((item: { isOpen: boolean; }) => (item.isOpen = false));
+  }
   GetAllDescription: any = [];
   Discription: any = [];
   accordianItems: any = [];
@@ -64,11 +83,12 @@ export class CollapseMenusComponent {
   ClientId: any
   LinkGUID: any;
   ProjectId: any;
-  InValidRequest:any
+  InValidRequest: any
+  resultData: any = [];
   ngOnInit() {
     this.GetQuestion()
     this.GetDescription()
-
+    this.accordianItems.forEach(() => this.isAccordionItemOpen.push(true));
     // Assuming you have a list of questions in `questionsList`
     let sub = this.path.paramMap.subscribe(params => {
       this.LinkGUID = 0;
@@ -80,32 +100,34 @@ export class CollapseMenusComponent {
       this.header = res
       console.log(this.header)
       this.header.Data.forEach((Element: any) => {
-          if (Element.IsSurveySubmitted === 'Yes') {
-            window.location.href = '/SubmittedResponse';
-          } 
-          else if (Element.InValidRequest === '0')
-           {
-            console.log(Element.InValidRequest)
-            window.location.href = '/BadResponse';
-          }
-          else{
-            console.log(Element.ProjectName)
-            console.log(Element.ProjectID)
-            this.ProjectId = Element.ProjectID
-            this.ClientId = Element.ClientId
-            this.InValidRequest = Element.InValidRequest
-            this.ViewerName = Element.ReviewerName;
-            this.ViewerEmail = Element.ReviewerEmail;
-          }
-   
+        if (Element.IsSurveySubmitted === 'Yes') {
+          window.location.href = '/SubmittedResponse';
+        }
+        else if (Element.InValidRequest === '0') {
+          console.log(Element.InValidRequest)
+          window.location.href = '/BadResponse';
+        }
+        else {
+          console.log(Element.ProjectName)
+          console.log(Element.ProjectID)
+          this.ProjectId = Element.ProjectID
+          this.ClientId = Element.ClientId
+          this.InValidRequest = Element.InValidRequest
+          this.ViewerName = Element.ReviewerName;
+          this.ViewerEmail = Element.ReviewerEmail;
+        }
+
         this.list = Element.ProjectName
       });
     });
-console.log(this.ViewerName,this.ViewerEmail)
+    this.MenuReadService.getClientFeedback(this.LinkGUID).subscribe({
+      next: (data: any) => {
+        this.resultData = data;
+        console.log(this.resultData)
+      }
+    });
   }
-  get GetBasicInfo(): FormArray {
-    return this.AddQuestionAnswer.get('Remark') as FormArray;
-  }
+
 
   selectedEvaluation: string | null = null;
 
@@ -128,8 +150,6 @@ console.log(this.ViewerName,this.ViewerEmail)
         SubmittedEvaluation: value
       });
     }
-
-
 
   }
   GetDescription() {
@@ -158,24 +178,12 @@ console.log(this.ViewerName,this.ViewerEmail)
   GetQuestion() {
     this.service.getAllDetail().subscribe(res => {
       this.question = res;
-      // console.log(this.question)
-
-      // this.accordianItems.push(this.question.Question)
-
       this.question.Data.forEach((element: any) => {
         console.log(element.Question)
         this.accordianItems.push(element.Question)
       });
-      // console.log(this.question.Data[0].Question);
-
-
     });
   }
-
-
-
-
-
 
 
   getRemark(txt: string, queId: number) {
@@ -189,157 +197,154 @@ console.log(this.ViewerName,this.ViewerEmail)
       this.selectedRankings.push({
         QuestionId: queId,
         Remarks: this.Remark,
-        Question:this.question
+        Question: this.question
       });
     }
-    return this.GetBasicInfo.controls[queId].value;
+
 
   }
 
+  onSubmit() {
+    this.isFormSubmitted = true;
 
-  // onsubmit(){
-  //   this.isFormSubmitted = true;
-  //   console.log(this.AddQuestionAnswer)
-  //  console.log(this.selectedRankings)
-  //   this.selectedRankings.forEach(element=>{
-  //    element.ClientId = "2"
-  //    element.CorrectEvaluation ="10"
-  //    element.ReviewerName= this.ViewerName
-  //    element.ReviewerEmail = this.ViewerEmail
-  //     console.log(element)
+    // Check if the form is valid
 
-  //   })
-  // if(this.selectedRankings)
-  //   this.service.PostAllDetail(this.selectedRankings).subscribe(res=>{
-  //     if(res!==null){
-  //      // this.selectedRankings = [];
+    const accordianItemCount = this.accordianItems.length;
+    const selectedRankingsCount = this.selectedRankings.length;
 
-  //       alert("submitted")
+    // Check if the counts match
+    if (accordianItemCount === selectedRankingsCount) {
+      this.selectedRankings.forEach(element => {
+        element.ClientId = this.ClientId;
+        element.CorrectEvaluation = "10";
+        element.ReviewerName = this.ViewerName;
+        element.ReviewerEmail = this.ViewerEmail;
+        element.LinkGUID = this.LinkGUID;
+        element.ProjectID = this.ProjectId;
 
-  //     }
-  //   })
+        console.log(element);
+      });
 
-  //   else{
-  //     alert("not submitted")
-  //   }
-  //  }
+      this.service.PostAllDetail(this.selectedRankings).subscribe(res => {
+        if (res !== null) {
+          this.showSuccessDialog();
 
-  // onsubmit() {
-  //   // Check if any required field is empty
-  //   const emptyFields = this.selectedRankings.filter(element => {
-  //     return (
-  //       !element.Question ||
-  //       !element.Remark ||
-  //       !element.Evaluation ||
-  //       !element.ReviewerName ||
-  //       !element.ReviewerEmail
-  //     );
-  //   });
+          // Navigate to '/ThankYou/' using Angular Router instead of window.location.href
+          this.router.navigate(['/ThankYou/']);
+        }
+      
+      });
+    }
+    else {
+      this.showWarningDialog();
+    }
+  }
+  submittedData: any[] = []
+  // onSubmit() {
+  //  // this.isFormSubmitted = false;
 
-  //   if (emptyFields.length > 0) {
-  //     console.log('Empty fields:', emptyFields);
-  //     alert('Please fill in all required fields.');
-  //     return;
-  //   }
+  //   const accordianItemCount = this.accordianItems.length;
+  //   const selectedRankingsCount = this.selectedRankings.length;
 
-  //   // If all fields are filled, proceed with data preparation and submission
+  //   // Check if the counts match
+  //    if (accordianItemCount === selectedRankingsCount) {
   //   this.selectedRankings.forEach(element => {
-  //     element.ClientId = '2';
-  //     element.CorrectEvaluation = '10';
+  //     element.ClientId = this.ClientId;
+  //     element.CorrectEvaluation = "10";
   //     element.ReviewerName = this.ViewerName;
   //     element.ReviewerEmail = this.ViewerEmail;
+  //     element.LinkGUID = this.LinkGUID;
+  //     element.ProjectID = this.ProjectId;
+  //     element.question = this.question
+
   //     console.log(element);
   //   });
 
-  //   this.service.PostAllDetail(this.selectedRankings).subscribe(res => {
-  //     if (res !== null) {
-  //       alert('Submitted');
-  //     }
-  //   });
+
+  //   console.log(this.selectedEvaluation)
+  //    this.submittedData = this.selectedRankings;
+  //    this.LocalStorageService.submittedData = this.submittedData; 
+  //   this.LocalStorageService.set('submittedData', this.submittedData);
+
+  //   this.router.navigate(['/Preview/', this.LinkGUID]);
+  //    } 
+  //    else {
+  //     this.showWarningDialog()
+  //   }
+
   // }
 
-  // onSubmit() {
-  //   this.isFormSubmitted = true;
-  
-  //   // Check if the form is valid
-     
-  //     const accordianItemCount = this.accordianItems.length;
-  //     const selectedRankingsCount = this.selectedRankings.length;
-  
-  //     // Check if the counts match
-  //    // if (accordianItemCount === selectedRankingsCount) {
-  //       this.selectedRankings.forEach(element => {
-  //         element.ClientId = this.ClientId;
-  //         element.CorrectEvaluation = "10";
-  //         element.ReviewerName = this.ViewerName;
-  //         element.ReviewerEmail = this.ViewerEmail;
-  //         element.LinkGUID = this.LinkGUID;
-  //         element.ProjectID = this.ProjectId;
-  
-  //         console.log(element);
-  //       });
-  
-  //       this.service.PostAllDetail(this.selectedRankings).subscribe(res => {
-  //         if (res !== null) {
-  //           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Submitted' });
-         
-  //           // Navigate to '/ThankYou/' using Angular Router instead of window.location.href
-  //            this.router.navigate(['/Preview/',this.LinkGUID]);
-  //         } 
-  //         // else {
-  //         //   this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Not submitted' });
-  //         // }
-  //       });
-  //    // }
-  //     //  else {
-  //     //   this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Question counts do not match. Please answer all questions.' });
-  //     // }
-    
-  // }
-  submittedData:any []=[]
-  onSubmit() {
-    this.isFormSubmitted = false;
-  
-    const accordianItemCount = this.accordianItems.length;
-    const selectedRankingsCount = this.selectedRankings.length;
-  
-    // Check if the counts match
-    // if (accordianItemCount === selectedRankingsCount) {
-    this.selectedRankings.forEach(element => {
-      element.ClientId = this.ClientId;
-      element.CorrectEvaluation = "10";
-      element.ReviewerName = this.ViewerName;
-      element.ReviewerEmail = this.ViewerEmail;
-      element.LinkGUID = this.LinkGUID;
-      element.ProjectID = this.ProjectId;
-      element.question = this.question
-  
-      console.log(element);
+  private showWarningDialog(): void {
+    const ref = this.dialogService.open(DialogeComponent, {
+      header: 'Warning',
+      width: '300px',
+      data: {
+        message: 'All mandatory questions must be answered for the Questionnaire to be marked as completed..',
+      },
     });
-  
-   
-    console.log(this.selectedEvaluation)
-     this.submittedData = this.selectedRankings;
-     this.LocalStorageService.submittedData = this.submittedData; 
-    this.LocalStorageService.set('submittedData', this.submittedData);
-    this.router.navigate(['/Preview/', this.LinkGUID]);
-    // } 
-    // else {
-    //   this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Question counts do not match. Please answer all questions.' });
-    // }
-  }
-  
 
+    ref.onClose.subscribe(() => {
+      // Handle dialog closed event if needed
+    });
+  }
+
+
+  private showSuccessDialog(): void {
+    const ref = this.dialogService.open(DialogeComponent, {
+      header: 'Information',
+      width: '300px',
+      data: {
+        message: 'Thank you so much for your time in completing our survey. We appreciate your answers to this survey.',
+      },
+    });
+
+    ref.onClose.subscribe(() => {
+      // Handle dialog closed event if needed
+    });
+  }
   getName(txt: string) {
     this.ViewerName = txt;
-    // this.SelectedRankings();
+
   }
 
   getEmail(txt: string) {
     this.ViewerEmail = txt;
-    //this.SelectedRankings();
+
+  }
+  display: boolean = false;
+  OpenModal(){
+    const accordianItemCount = this.accordianItems.length;
+    const selectedRankingsCount = this.selectedRankings.length;
+
+    // Check if the counts match
+    if (accordianItemCount === selectedRankingsCount) {
+    this.display = true;
+    }
+    else {
+      this.showWarningDialog();
+    }
   }
 
+  maxEvaluation: number = 10;
+  getNumbersArray(): number[] {
+    return Array.from({ length: this.maxEvaluation + 1 }, (_, i) => i);
+  }
+  getEvaluationColor(submittedEvaluation: number, headerValue: number): string {
+    if (headerValue > submittedEvaluation) {
+      return 'white';
+    } else if (submittedEvaluation <= 7) {
+      return 'red';
+    } else if (submittedEvaluation === 8) {
+      return '#FFFF00';
+    } else {
+      return 'green';
+    }
+  }
+
+
+  ClosePopUp(){
+    this.display=false
+  }
 }
 
 
