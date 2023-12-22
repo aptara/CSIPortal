@@ -14,8 +14,10 @@ export class FilterClientListService {
   private url2=this.apiurl+'GetClient/GetClientDetailsList';
   private url3=this.apiurl+'GenerateLink/GenerateLink';
   private url4 = this.apiurl +'GetProject/GetProject'
-  getClientList(){
-    return this.httpClient.get(this.url);     
+  getClientList(RoleId:any,UserMasterID:any){
+    const body  ={RoleId,UserMasterID}
+    debugger
+    return this.httpClient.post(this.url,body);     
   }
   getClientDetails(fromDate: any, toDate: any, ProjectId:any, ClientId: any){
     // let params = new HttpParams()
@@ -29,9 +31,9 @@ export class FilterClientListService {
     return this.httpClient.post(this.url2, body, { headers: headers });
   }
 
-  GetProject(ClientId: any) {
+  GetProject(ClientId: any,RoleId:any,UserMasterID:any) {
     debugger
-    const body = { ClientId };
+    const body = { ClientId,RoleId,UserMasterID };
    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post(this.url4, body,{ headers: headers});
   }

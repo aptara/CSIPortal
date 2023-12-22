@@ -41,7 +41,9 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                 FirstName = data.ReadString("FirstName"),
                 LastName = data.ReadString("LastName"),
                 EmailId = data.ReadString("EmailId"),
-                Password = data.ReadString("Password")
+                Password = data.ReadString("Password"),
+                Role = data.ReadString("Role"),
+                RoleId = data.Read<Int32>("RoleId"),
             };
         }
     }

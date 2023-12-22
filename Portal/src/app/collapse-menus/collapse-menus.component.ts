@@ -335,7 +335,7 @@ export class CollapseMenusComponent {
     } else if (submittedEvaluation <= 7) {
       return 'red';
     } else if (submittedEvaluation === 8) {
-      return '#FFFF00';
+      return 'yellow';
     } else {
       return 'green';
     }

@@ -34,17 +34,22 @@ export class FilterClientListComponent {
       Remark : ['']
     });
     
-  //   this.linkModalData = new FormGroup({
-  //     ClientId:new FormControl(),
-  //     ProjectId:new FormControl(),
-  //     Clientemail: new FormControl(),
-  //     ClientName: new FormControl(),
-  //     ProjectName: new FormControl(),
-  //     Remark: new FormControl()
-  // });
+
   }
 
-  
+  GetLocalStorageData(){
+    this.storedFirstName = localStorage.getItem('loginDetails');
+
+
+    if (this.storedFirstName !== null) {
+      this.FirstName = JSON.parse(this.storedFirstName);
+     // console.log(this.FirstName[0].FirstName);
+      this.RoleId = this.FirstName[0].RoleId;
+      this.Role = this.FirstName[0].Role;
+      this.UserMasterID = this.FirstName[0].UserMasterID
+      console.log(this.Role,this.RoleId,this.UserMasterID)
+    }
+  }
   exportData(): void {
     if (this.resultList && this.resultList.length > 0) {
       // Extracting selected columns from the data
@@ -69,39 +74,38 @@ export class FilterClientListComponent {
       // Save the workbook to a file
       XLSX.writeFile(wb, 'exported-data.xlsx');
   
-      // Show a success message to the user
-     // this.messageService.add({ severity: 'success', summary: 'Export Successful', detail: 'Data exported successfully.' });
     } else {
-      // Show a warning message if there is no data to export
-      //this.messageService.add({ severity: 'warn', summary: 'No Data', detail: 'There is no data to export.' });
+     
     }
   }
   
   
-  
 
   onSort(event: any) {
-    // Handle sorting
     this.sortField = event.field;
-    this.sortOrder = event.order;
-    // Reload data or perform sorting logic
-  
+    this.sortOrder = event.order
   }
   fromDate!: any;
   toDate!: any;
   projectId:any;
-  selectedClient: string = "0";
+  selectedClient: any = "0";
   @Input() selectedOutputClient: any;
   clients: any=[];
   resultList: any=[]; 
   Project:any=[]
   projectName:any=[]
-  selectedProject:string = "0";
+  selectedProject:any = "0";
   selectedClientName:any
   ClientNameForLink:any
   ProjectNameForLink:any
+  FirstName:any;
+  storedFirstName:any=[]
+  RoleId:any
+  Role:any
+  UserMasterID:any
 
   ngOnInit(){
+    this.GetLocalStorageData();
     this.GetClient();
     // this.submitForm();
     //  this.linkModalData =  this.fb.group({
@@ -141,7 +145,7 @@ export class FilterClientListComponent {
     if (this.ClientForLink) {
     
       console.log(this.ClientForLink)
-      this.service.GetProject(this.ClientForLink).subscribe({
+      this.service.GetProject(this.ClientForLink,this.RoleId,this.UserMasterID).subscribe({
         next :(response:any) => {
         // Handle the API response here
        
@@ -163,7 +167,7 @@ export class FilterClientListComponent {
     this.linkButtonClicked= false
   }
   GetClient(){
-    this.service.getClientList().subscribe({
+    this.service.getClientList(this.RoleId,this.UserMasterID).subscribe({
       next: (data: any) => {
        this.clients = data.Data;
       //  console.log(this.clients[0].ClientId)
@@ -188,6 +192,7 @@ export class FilterClientListComponent {
   openLinkModal(client: any): void {
     debugger;
     this.linkButtonClicked=true
+    
     if (client) {
       this.selectedOutputClient = client; // Assign the selected client to the variable
       this.linkModalData.patchValue({
@@ -216,17 +221,9 @@ console.log(this.linkModalData.value)
         console.error('Error submitting form:', error);
       }
     });    
-    // event.preventDefault();
-    // return false;
+
   }
 
-  //  multipleEmailsValidator(control: AbstractControl): { [key: string]: any } | null {
-  //   const emails = control.value.split(';').map((email: string) => email.trim());
-  
-  //   const valid = emails.every((email: any) => Validators.email(new FormControl(email)));
-  
-  //   return valid ? null : { invalidEmails: true };
-  // }
 
    multipleEmailsValidator(control: AbstractControl): { [key: string]: any } | null {
     const emails = (control.value as string).split(',').map(email => email.trim());
@@ -236,7 +233,6 @@ console.log(this.linkModalData.value)
     return valid ? null : { invalidEmails: true };
   }
 
-  GetName(name:any){
-console.log(name)
-  }
+
+
 }

@@ -18,6 +18,8 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             protected override void FillParameters(OperationType operation, GetProject instance, List<DbParameter> parameters)
             {
             parameters.Add(DbHelper.CreateParameter("ClientId", instance.ClientId));
+            parameters.Add(DbHelper.CreateParameter("RoleId", instance.RoleId));
+            parameters.Add(DbHelper.CreateParameter("UserMasterID", instance.UserMasterID));
         }
 
             protected override string GetProcedureName(OperationType operation)

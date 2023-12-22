@@ -15,7 +15,8 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
     {
         protected override void FillParameters(OperationType operation, clientList instance, List<DbParameter> parameters)
         {
-            throw new NotImplementedException();
+            parameters.Add(DbHelper.CreateParameter("RoleId", instance.RoleId));
+            parameters.Add(DbHelper.CreateParameter("UserMasterID", instance.UserMasterID));
         }
 
         protected override string GetProcedureName(OperationType operation)

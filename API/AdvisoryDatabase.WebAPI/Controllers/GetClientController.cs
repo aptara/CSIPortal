@@ -17,11 +17,11 @@ namespace AdvisoryDatabase.WebAPI.Controllers
     //    return View();
     //}
     //[System.Web.Http.Route("GetClientList")]
-    [System.Web.Http.HttpGet]
-    public APIResponse<List<clientList>> GetClientList()
+    [System.Web.Http.HttpPost]
+    public APIResponse<List<clientList>> GetClientList(clientList obj)
     {
       AdvisoryDatabase.Business.Controllers.GetClientController GetClientController = new Business.Controllers.GetClientController();
-      return GetClientController.GetClientList();
+      return GetClientController.GetClientList(obj);
     }
 
     //[System.Web.Http.Route("GetClientDetailsList")]

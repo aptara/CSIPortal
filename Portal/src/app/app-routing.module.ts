@@ -17,7 +17,11 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
 import { ResponceComponent } from './responce/responce.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PreviewComponent } from './preview/preview.component';
-MenuReadComponent
+import { UserMasterComponent } from './user-master/user-master.component';
+import { ClientMasterComponent } from './client-master/client-master.component';
+import { ProjectMasterComponent } from './project-master/project-master.component';
+import { AddUserComponent } from './add-user/add-user.component';
+
 const routes: Routes = [
   { path: 'UserDashboard/:LinkGUID', component: MainComponent },
  // { path: '', redirectTo: '/main', pathMatch: 'full' },
@@ -37,7 +41,12 @@ const routes: Routes = [
   {path:'ThankYou', component:ThankyouComponent},
   {path:'SubmittedResponse', component:ResponceComponent},
   {path:'BadResponse', component:PageNotFoundComponent},
-  {path:'Preview/:LinkGUID', component:PreviewComponent}   
+  {path:'Preview/:LinkGUID', component:PreviewComponent},
+  {path:'ClientDashboard', component:ClientMasterComponent} ,   
+  {path:'AddUser', component:AddUserComponent} ,
+  {path:'ProjectDashboard', component:ProjectMasterComponent},
+  {path:'UserMaster', component:UserMasterComponent}  
+,
 ];
 
 @NgModule({

@@ -10,7 +10,7 @@
           <option value="0"  selected>Select Client</option>
           <option *ngFor="let client of clients" [value]="client.ClientId" [ngValue]="client.ClientId + ':' + client.ClientName">{{ client.ClientName }}</option>
         </select>
-        <div *ngIf=" txt.invalid  && linkButtonClicked " class="text-danger">
+        <div *ngIf="selectedClient === '0' && linkButtonClicked  " class="text-danger">
           Client Name is required.
         </div>
       </div>
@@ -22,7 +22,7 @@
           <option value="0" selected>Select Project</option>
           <option *ngFor="let pj of Project" [value]="pj.ProjectId" [ngValue]="pj.ProjectId+ ':' + pj.ProjectName">{{ pj.ProjectName }}</option>
         </select>
-        <div *ngIf="Ac.invalid &&  linkButtonClicked " class="text-danger">
+        <div *ngIf="selectedProject === '0' && linkButtonClicked  " class="text-danger">
           Project Name is required.
         </div>
       </div>
@@ -37,7 +37,7 @@
       <div class="form-group col-md-3">
         <label for=""></label><br>
         <button  pButton type="button" class="p-button-info" data-bs-toggle="modal" data-bs-target="#linkModal" 
-          (click)="openLinkModal(clients)" style="margin-left :-200px;">New Feedback Link</button>
+          (click)="openLinkModal(clients)" style="margin-left :-200px;" >New Feedback Link</button>
       </div>
     </div>
   </form>
@@ -45,7 +45,7 @@
 
 
   
-    <div class="mt-4" style="max-width: 1300px; overflow-y: auto;margin-left: 100px;">
+    <div class="mt-4" style="max-width: 1300px; overflow-y: auto;margin-left: 200px;">
       <p-table #dt [value]="resultList" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[50]" [showCurrentPageReport]="true"
       [resizableColumns]="true" styleClass="p-datatable-gridlines" scrollHeight="350px"
       columnResizeMode="expand"  class="table-bordered" [tableStyle]="{'min-height': '10rem;overflow:auto;'}"

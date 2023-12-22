@@ -11,12 +11,12 @@ namespace AdvisoryDatabase.Business.Controllers
 {
   public class GetClientController : BaseController
   {
-    public APIResponse<List<clientList>> GetClientList()
+    public APIResponse<List<clientList>> GetClientList(clientList obj)
     {
       try
       {
         GetClientService service = new GetClientService();
-        return SuccessReponse(service.GetAll());
+        return SuccessReponse(service.GetAll(obj));
       }
       catch (Exception ex)
       {

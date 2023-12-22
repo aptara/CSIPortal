@@ -22,6 +22,9 @@ namespace AdvisoryDatabase.Framework.Entities
         
         public string ReviewerEmail { get; set; }
         public string ReviewerName { get; set; }
+        public int RoleId { get; set; }
+        public string Role { get; set; }
+        public int UserMasterID { get; set; }
     }
 
         public class clientDetailsList : BaseEntity<Int32>

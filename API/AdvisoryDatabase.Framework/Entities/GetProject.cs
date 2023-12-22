@@ -12,5 +12,7 @@ namespace AdvisoryDatabase.Framework.Entities
         public int ClientId { get; set; }
         public string ProjectName { get; set; }
         public int ProjectId { get; set; }
+        public int RoleId { get; set; }
+        public int UserMasterID { get; set; }
     }
 }

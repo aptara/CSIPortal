@@ -44,6 +44,11 @@ import { PreviewComponent } from './preview/preview.component';
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule,DialogService } from 'primeng/dynamicdialog';
 import { DialogeComponent } from './dialoge/dialoge.component';
+import { UserMasterComponent } from './user-master/user-master.component';
+import { ClientMasterComponent } from './client-master/client-master.component';
+import { ProjectMasterComponent } from './project-master/project-master.component';
+import { AddUserComponent } from './add-user/add-user.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 PrimeIcons
 @NgModule({
   declarations: [
@@ -68,7 +73,12 @@ PrimeIcons
     ResponceComponent,
     PageNotFoundComponent,
     PreviewComponent,
-    DialogeComponent
+    DialogeComponent,
+    UserMasterComponent,
+    ClientMasterComponent,
+    ProjectMasterComponent,
+    AddUserComponent,
+    SidebarComponent
  
   ],
   imports: [

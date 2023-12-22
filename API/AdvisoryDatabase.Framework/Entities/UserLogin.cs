@@ -14,5 +14,7 @@ namespace AdvisoryDatabase.Framework.Entities
         public string LastName { get; set; }
         public string EmailId { get; set; }
         public string Password { get; set; }
+        public int RoleId { get; set; }
+        public string Role { get; set; }
     }
 }
