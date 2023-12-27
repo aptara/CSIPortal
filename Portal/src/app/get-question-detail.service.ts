@@ -34,7 +34,6 @@ export class GetQuestionDetailService {
   private GetClientUrl =this.apiURL +'GetClient/GetClientForTop'
   GetClient(LinkGUID: number){
     const requestData = { LinkGUID: LinkGUID }; // Assuming your API expects an object with the property 'ClientId'
-
     return this.httpClient.post(this.GetClientUrl, requestData);
   }
 

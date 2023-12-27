@@ -17,4 +17,13 @@ namespace AdvisoryDatabase.Business.Service
             return new GetProjectDataAccess();
         }
     }
+
+    public class GetProjectDetailService : Repository<GetProjectDeatils, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<GetProjectDeatils, int> CreateDalManager()
+        {
+            return new GetProjectDetailsDataAccess();
+        }
+
+    }
 }

@@ -13,7 +13,9 @@ export class FilterClientListService {
   private url=this.apiurl+'GetClient/GetClientList';
   private url2=this.apiurl+'GetClient/GetClientDetailsList';
   private url3=this.apiurl+'GenerateLink/GenerateLink';
-  private url4 = this.apiurl +'GetProject/GetProject'
+  private url4 = this.apiurl +'GetProject/GetProject';
+  private url5 = this.apiurl +'GetProject/GetProjectDetails';
+  
   getClientList(RoleId:any,UserMasterID:any){
     const body  ={RoleId,UserMasterID}
     debugger
@@ -42,5 +44,9 @@ export class FilterClientListService {
     const body = { formData };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post(this.url3, formData);
+  }
+
+  GetProjectMasterDetails() {
+    return this.httpClient.get(this.url5);
   }
 }

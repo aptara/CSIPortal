@@ -25,5 +25,19 @@ namespace AdvisoryDatabase.Business.Controllers
                 return Erroresponse<List<GetProject>>(error);
             }
         }
+
+        public APIResponse<List<GetProjectDeatils>> GetProjectDetails()
+        {
+            try
+            {
+                GetProjectDetailService service = new GetProjectDetailService();
+                return SuccessReponse(service.GetAll());
+            }
+            catch (Exception ex)
+            {
+                var error = LogError(ex);
+                return Erroresponse<List<GetProjectDeatils>>(error);
+            }
+        }
     }
 }

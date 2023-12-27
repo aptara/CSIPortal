@@ -1,10 +1,19 @@
 
  <!-- <app-main></app-main>  -->
-<app-header *ngIf="router.url!='/Login' && router.url!='/ThankYou' && router.url!='/UserDashboard/ClientId'  && router.url!='/SubmittedResponse'  && router.url!='/BadResponse'"></app-header>
+ <div class="container-fluid ">
+  <app-header *ngIf="router.url!='/Login' && router.url!='/ThankYou' && router.url!='/UserDashboard/ClientId'  && router.url!='/SubmittedResponse'  && router.url!='/BadResponse'"></app-header>
+ <div class="Main-fluid">
 
-<router-outlet></router-outlet> 
+  <div class="Sidebar">
+    <app-sidebar *ngIf="router.url!='/UserDashboard/ClientId' && router.url!='/Login' && router.url!='/Feedback'  && router.url!='/SubmittedResponse'  && router.url!='/BadResponse'"></app-sidebar>
+  </div>
+  <div class="main-container" >
+    <router-outlet></router-outlet> 
+  </div>
+</div>
 <app-footer *ngIf="router.url!='/Login'"></app-footer>
 <!-- <app-login></app-login> -->
  <!-- <app-filter-client-list></app-filter-client-list> -->
  <!-- <app-header></app-header> -->
  <p-toast></p-toast>
+</div>

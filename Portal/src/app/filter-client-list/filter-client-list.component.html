@@ -1,4 +1,7 @@
+
+
 <div class="container">
+ 
   <form (ngSubmit)="submitForm()" class="mt-4" #surveyForm="ngForm" novalidate>
     <h2>Customer Satisfaction Survey</h2>
     
@@ -45,7 +48,7 @@
 
 
   
-    <div class="mt-4" style="max-width: 1300px; overflow-y: auto;margin-left: 120px;">
+    <div class="mt-4" style="max-width: 1300px; overflow-y: auto;margin-left: 10px;">
       <p-table #dt [value]="resultList" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[50]" [showCurrentPageReport]="true"
       [resizableColumns]="true" styleClass="p-datatable-gridlines" scrollHeight="350px"
       columnResizeMode="expand"  class="table-bordered" [tableStyle]="{'min-height': '10rem;overflow:auto;'}"
@@ -152,7 +155,7 @@
       </ng-template>
       </p-table>
     </div>
- 
+
 <form [formGroup]="linkModalData" *ngIf="linkButtonClicked" >
   <div class="modal fade" id="linkModal" tabindex="-1" aria-labelledby="linkModalLabel" aria-hidden="true">
     <div class="modal-dialog">

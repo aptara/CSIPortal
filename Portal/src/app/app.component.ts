@@ -14,6 +14,6 @@ constructor(private service:GetQuestionDetailService
   ,public router: Router){}
 
 ngOnInit() {
- 
+
 }
 }

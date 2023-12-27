@@ -1,1 +1,55 @@
-<p>project-master works!</p>
+<div class="mt-4" style="max-width: 1300px; overflow-y: auto;margin-left: 120px;">
+    <p-table #dt [value]="Project" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[50]"
+        [showCurrentPageReport]="true" [resizableColumns]="true" styleClass="p-datatable-gridlines" scrollHeight="350px"
+        columnResizeMode="expand" class="table-bordered" [tableStyle]="{'min-height': '10rem;overflow:auto;'}"
+        [globalFilterFields]="['ProjectName', 'ClientName']">
+
+        <ng-template pTemplate="header">
+
+            <tr style="border: 1px solid #ddd; background-color: #f2f2f2;">
+
+                <th style="min-width:100px; border: 2px solid #ddd;" field="ProjectId" pResizableColumn
+                    pSortableColumn="ProjectId" style="min-width:200px">Project Id<p-sortIcon
+                        field="ProjectId"></p-sortIcon></th>
+
+                <th style="min-width:100px; border: 1px solid #ddd;" field="ProjectName" pResizableColumn
+                    pSortableColumn="ProjectName" style="min-width:200px">Project Name <p-sortIcon></p-sortIcon></th>
+
+                <th style="min-width:100px">Actions</th>
+
+            </tr>
+            <tr>
+                <th style="min-width:100px">
+                    <div class="flex justify-content-between align-items-center">
+                        <p-columnFilter field="ProjectName" matchMode="contains"></p-columnFilter>
+                    </div>
+                </th>
+
+                <th style="min-width:100px">
+                    <div class="flex justify-content-between align-items-center">
+                        <p-columnFilter type="text" field="ClientName" matchMode="contains"></p-columnFilter>
+                    </div>
+                </th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-client>
+            <tr>
+                <td>{{ client.ProjectId }}</td>
+                <td>{{ client.ProjectName }}</td>
+                <td>
+                    <!-- Edit Button -->
+                    <button class="btn btn-primary" (click)="editProject(client)">Edit</button>
+
+                    <!-- Delete Button -->
+                    <button class="btn btn-danger" (click)="deleteProject(client)">Delete</button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="8"><span class="text-danger">No Records found.</span></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

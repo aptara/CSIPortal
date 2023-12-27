@@ -173,6 +173,7 @@
     <Compile Include="Controllers\GetQuestionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserLoginController.cs" />
+    <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -208,6 +209,7 @@
     <Folder Include="Views\GetProject\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Shared\" />
+    <Folder Include="Views\UserManagement\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

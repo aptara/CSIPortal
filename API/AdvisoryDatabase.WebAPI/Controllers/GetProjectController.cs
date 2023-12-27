@@ -23,5 +23,12 @@ namespace AdvisoryDatabase.WebAPI.Controllers
             AdvisoryDatabase.Business.Controllers.GetProjectController GetProjectController = new Business.Controllers.GetProjectController();
             return GetProjectController.GetProject(obj);
         }
+
+        [System.Web.Http.HttpGet]
+        public APIResponse<List<GetProjectDeatils>> GetProjectDetails()
+        {
+            AdvisoryDatabase.Business.Controllers.GetProjectController GetProjectController = new Business.Controllers.GetProjectController();
+            return GetProjectController.GetProjectDetails();
+        }
     }
 }

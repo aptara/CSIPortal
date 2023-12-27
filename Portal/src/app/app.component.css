@@ -1,0 +1,6 @@
+.Main-fluid{
+  display:flex
+}
+.main-container{
+  flex: 1;
+}

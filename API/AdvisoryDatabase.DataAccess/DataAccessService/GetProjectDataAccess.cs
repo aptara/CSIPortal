@@ -49,6 +49,39 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                 };
             }
         }
+
+
+    public class GetProjectDetailsDataAccess : DataAccessRepository<GetProjectDeatils, Int32>
+    {
+        protected override void FillParameters(OperationType operation, GetProjectDeatils instance, List<DbParameter> parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override string GetProcedureName(OperationType operation)
+        {
+            string spName = string.Empty;
+            switch (operation)
+            {
+                case OperationType.GetAll:
+                    spName = "USP_ManageProjectDetails";
+                    break;
+                default:
+                    spName = string.Empty;
+                    break;
+            }
+            return spName;
+        }
+
+        protected override GetProjectDeatils Parse(System.Data.DataRow data)
+        {
+            return new GetProjectDeatils
+            {
+                ProjectId = data.Read<Int32>("ProjectId"),
+                ProjectName = data.ReadString("ProjectName"),
+            };
+        }
     }
+}
 
     

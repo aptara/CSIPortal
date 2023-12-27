@@ -1,0 +1,13 @@
+.nav-link {
+    background-color: transparent;
+    border: none;
+    color: #000; /* Set your desired text color */
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .nav-link:hover {
+    background-color: #a5a5a5; /* Set your desired hover background color */
+  }
+  

@@ -1,1 +1,48 @@
-<p>add-user works!</p>
+
+<!-- app.component.html -->
+
+<form (ngSubmit)="submitForm()"  [formGroup]="UserAdd" #userForm="ngForm">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="firstName" class="form-label">First Name:</label>
+      <input type="text" class="form-control" id="firstName" name="firstName"  formControlName="FirstName">
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="lastName" class="form-label">Last Name:</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" formControlName="LastName" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" class="form-control" id="email" name="email" formControlName="Email">
+  </div>
+
+  <div class="col-md-6 mb-3">
+    <label for="role" class="form-label">Role:</label>
+    <select class="form-select" id="role" name="role" formControlName="Role" [ngModel]="SelectedRole" required>
+      <option *ngFor="let role of Roles.Data" [value]="role.RoleId">{{ role.Role }}</option>
+    </select>
+  </div>
+  
+</div>
+<div class="group-row">
+  <table>
+      <tr>
+          <th></th>
+          <th>Project Name</th>
+      </tr>
+      <tr *ngFor="let Project of Projects.Data">
+          <td class="checkbox-wrapper">
+              <div class="checkbox">
+                  <input type="checkbox" (change)="onCheckboxChange(Project,$event)" >
+              </div>
+          </td>
+          <td class="task-name-cell" >{{Project.ProjectName}}</td>
+      </tr>
+  </table>
+</div>
+
+  <button type="submit" class="btn btn-primary" >Submit</button>
+</form>
