@@ -1,7 +1,10 @@
-import { ChangeDetectorRef, Component, NgZone } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FilterClientListService } from '../filter-client-list/filter-client-list.service';
 import { MessageService } from 'primeng/api';
+import { ProjectMasterService } from './project-master.service';
+import { DialogService } from 'primeng/dynamicdialog';
+import { DialogeComponent } from '../dialoge/dialoge.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-project-master',
@@ -9,27 +12,33 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./project-master.component.css']
 })
 export class ProjectMasterComponent {
+
   projectMasterData: FormGroup | any;
   sortField: any;
   sortOrder: any;
   ClientForLink: any
   projectId: any;
-  RoleId:any;
-  Role:any;
-  UserMasterID:any;
-  Project:any=[];
-  projectName:any=[]
+  RoleId: any;
+  Role: any;
+  UserMasterID: any;
+  Project: any = [];
+  projectNameList: any = []
+  newProjects: any[] = [];
+  modalTitle: string = 'Add New Record';
+  data: any;
 
-  constructor(private service: FilterClientListService,
+  constructor(private service: ProjectMasterService,
     private fb: FormBuilder,
     private messageService: MessageService,
     private zone: NgZone,
-    private cdr: ChangeDetectorRef) {
+    private cdr: ChangeDetectorRef,
+    private dialogService: DialogService,
+    private ActivatedRoute: ActivatedRoute) {
     this.projectMasterData = this.fb.group({
       ProjectId: [this.projectId],
       ProjectName: [''],
       ClientName: [''],
-      ClientId: [this.ClientForLink]
+      ClientId: ['']
     });
   }
 
@@ -52,18 +61,46 @@ export class ProjectMasterComponent {
     });
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.GetProjectMasterDetail();
   }
 
-  // Add editProject and deleteProject methods
-  editProject(client: any) {
-    // Add logic to handle edit action
-    console.log('Edit project:', client);
+  DeleteProject(ProjectId: any) {
+    // Display a confirmation dialog
+    const ref = this.dialogService.open(DialogeComponent, {
+      header: 'Information',
+      width: '300px',
+      data: {
+        message: 'Are you sure you want to delete this Record?',
+      },
+    });
+
+    // Check if the user confirmed
+    if (ref) {
+      ref.onClose.subscribe((confirmed: boolean) => {
+        this.service.DeleteProjectMasterDetails(ProjectId).subscribe((data: any) => {
+          if (data != null) {
+            const ref = this.dialogService.open(DialogeComponent, {
+              header: 'Information',
+              width: '300px',
+              data: {
+                message: 'Record Deleted Successfully',
+              },
+            });
+          } else {
+            const ref = this.dialogService.open(DialogeComponent, {
+              header: 'Information',
+              width: '300px',
+              data: {
+                message: 'Record is not deleted',
+              },
+            });
+          }
+          this.ngOnInit();
+        });
+
+      });
+    }
   }
 
-  deleteProject(client: any) {
-    // Add logic to handle delete action
-    console.log('Delete project:', client);
-  }
 }

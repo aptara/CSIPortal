@@ -29,7 +29,45 @@ namespace AdvisoryDatabase.WebAPI.Controllers
         public APIResponse<List<AddUserInfo>> AddUserInfo([FromBody] AddUserInfo obj)
         {
             AdvisoryDatabase.Business.Controllers.UserManagementController UserManagementController = new Business.Controllers.UserManagementController();
+          
             return UserManagementController.AddUserDetail(obj);
+        }
+
+
+
+        [System.Web.Http.HttpGet]
+        public APIResponse<List<GetUserDetail>> GetUserInfo()
+        {
+            AdvisoryDatabase.Business.Controllers.UserManagementController UserManagementController = new Business.Controllers.UserManagementController();
+            return UserManagementController.GetUserInfo();
+        }
+
+
+
+        [System.Web.Http.HttpPost]
+        public APIResponse<List<GetUserDetail>> GetUserDetailById([FromBody]GetUserDetail obj)
+        {
+            AdvisoryDatabase.Business.Controllers.UserManagementController UserManagementController = new Business.Controllers.UserManagementController();
+            return UserManagementController.GetUserDetailById(obj);
+        }
+
+
+        [System.Web.Http.HttpPost]
+        public APIResponse<AddUserInfo> UpdateUser([FromBody] AddUserInfo obj)
+        {
+            AdvisoryDatabase.Business.Controllers.UserManagementController UserManagementController = new Business.Controllers.UserManagementController();
+            
+            obj.LastUpdatedBy = 1;
+            obj.CreatedBy = 1;
+            return UserManagementController.UpdateUser(obj);
+
+        }
+   
+    [System.Web.Http.HttpDelete]
+        public APIResponse<string> DeleteUser(int Id)
+        {
+            AdvisoryDatabase.Business.Controllers.UserManagementController UserManagementController = new Business.Controllers.UserManagementController();
+            return UserManagementController.DeleteUser(Id);
         }
     }
 }

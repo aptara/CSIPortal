@@ -49,6 +49,10 @@ import { ClientMasterComponent } from './client-master/client-master.component';
 import { ProjectMasterComponent } from './project-master/project-master.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { AddEditProjectComponent } from './add-edit-project/add-edit-project/add-edit-project.component';
+import { AddClientComponent } from './add-client/add-client.component';
+
 PrimeIcons
 @NgModule({
   declarations: [
@@ -78,7 +82,10 @@ PrimeIcons
     ClientMasterComponent,
     ProjectMasterComponent,
     AddUserComponent,
-    SidebarComponent
+    SidebarComponent,
+    UpdateUserComponent,
+    AddEditProjectComponent,
+    AddClientComponent
  
   ],
   imports: [

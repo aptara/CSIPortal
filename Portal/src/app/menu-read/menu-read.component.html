@@ -1,11 +1,13 @@
 <div class="container">
 
   <form [formGroup]="AddQuestionAnswer">
-    <div class="mb-3"></div>
-    <div class="row">
-      <button type="submit" class="btn btn-primary" (click)="navigateBack()"
-        style="margin-left:89%; width: 10%;">Home</button>
+    <div class="mb-3" style="display: flex; justify-content: space-between; align-items: center;">
+
+      <button type="submit" class="btn btn-primary" style="margin-left:85% ;" (click)="navigateBack()">Home</button>
+      <button type="button" class="btn btn-secondary" (click)="printPreview()">Print Preview</button>
+    
     </div>
+    
     <div class="mb-2">
       <div  class="mb3"  style="padding: 10px;">
         <h2
@@ -51,6 +53,19 @@
           <div class="col-6 mb-3 mt-3 ">
             <label><strong>Project Name</strong></label>
             <input class="custom-input" type="text" value="{{resultData.Data[0].ProjectName}}" style="margin-left: 110px;  width: 300px;" readonly>
+          </div>
+        </div>
+        <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
+          <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
+          <div class="col-6 mb-3 mt-3 ">
+            <label><strong>Survey Created On</strong></label>
+            <input class="custom-input" type="text" value="{{resultData.Data[0].SurveyCreatedOn}}" style="margin-left: 70px; width: 300px;"
+              readonly>
+          </div>
+          <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
+          <div class="col-6 mb-3 mt-3 ">
+            <label><strong>Survey Last Updated On</strong></label>
+            <input class="custom-input" type="text" value="{{resultData.Data[0].SurveyLastUpdatedOn}}" style="margin-left: 30px;  width: 300px;" readonly>
           </div>
         </div>
         <!-- Your input boxes go here -->

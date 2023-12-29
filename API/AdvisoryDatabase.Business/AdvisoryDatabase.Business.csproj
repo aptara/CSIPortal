@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ClientManagementController.cs" />
     <Compile Include="Controllers\GenerateLinkController.cs" />
     <Compile Include="Controllers\GetClientController.cs" />
     <Compile Include="Controllers\GetProjectController.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Security\CryptoServices.cs" />
+    <Compile Include="Service\ClientManagementService.cs" />
     <Compile Include="Service\GenerateLinkService.cs" />
     <Compile Include="Service\GetClientService.cs" />
     <Compile Include="Service\GetProjectService.cs" />

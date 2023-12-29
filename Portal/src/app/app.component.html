@@ -1,11 +1,11 @@
 
  <!-- <app-main></app-main>  -->
- <div class="container-fluid ">
-  <app-header *ngIf="router.url!='/Login' && router.url!='/ThankYou' && router.url!='/UserDashboard/ClientId'  && router.url!='/SubmittedResponse'  && router.url!='/BadResponse'"></app-header>
+ <div class="container-fluid Container-First">
+  <app-header *ngIf="router.url!='/Login' && router.url!='/ThankYou' && router.url!='/UserDashboard/LinkGUID'  && router.url!='/SubmittedResponse'  && router.url!='/BadResponse'"></app-header>
  <div class="Main-fluid">
 
   <div class="Sidebar">
-    <app-sidebar *ngIf="router.url!='/UserDashboard/ClientId' && router.url!='/Login' && router.url!='/Feedback'  && router.url!='/SubmittedResponse'  && router.url!='/BadResponse'"></app-sidebar>
+    <app-sidebar *ngIf="!router.url.startsWith('/UserDashboard/') && router.url!='/Login'  && !router.url.startsWith('/SubmittedResponse')  && !router.url.startsWith('/BadResponse') && !router.url.startsWith('/Feedback/') && !router.url.startsWith('/ThankYou')"></app-sidebar>
   </div>
   <div class="main-container" >
     <router-outlet></router-outlet> 

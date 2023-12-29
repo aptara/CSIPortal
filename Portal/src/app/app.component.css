@@ -2,5 +2,10 @@
   display:flex
 }
 .main-container{
-  flex: 1;
+  flex: 2;
+}
+.Container-First{
+  inset: 0;
+  padding: 0;
+  margin: 0;
 }
