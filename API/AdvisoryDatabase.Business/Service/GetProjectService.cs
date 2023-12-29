@@ -26,4 +26,42 @@ namespace AdvisoryDatabase.Business.Service
         }
 
     }
+
+    public class AddProjectDetailService : Repository<GetProjectDeatils, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<GetProjectDeatils, int> CreateDalManager()
+        {
+            return new AddProjectDetailsDataAccess();
+        }
+    }
+
+    public class UpdateProjectDetailService : Repository<GetProjectDeatils, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<GetProjectDeatils, int> CreateDalManager()
+        {
+            return new UpdateProjectDetailsDataAccess();
+        }
+        public int GetUpdatedUserMasterID(GetProjectDeatils projectDetail)
+        {
+
+            int updatedProjectId = projectDetail.ProjectId;
+            return updatedProjectId;
+        }
+    }
+
+    public class DeleteProjectDetailService : Repository<GetProjectDeatils, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<GetProjectDeatils, int> CreateDalManager()
+        {
+            return new DeleteProjectDetailsDataAccess();
+        }
+    }
+
+    public class GetProjectProjectDetailByService : Repository<GetProjectDeatils, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<GetProjectDeatils, int> CreateDalManager()
+        {
+            return new GetProjectDetailsByIdDataAccess();
+        }
+    }
 }

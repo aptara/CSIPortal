@@ -81,7 +81,8 @@ namespace AdvisoryDatabase.Framework.Entities
         public string AptaraContact { get; set; }
         public string AptaraContactName { get; set; }
         public string LinkGUID { get; set; }
-        
+        public string SurveyCreatedOn { get; set; }
+        public string SurveyLastUpdatedOn { get; set; }
     }
 }
 

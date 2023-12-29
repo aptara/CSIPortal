@@ -24,4 +24,44 @@ namespace AdvisoryDatabase.Business.Service
             return new DataAccessAddUserInfo();
         }
     }
+
+    public class GetserInfoDetail : Repository<GetUserDetail, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<GetUserDetail, int> CreateDalManager()
+        {
+            return new DataAccessGetUserDetail();
+        }
+    }
+
+    public class GetserInfoDetailById : Repository<GetUserDetail, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<GetUserDetail, int> CreateDalManager()
+        {
+            return new DataAccessGetUserDetailById();
+        }
+    }
+
+    public class UpdateUser : Repository<AddUserInfo, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<AddUserInfo, int> CreateDalManager()
+        {
+            return new DataAccessUpdateUser();
+        }
+
+        public int GetUpdatedUserMasterID(AddUserInfo obj)
+        {
+
+            int updatedUserMasterID = obj.UserMasterID;
+            return updatedUserMasterID;
+        }
+    }
+
+    public class DeleteUser : Repository<GetUserDetail, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<GetUserDetail, int> CreateDalManager()
+        {
+            return new DataAccessDeleteUser();
+        }
+
+    }
 }

@@ -1,0 +1,21 @@
+<div class="formbold-main-wrapper">
+    <div class="formbold-form-wrapper">
+        <form [formGroup]="projectMasterData" (ngSubmit)="OnSubmit()">
+            <div class="formbold-form-title">
+                <h2 class="">{{mode}} Project</h2>
+            </div>
+            <div class="formbold-input-flex">
+                <div>
+                    <label for="FirstName" class="formbold-form-label"> Project Name </label>
+                    <input type="text" formControlName="ProjectName" class="formbold-form-input" required/>
+                    <div *ngIf="projectMasterData.get('ProjectName').hasError('required') && projectMasterData.get('ProjectName').touched">
+                        <span class="error-message">Project Name is required.</span>
+                    </div>
+                </div>
+            </div>
+            <button class="formbold-btn">Save</button>
+            &nbsp; &nbsp; &nbsp;
+            <button class="formbold-btn" routerLink="/ProjectDashboard">Cancel</button>
+        </form>
+    </div>
+</div>

@@ -1,24 +1,28 @@
-<div class="mt-4" style="max-width: 1300px; overflow-y: auto;margin-left: 120px;">
-    <p-table #dt [value]="Project" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[50]"
+<div class="mt-4" style="max-width: 1170px; overflow-y: auto;margin-left: 120px;">
+    <!-- <button class="btn btn-primary btn-lg" style="min-width: 150px;" data-bs-toggle="modal" data-bs-target="#linkModal" (click)="openAddModal()">Add</button> -->
+    <button class="btn btn-primary btn-lg" style="min-width: 150px;" routerLink="/PrjectDetails/Add">Add</button>
+    <br><br>
+    <p-table #dt [value]="Project" [paginator]="true" [rows]="20" [rowsPerPageOptions]="[20]"
         [showCurrentPageReport]="true" [resizableColumns]="true" styleClass="p-datatable-gridlines" scrollHeight="350px"
         columnResizeMode="expand" class="table-bordered" [tableStyle]="{'min-height': '10rem;overflow:auto;'}"
         [globalFilterFields]="['ProjectName', 'ClientName']">
 
         <ng-template pTemplate="header">
 
-            <tr style="border: 1px solid #ddd; background-color: #f2f2f2;">
+            <tr style="border: 1px solid #ddd; background-color: #f2f2f2; position: sticky; top: 0; z-index: 1;">
 
-                <th style="min-width:100px; border: 2px solid #ddd;" field="ProjectId" pResizableColumn
-                    pSortableColumn="ProjectId" style="min-width:200px">Project Id<p-sortIcon
-                        field="ProjectId"></p-sortIcon></th>
+                <th style="min-width:100px">Action</th>
 
                 <th style="min-width:100px; border: 1px solid #ddd;" field="ProjectName" pResizableColumn
                     pSortableColumn="ProjectName" style="min-width:200px">Project Name <p-sortIcon></p-sortIcon></th>
 
-                <th style="min-width:100px">Actions</th>
+                <th style="min-width:100px; border: 2px solid #ddd;" field="IsActive" pResizableColumn
+                    pSortableColumn="IsActive" style="min-width:200px">Status<p-sortIcon
+                        field="IsActive"></p-sortIcon></th>
 
             </tr>
-            <tr>
+            <tr style="position: sticky; top: 40px; z-index: 1;">
+                <th></th>
                 <th style="min-width:100px">
                     <div class="flex justify-content-between align-items-center">
                         <p-columnFilter field="ProjectName" matchMode="contains"></p-columnFilter>
@@ -27,23 +31,22 @@
 
                 <th style="min-width:100px">
                     <div class="flex justify-content-between align-items-center">
-                        <p-columnFilter type="text" field="ClientName" matchMode="contains"></p-columnFilter>
+                        <p-columnFilter type="text" field="IsActive" matchMode="contains"></p-columnFilter>
                     </div>
                 </th>
-                <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-client>
             <tr>
-                <td>{{ client.ProjectId }}</td>
-                <td>{{ client.ProjectName }}</td>
                 <td>
-                    <!-- Edit Button -->
-                    <button class="btn btn-primary" (click)="editProject(client)">Edit</button>
-
-                    <!-- Delete Button -->
-                    <button class="btn btn-danger" (click)="deleteProject(client)">Delete</button>
+                    <button class="btn btn-primary" style="min-width: 80px;"  [routerLink]="['/PrjectDetails/Update',client?.ProjectId]">Edit</button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-danger" style="min-width: 80px;"
+                    *ngIf="client.IsActive === true"
+                    (click)="DeleteProject(client.ProjectId)">Delete</button>
                 </td>
+                <td>{{ client.ProjectName }}</td>
+                <td>{{ client.IsActive }}</td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">

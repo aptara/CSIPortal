@@ -205,16 +205,20 @@
             </tbody>
             </table>
             <div>
-              <div>
-                <span>Remark</span>
-                <textarea rows="4" cols="168" #txt placeholder="Enter your remark here..."
-                  (input)="getRemark(txt.value,item.QuestionSerialNumber)" style="resize: none;"></textarea>
-                <!-- <div class="error textError"
-                  *ngIf="remarkControl.hasError('required') && (remarkControl.dirty || remarkControl.touched || isFormSubmitted)">
-               Please enter a remark.
-             </div> -->
+             
+             
+                <div>
+                  <span>Remark</span>
+                  <textarea rows="4" cols="168" #txt placeholder="Enter your remark here..."
+                    (input)="getRemark(txt.value, item.QuestionSerialNumber)" style="resize: none;"></textarea>
+                  <!-- <div class="text-danger"
+                    *ngIf="evalue.SubmittedEvaluation <= 8 && (!txt.value || txt.value.trim().length === 0)">
+                    Please enter a remark if the evaluation is below 8.
+                  </div> -->
+              
               </div>
-            </div>
+              </div>
+           
 
             <!-- <div formArrayName="Remark">
               <div *ngFor="let remarkControl of GetBasicInfo.controls; let i = index">

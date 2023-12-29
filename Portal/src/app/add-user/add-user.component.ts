@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { UserManagement } from '../Services/UserManagementService';
 import { FilterClientListService } from '../filter-client-list/filter-client-list.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { DialogService } from 'primeng/dynamicdialog';
+import { DialogeComponent } from '../dialoge/dialoge.component';
 
 @Component({
   selector: 'app-add-user',
@@ -19,7 +20,8 @@ export class AddUserComponent {
   tmId: any = ""
   constructor(
     private service:UserManagement,
-    private FilterClientListService: FilterClientListService
+    private FilterClientListService: FilterClientListService,
+    private dialogService: DialogService,
   ){
     this.UserAdd = new FormGroup({
       'FirstName': new FormControl('', [
@@ -56,7 +58,18 @@ this.Projects = res;
     this.service.AddUserDetail(this.UserAdd.value).subscribe(res=>{
       debugger
       this.Projects = res;
-      window.location.href = '/UserMaster';
+
+      const ref = this.dialogService.open(DialogeComponent, {
+              header: 'Information',
+              width: '300px',
+              data: {
+                message: 'Record saved Succesfully.',
+              },
+            });
+            ref.onClose.subscribe((confirmed: boolean) => {
+              window.location.href = '/UserMaster';
+            })
+
         }) 
 
   }
@@ -79,4 +92,6 @@ this.Projects = res;
         this.tmId = Ids.join(",")
     })
 }
+
+
 }
