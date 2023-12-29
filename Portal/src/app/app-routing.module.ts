@@ -22,6 +22,8 @@ import { ClientMasterComponent } from './client-master/client-master.component';
 import { ProjectMasterComponent } from './project-master/project-master.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { AddClientComponent } from './add-client/add-client.component';
 
 const routes: Routes = [
   { path: 'UserDashboard/:LinkGUID', component: MainComponent },
@@ -47,8 +49,14 @@ const routes: Routes = [
   {path:'AddUser', component:AddUserComponent} ,
   {path:'ProjectDashboard', component:ProjectMasterComponent},
   {path:'UserMaster', component:UserMasterComponent},
-  {path:'Sidebar', component:SidebarComponent} 
-,
+  {path:'Sidebar', component:SidebarComponent},
+  {path:'UpdateUser/:Id', component:UpdateUserComponent},
+  {
+    path: 'PrjectDetails',
+    loadChildren: () => import('./add-edit-project/add-edit-project-routing.module').then((m) => m.AddEditProjectRoutingModule)
+  },
+  {path:'AddEditClient', component:AddClientComponent},
+  {path:'ClientMaster', component:ClientMasterComponent}
 ];
 
 @NgModule({

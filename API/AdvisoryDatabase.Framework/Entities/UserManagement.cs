@@ -20,5 +20,20 @@ namespace AdvisoryDatabase.Framework.Entities
         public string Email { get; set; }
         public int Role { get; set; }
         public string ProjectId { get; set; }
+        public int UserMasterID { get; set; }
+       
+    }
+
+
+    public class GetUserDetail : BaseEntity<Int32>
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public int RoleId { get; set; }
+        public string ProjectId { get; set; }
+        public int UserMasterID { get; set; }
+        public string ProjectIds { get; set; }
+        public string StatusID { get; set; }
     }
 }

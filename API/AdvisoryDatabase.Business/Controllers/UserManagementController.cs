@@ -40,5 +40,67 @@ namespace AdvisoryDatabase.Business.Controllers
                 return Erroresponse<List<AddUserInfo>>(error);
             }
         }
+        public APIResponse<List<GetUserDetail>> GetUserInfo()
+        {
+            try
+            {
+                GetserInfoDetail service = new GetserInfoDetail();
+                return SuccessReponse(service.GetAll());
+            }
+            catch (Exception ex)
+            {
+                var error = LogError(ex);
+                return Erroresponse<List<GetUserDetail>>(error);
+            }
+        }
+
+        public APIResponse<List<GetUserDetail>> GetUserDetailById(GetUserDetail obj)
+        {
+            try
+            {
+                GetserInfoDetailById service = new GetserInfoDetailById();
+                return SuccessReponse(service.GetAll(obj));
+            }
+            catch (Exception ex)
+            {
+                var error = LogError(ex);
+                return Erroresponse<List<GetUserDetail>>(error);
+            }
+        }
+
+        public APIResponse<AddUserInfo>UpdateUser(AddUserInfo obj)
+        {
+            List<AddUserInfo> Userdata = new List<AddUserInfo>();
+            try
+            {
+                UpdateUser service = new UpdateUser();
+                 service.Update(obj);
+                return SuccessReponse(obj);
+            }
+
+            catch (Exception ex)
+            {
+                var error = LogError(ex);
+                return Erroresponse<AddUserInfo>(error);
+            }
+
+  
+        }
+
+
+        public APIResponse<string> DeleteUser(int UserMasterID)
+        {           
+            try
+            {
+                DeleteUser service = new DeleteUser();
+                service.Remove(UserMasterID);
+                return SuccessReponse("Success");
+            }
+            catch (Exception ex)
+            {
+                var error = LogError(ex);
+                return Erroresponse<string>(error);
+            }
+        }
     }
 }

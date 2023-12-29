@@ -120,12 +120,7 @@ export class CollapseMenusComponent {
         this.list = Element.ProjectName
       });
     });
-    this.MenuReadService.getClientFeedback(this.LinkGUID).subscribe({
-      next: (data: any) => {
-        this.resultData = data;
-        console.log(this.resultData)
-      }
-    });
+  
   }
 
 
@@ -134,7 +129,7 @@ export class CollapseMenusComponent {
   // Function to handle radio button selection
   // Define a class property to store the selected evaluations for each question
   selectedRankings: any[] = [];
-
+  SubmittedEvaluation:any
   handleRadioButtonSelection(value: string, queId: string): void {
 
     // Check if the question is already in the selectedRankings array
@@ -144,6 +139,7 @@ export class CollapseMenusComponent {
       // If the question is already in the array, update the selected evaluation
       this.selectedRankings[existingIndex].SubmittedEvaluation = value;
     } else {
+      this.SubmittedEvaluation = value
       // If the question is not in the array, add a new object to the array
       this.selectedRankings.push({
         QuestionId: queId,
@@ -206,14 +202,15 @@ export class CollapseMenusComponent {
 
   onSubmit() {
     this.isFormSubmitted = true;
-
+  
     // Check if the form is valid
-
     const accordianItemCount = this.accordianItems.length;
     const selectedRankingsCount = this.selectedRankings.length;
-
+  
     // Check if the counts match
     if (accordianItemCount === selectedRankingsCount) {
+      let isInvalid = false;
+  
       this.selectedRankings.forEach(element => {
         element.ClientId = this.ClientId;
         element.CorrectEvaluation = "10";
@@ -221,24 +218,30 @@ export class CollapseMenusComponent {
         element.ReviewerEmail = this.ViewerEmail;
         element.LinkGUID = this.LinkGUID;
         element.ProjectID = this.ProjectId;
-
+  
+      
         console.log(element);
       });
-
+  
+      if (isInvalid) {
+        // Display a message or alert
+        alert('Please enter a remark if your evaluation is below 8.');
+        return; // Prevent form submission
+      }
+  
       this.service.PostAllDetail(this.selectedRankings).subscribe(res => {
         if (res !== null) {
           this.showSuccessDialog();
-
+  
           // Navigate to '/ThankYou/' using Angular Router instead of window.location.href
           this.router.navigate(['/ThankYou/']);
         }
-      
       });
-    }
-    else {
+    } else {
       this.showWarningDialog();
     }
   }
+  
   submittedData: any[] = []
   // onSubmit() {
   //  // this.isFormSubmitted = false;
@@ -313,6 +316,17 @@ export class CollapseMenusComponent {
   }
   display: boolean = false;
   OpenModal(){
+    // this.selectedRankings.forEach(element => {
+      
+
+    //   // Check if evaluation is below 8 and remark is not provided
+    //   if (element.SubmittedEvaluation <= '8' && (!element.Remark || element.Remark.trim().length === 0)) {
+     
+    //     console.log(element.submittedEvaluation)
+    //     return; 
+    //   }
+    // });
+
     const accordianItemCount = this.accordianItems.length;
     const selectedRankingsCount = this.selectedRankings.length;
 
@@ -334,7 +348,7 @@ export class CollapseMenusComponent {
       return 'white';
     } else if (submittedEvaluation <= 7) {
       return 'red';
-    } else if (submittedEvaluation === 8) {
+    } else if (submittedEvaluation == 8) {
       return 'yellow';
     } else {
       return 'green';

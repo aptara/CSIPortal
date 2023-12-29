@@ -218,8 +218,9 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                     ProjectName = row.ReadString("ProjectName"),
                     ClientName = row.ReadString("ClientName"),
                     ProjectId = row.Read<Int32>("ProjectId"),
-                    ClientId = row.Read<Int32>("ProjectId")
-
+                    ClientId = row.Read<Int32>("ProjectId"),
+                    SurveyLastUpdatedOn = row.ReadString("SurveyLastUpdatedOn"),
+                    SurveyCreatedOn = row.ReadString("SurveyCreatedOn")
 
                 }).ToList();
             if (GetAllData.Count == 1)
