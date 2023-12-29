@@ -31,4 +31,6 @@ td, th {
       text-align: center;
   }
   
-  
+  .my-form {
+    margin: 20px; /* Adjust the value according to your preference */
+  } 
