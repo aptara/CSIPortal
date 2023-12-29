@@ -22,6 +22,7 @@ export class AddClientComponent {
   tmId: any = ""
   clientId: any
   clientData: any = []
+  heading: any = ""
   // dialogService: any;
   constructor(
     private service: ClientManagementService,
@@ -51,6 +52,9 @@ export class AddClientComponent {
     // this.getClient()
     if (this.clientId != null) {
       this.getClient()
+      this.heading="Edit Client"
+    }else{
+      this.heading="Add Client"
     }
   }
   // getRole() {

@@ -1,5 +1,8 @@
 <button pButton routerLink="/AddEditClient">Add</button>
-<p-table [value]="clients">
+<!-- <p-table [value]="clients"> -->
+  <p-table #dt [value]="clients" [paginator]="true" [rows]="20" [rowsPerPageOptions]="[20]"
+        [showCurrentPageReport]="true" [resizableColumns]="true" styleClass="p-datatable-gridlines" scrollHeight="350px"
+        columnResizeMode="expand" class="table-bordered" [tableStyle]="{'min-height': '10rem;overflow:auto;'}">
     <ng-template pTemplate="header">
       <tr>
         <th>Name</th>
