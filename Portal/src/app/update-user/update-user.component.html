@@ -1,7 +1,9 @@
 
 <!-- app.component.html -->
-
-<form (ngSubmit)="submitForm()"  [formGroup]="UserAdd" #userForm="ngForm">
+<div class="title-container">
+    <h2 class="form-title">Update User</h2>
+  </div>
+<form (ngSubmit)="submitForm()"  [formGroup]="UserAdd" #userForm="ngForm" class="my-form ">
     <div class="row">
       <div class="col-md-6 mb-3">
         <label for="firstName" class="form-label">First Name:</label>

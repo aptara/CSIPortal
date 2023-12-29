@@ -31,4 +31,18 @@ td, th {
       text-align: center;
   }
   
+  .my-form {
+    margin: 20px; /* Adjust the value according to your preference */
+  }
+  .title-container {
+    text-align: left;
+    margin-bottom: 20px;
+    
+  }
+  
+  .form-title {
+    color: #333; /* Adjust the color to your preference */
+    font-size: 24px;
+    font-weight: bold;
+  }
   
