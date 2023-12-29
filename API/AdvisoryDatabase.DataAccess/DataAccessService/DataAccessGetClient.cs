@@ -39,8 +39,8 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             return new clientList
             {
                 ClientId = data.Read<Int32>("ClientId"),
-                ClientName = data.ReadString("ClientName")
-
+                ClientName = data.ReadString("ClientName"),
+                ClientEmail= data.ReadString("ClientEmail")
             };
         }
     }

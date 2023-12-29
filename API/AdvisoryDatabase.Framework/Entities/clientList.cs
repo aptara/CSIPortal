@@ -25,6 +25,7 @@ namespace AdvisoryDatabase.Framework.Entities
         public int RoleId { get; set; }
         public string Role { get; set; }
         public int UserMasterID { get; set; }
+        public string ClientEmail { get; set; }
     }
 
         public class clientDetailsList : BaseEntity<Int32>
