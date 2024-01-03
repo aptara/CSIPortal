@@ -13,7 +13,7 @@ export class ClientManagementService {
   private addClientUrl=this.apiurl+'ClientManagement/AddClientInfo';
   private getClientByIdUrl=this.apiurl+'ClientManagement/GetClient';
   private updateClientUrl=this.apiurl+'ClientManagement/UpdateClientInfo';
-
+  private deleteClientUrl=this.apiurl+'ClientManagement/DeleteClient/';
   getClients(){
     const body  ={}
     debugger
@@ -34,9 +34,13 @@ export class ClientManagementService {
   }
 
   UpdateClientDetails(UserDetail: any) {
-    debugger
     const body = { UserDetail }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post(this.updateClientUrl, UserDetail,{headers:headers})
   }
+
+  DeleteClientDetails(ClientId: any) {  
+    return this.httpClient.delete(this.deleteClientUrl + ClientId)
+  }
+
 }

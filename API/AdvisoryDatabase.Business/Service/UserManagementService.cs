@@ -64,4 +64,13 @@ namespace AdvisoryDatabase.Business.Service
         }
 
     }
+
+    public class EnableUser : Repository<AddUserInfo, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<AddUserInfo, int> CreateDalManager()
+        {
+            return new DataAccessEnableUser();
+        }
+
+    }
 }

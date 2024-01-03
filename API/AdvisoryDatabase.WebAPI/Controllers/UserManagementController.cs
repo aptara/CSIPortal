@@ -69,5 +69,16 @@ namespace AdvisoryDatabase.WebAPI.Controllers
             AdvisoryDatabase.Business.Controllers.UserManagementController UserManagementController = new Business.Controllers.UserManagementController();
             return UserManagementController.DeleteUser(Id);
         }
+
+        [System.Web.Http.HttpPost]
+        public APIResponse<AddUserInfo> EnableUser([FromBody] AddUserInfo obj)
+        {
+            AdvisoryDatabase.Business.Controllers.UserManagementController UserManagementController = new Business.Controllers.UserManagementController();
+
+            obj.LastUpdatedBy = 1;
+            obj.CreatedBy = 1;
+            return UserManagementController.EnableUser(obj);
+
+        }
     }
 }

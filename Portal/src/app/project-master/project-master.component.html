@@ -39,11 +39,23 @@
         <ng-template pTemplate="body" let-client>
             <tr>
                 <td>
-                    <button class="btn btn-primary" style="min-width: 80px;"  [routerLink]="['/PrjectDetails/Update',client?.ProjectId]">Edit</button>
-                    &nbsp;&nbsp;
-                    <button class="btn btn-danger" style="min-width: 80px;"
-                    *ngIf="client.IsActive === true"
-                    (click)="DeleteProject(client.ProjectId)">Delete</button>
+                    <span class="edit-btn" style="margin-left: 10px;">
+                        <i class="pi pi-pencil"
+                        *ngIf="client.IsActive === true" [routerLink]="['/PrjectDetails/Update',client?.ProjectId]" >
+                        </i>
+                    </span>
+                    <span class="edit-btn" style="margin-left: 10px;">
+                        <i class="pi pi-trash"
+                        *ngIf="client.IsActive === true"
+                    (click)="DeleteProject(client.ProjectId)" >
+                        </i>
+                    </span>
+                    <span class="edit-btn" style="margin-left: 10px;">
+                        <i class="pi pi-check"
+                        *ngIf="client.IsActive === false" (click)="EnanbleUser(client.ProjectId)" >
+                        </i>
+                    </span>
+                 
                 </td>
                 <td>{{ client.ProjectName }}</td>
                 <td>{{ client.IsActive }}</td>

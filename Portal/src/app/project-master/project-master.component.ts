@@ -69,7 +69,7 @@ export class ProjectMasterComponent {
     // Display a confirmation dialog
     const ref = this.dialogService.open(DialogeComponent, {
       header: 'Information',
-      width: '300px',
+    
       data: {
         message: 'Are you sure you want to delete this Record?',
       },
@@ -82,7 +82,7 @@ export class ProjectMasterComponent {
           if (data != null) {
             const ref = this.dialogService.open(DialogeComponent, {
               header: 'Information',
-              width: '300px',
+         
               data: {
                 message: 'Record Deleted Successfully',
               },
@@ -90,7 +90,7 @@ export class ProjectMasterComponent {
           } else {
             const ref = this.dialogService.open(DialogeComponent, {
               header: 'Information',
-              width: '300px',
+            
               data: {
                 message: 'Record is not deleted',
               },
@@ -102,5 +102,17 @@ export class ProjectMasterComponent {
       });
     }
   }
+  EnanbleUser(projectId:any){
+this.service.EnableProject(projectId).subscribe(res=>{
+  const ref = this.dialogService.open(DialogeComponent, {
+    header: 'Information',
+    
+    data: {
+      message: 'Record is Enabled',
+    },
+  });
 
+this.ngOnInit()
+})
+  }
 }

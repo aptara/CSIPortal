@@ -102,5 +102,20 @@ namespace AdvisoryDatabase.Business.Controllers
                 return Erroresponse<string>(error);
             }
         }
+
+        public APIResponse<AddUserInfo> EnableUser( AddUserInfo obj)
+        {
+            try
+            {
+                EnableUser service = new EnableUser();
+                service.Update(obj);
+                return SuccessReponse(obj);
+            }
+            catch (Exception ex)
+            {
+                var error = LogError(ex);
+                return Erroresponse<AddUserInfo>(error);
+            }
+        }
     }
 }

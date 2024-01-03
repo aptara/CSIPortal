@@ -13,6 +13,7 @@ export class ProjectMasterService {
   private UpdateProjectURL = this.apiurl + 'GetProject/UpdateProjectDetails';
   private DeleteProjectURL = this.apiurl + 'GetProject/DeleteProjectDetails/';
   private GetProjectByIdURL = this.apiurl + 'GetProject/GetProjectDetailsById/';
+  private EnableProjectId = this.apiurl + 'GetProject/EnableProject';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -39,5 +40,10 @@ export class ProjectMasterService {
   GetProjectMasterDetailsById(ProjectId : any) {
     return this.httpClient.get(this.GetProjectByIdURL + ProjectId);
   }
-  
+  EnableProject(Projectid:any)
+  {
+    const body = { Projectid };
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.EnableProjectId , body,{headers:headers});
+  }
 }

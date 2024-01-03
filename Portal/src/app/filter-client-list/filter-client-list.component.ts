@@ -44,9 +44,9 @@ export class FilterClientListComponent {
     if (this.storedFirstName !== null) {
       this.FirstName = JSON.parse(this.storedFirstName);
      // console.log(this.FirstName[0].FirstName);
-      this.RoleId = this.FirstName[0].RoleId;
-      this.Role = this.FirstName[0].Role;
-      this.UserMasterID = this.FirstName[0].UserMasterID
+      this.RoleId = this.FirstName.RoleId;
+      this.Role = this.FirstName.Role;
+      this.UserMasterID = this.FirstName.UserMasterID
       console.log(this.Role,this.RoleId,this.UserMasterID)
     }
   }

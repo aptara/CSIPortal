@@ -34,9 +34,12 @@ export class UserMasterComponent {
     this.UserManagementService.DeleteUser(user).subscribe(res=>{
       const ref = this.dialogService.open(DialogeComponent, {
         header: 'Information',
-        width: '300px',
+        style: {
+          'min-width': '500px',
+          'min-height': '200px', 
+        },
         data: {
-          message: 'Record updated Succesfully.',
+          message: 'Record Deleted Succesfully.',
         },
       });
       ref.onClose.subscribe((confirmed: boolean) => {
@@ -54,5 +57,25 @@ export class UserMasterComponent {
     } 
    
     )
+  }
+
+  onUnableButtonClick(user:any){
+    this.UserManagementService.EnableUser(user).subscribe(res=>{
+      const ref = this.dialogService.open(DialogeComponent, {
+        header: 'Information',
+        style: {
+          'min-width': '500px',
+          'min-height': '200px', // Adjust the height as needed
+        },
+        data: {
+          message: 'Record Enabled Succesfully.',
+        },
+      });
+      ref.onClose.subscribe((confirmed: boolean) => {
+        window.location.href = '/UserMaster';
+      })
+      this.ngOnInit()
+    }
+      )
   }
 }

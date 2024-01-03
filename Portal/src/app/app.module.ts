@@ -52,6 +52,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { AddEditProjectComponent } from './add-edit-project/add-edit-project/add-edit-project.component';
 import { AddClientComponent } from './add-client/add-client.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 PrimeIcons
 @NgModule({
@@ -104,7 +105,7 @@ PrimeIcons
     ToastModule,
     DialogModule,
     DynamicDialogModule,
-   
+    ConfirmDialogModule
   ],
   providers: [LogindataService,workbench,FilterClientListService,MessageService, DialogService],
   bootstrap: [AppComponent],

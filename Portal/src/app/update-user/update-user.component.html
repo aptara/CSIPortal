@@ -24,7 +24,7 @@
     <div class="col-md-6 mb-3">
       <label for="role" class="form-label">Role:</label>
       <select class="form-select" id="role" name="role" formControlName="Role" [ngModel]="SelectedRole" required>
-        <option *ngFor="let role of Roles.Data" [value]="role.RoleId">{{ role.Role }}</option>
+        <option *ngFor="let role of Roles" [value]="role.RoleId">{{ role.Role }}</option>
       </select>
     </div>
     
