@@ -15,8 +15,23 @@
     <ng-template pTemplate="body" let-client>
       <tr>
         <td>
-          <button pButton icon="pi pi-pencil" label="Edit" (click)="editClient(client)"></button>
-          <button pButton icon="pi pi-trash" label="Delete" (click)="deleteClient(client.ClientId,$event)"></button>
+          <span class="edit-btn" style="margin-left: 10px;">
+            <i class="pi pi-trash"
+            (click)="deleteClient(client.ClientId,$event)" >
+            </i>
+        </span>
+        <span class="edit-btn" style="margin-left: 10px;">
+          <i class="pi pi-pencil"
+          (click)="editClient(client)" >
+          </i>
+      </span>
+      <span class="edit-btn" style="margin-left: 10px;">
+        <i class="pi pi-check" *ngIf="client.IsActive === false"
+    >
+        </i>
+    </span>
+          <!-- <button pButton icon="pi pi-pencil" label="Edit" (click)="editClient(client)"></button>
+          <button pButton icon="pi pi-trash" label="Delete" ></button> -->
         </td>
         <td>{{ client.ClientName }}</td>
         <!-- <td>{{ user.lastName }}</td> -->

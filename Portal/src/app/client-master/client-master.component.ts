@@ -28,6 +28,7 @@ export class ClientMasterComponent {
     this.clientService.getClients().subscribe({
       next: (data: any) => {
        this.clients = data.Data;
+       console.log(this.clients)
       //  this.clients.forEach((element: any) => {
       //   this.projectName  = element.ClientId;
       //   // console.log(clientid)

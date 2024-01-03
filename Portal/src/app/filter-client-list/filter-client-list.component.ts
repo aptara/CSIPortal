@@ -37,19 +37,20 @@ export class FilterClientListComponent {
 
   }
 
+
   GetLocalStorageData(){
     this.storedFirstName = localStorage.getItem('loginDetails');
-
-
     if (this.storedFirstName !== null) {
       this.FirstName = JSON.parse(this.storedFirstName);
      // console.log(this.FirstName[0].FirstName);
-      this.RoleId = this.FirstName.RoleId;
-      this.Role = this.FirstName.Role;
-      this.UserMasterID = this.FirstName.UserMasterID
+      this.RoleId = this.FirstName[0].RoleId;
+      this.Role = this.FirstName[0].Role;
+      this.UserMasterID = this.FirstName[0].UserMasterID
       console.log(this.Role,this.RoleId,this.UserMasterID)
     }
   }
+
+
   exportData(): void {
     if (this.resultList && this.resultList.length > 0) {
       // Extracting selected columns from the data
@@ -107,17 +108,10 @@ export class FilterClientListComponent {
   ngOnInit(){
     this.GetLocalStorageData();
     this.GetClient();
-    // this.submitForm();
-    //  this.linkModalData =  this.fb.group({
-    //   Clientemail: [''],
-    //   ClientName: [''],
-    //   ProjectName: [''],
-    //   Remark : ['']
-    // });
   }
-  onProjectChange(SelectedProjectTemp:string):void{
 
-   //this.projectId = SelectedProjectTemp
+
+  onProjectChange(SelectedProjectTemp:string):void{
    const [selectedClientI, selectedClientNam] = SelectedProjectTemp.split(':');
    const [selectedClientId, selectedClientName] = selectedClientNam.split(':');
    console.log(selectedClientId,selectedClientName)
@@ -125,37 +119,24 @@ export class FilterClientListComponent {
    this.projectId=Project[0]
    this.ProjectNameForLink= Project[1]
    console.log(this.projectId)
-   
   }
+
+
   ClientForLink:any
   onClientChange(selectedClientTemp:any): void {
-   debugger
-   // this.selectedClientName = selectedClientTemp.ClientName;
-   // this.selectedClient = selectedClientTemp.ClientId
-    // const [selectedClientI, selectedClientNam] = selectedClientTemp.split(':');
-    // const [selectedClientId, selectedClientName] = selectedClientNam.split(':');
-    // console.log(selectedClientId,selectedClientName)
     if(this.selectedClient.length>0){
-  const ClientArr =this.selectedClient.split(':')
-   console.log(ClientArr)
-   this.ClientForLink=ClientArr[0]
-   this.ClientNameForLink= ClientArr[1]
-   console.log(this.ClientNameForLink)
-    // Call your API service here and pass the selected client ID
+    const ClientArr =this.selectedClient.split(':')
+    console.log(ClientArr)
+    this.ClientForLink=ClientArr[0]
+    this.ClientNameForLink= ClientArr[1]
+    console.log(this.ClientNameForLink)
     if (this.ClientForLink) {
-    
       console.log(this.ClientForLink)
       this.service.GetProject(this.ClientForLink,this.RoleId,this.UserMasterID).subscribe({
         next :(response:any) => {
-        // Handle the API response here
-       
         this.Project = response.Data
-       // console.log(this.Project.ProjectName)
-       
         this.Project.forEach((element: any) => {
          this.projectName= element.ProjectName;
-           //console.log(projectName)
-
          });
         }
       });
@@ -166,33 +147,32 @@ export class FilterClientListComponent {
   closeLinkModal(){
     this.linkButtonClicked= false
   }
+
+  //get client for dropdown
   GetClient(){
     this.service.getClientList(this.RoleId,this.UserMasterID).subscribe({
       next: (data: any) => {
        this.clients = data.Data;
-      //  console.log(this.clients[0].ClientId)
        this.clients.forEach((element: any) => {
         this.projectName  = element.ClientId;
-        // console.log(clientid)
        });
       }
     });
   }
+
+  //filter data by client and project id
   submitForm() {
     this.service.getClientDetails(this.fromDate, this.toDate,this.projectId, this.ClientForLink).subscribe({
       next: (data: any) => {
        this.resultList = data.Data; 
       }
     });
-   // this.selectedClient=''
-   //this.ClientForLink=''
-   //this.projectId=''
   }
+
+//Open modal with project id and client id
   linkButtonClicked: boolean = false;
   openLinkModal(client: any): void {
-    debugger;
     this.linkButtonClicked=true
-    
     if (client) {
       this.selectedOutputClient = client; // Assign the selected client to the variable
       this.linkModalData.patchValue({
@@ -206,12 +186,11 @@ export class FilterClientListComponent {
     } else {
       console.error('Client object is undefined or null.');
     }
-    
   }
-  
+
+  //modal submit
   submitModalForm(event: any) {
-debugger
-console.log(this.linkModalData.value)
+  console.log(this.linkModalData.value)
     this.service.submitModalData(this.linkModalData.value).subscribe({
       next: (data: any) => {
         this.resultList = data.Data;  
@@ -221,15 +200,12 @@ console.log(this.linkModalData.value)
         console.error('Error submitting form:', error);
       }
     });    
-
   }
 
-
+//Email validation
    multipleEmailsValidator(control: AbstractControl): { [key: string]: any } | null {
     const emails = (control.value as string).split(',').map(email => email.trim());
-
     const valid = emails.every(email => Validators.email(new FormControl(email)) == null);
-  
     return valid ? null : { invalidEmails: true };
   }
 

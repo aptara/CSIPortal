@@ -16,9 +16,9 @@ ngOnInit(){
   // Check if the value is not null before parsing
   if (this.storedFirstName !== null) {
     this.FirstName = JSON.parse(this.storedFirstName);
-    console.log(this.FirstName.FirstName);
-    this.LoggedUserName = this.FirstName.FirstName;
-    this.SirName = this.FirstName.LastName;
+    console.log(this.FirstName[0].FirstName);
+    this.LoggedUserName = this.FirstName[0].FirstName;
+    this.SirName = this.FirstName[0].LastName;
   }
 }
 
