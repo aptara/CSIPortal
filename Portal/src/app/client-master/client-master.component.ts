@@ -85,4 +85,12 @@ export class ClientMasterComponent {
       }
   });
   }
+
+  EnableUser(ClientId:any){
+    this.clientService.EnableClient(ClientId).subscribe(res=>{
+      console.log(res)
+    })
+  }
+
+
 }

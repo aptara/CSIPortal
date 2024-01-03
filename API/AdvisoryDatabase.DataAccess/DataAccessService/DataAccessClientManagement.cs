@@ -51,6 +51,9 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                 case OperationType.Delete:
                     spName = "USP_ManageClient";
                     break;
+                case OperationType.GetAll:
+                    spName = "USP_ManageClient";
+                    break;
                 default:
                     spName = string.Empty;
                     break;
@@ -66,7 +69,55 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                 ClientEmail= data.ReadString("ClientEmail"),
                 AptaraContact= data.ReadString("AptaraContact2"),
                 AptaraContactEmail = data.ReadString("AptaraContact"),
-                ProjectId=data.ReadString("ProjectIds")
+                ProjectId=data.ReadString("ProjectIds"),
+                IsActive = data.Read<bool>("IsActive"),
+                ClientId = data.Read<Int32>("ClientId")
+            };
+        }
+    }
+
+
+    public class DataAccessEnableClient : DataAccessRepository<AddClientInfo, Int32>
+    {
+        protected override void FillParameters(OperationType operation, AddClientInfo instance, List<DbParameter> parameters)
+        {
+            //switch (operation)
+            //{
+            //case OperationType.Add:
+            parameters.Add(DbHelper.CreateParameter("ClientId", instance.ClientId));
+           
+            //case OperationType.Get:
+            //    parameters.Add(DbHelper.CreateParameter("ClientId", instance.ClientId));
+            //    parameters.Add(DbHelper.CreateParameter("ClientName", instance.ClientName));
+            ////    break;
+            //}
+        }
+
+        protected override string GetProcedureName(OperationType operation)
+        {
+            string spName = string.Empty;
+            switch (operation)
+            {
+                case OperationType.Update:
+                    spName = "USP_ClientEnableAndDisable";
+                    break;
+              
+                default:
+                    spName = string.Empty;
+                    break;
+            }
+            return spName;
+        }
+
+        protected override AddClientInfo Parse(System.Data.DataRow data)
+        {
+            return new AddClientInfo
+            {
+                /*ClientName = data.ReadString("ClientName"),
+                ClientEmail = data.ReadString("ClientEmail"),
+                AptaraContact = data.ReadString("AptaraContact2"),
+                AptaraContactEmail = data.ReadString("AptaraContact"),
+                ProjectId = data.ReadString("ProjectIds")*/
             };
         }
     }

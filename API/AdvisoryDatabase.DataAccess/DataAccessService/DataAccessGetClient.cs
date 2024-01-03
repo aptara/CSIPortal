@@ -40,7 +40,8 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             {
                 ClientId = data.Read<Int32>("ClientId"),
                 ClientName = data.ReadString("ClientName"),
-                ClientEmail= data.ReadString("ClientEmail")
+                ClientEmail= data.ReadString("ClientEmail"),
+                IsActive = data.Read<bool>("IsActive")
             };
         }
     }

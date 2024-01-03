@@ -17,17 +17,16 @@
         <td>
           <span class="edit-btn" style="margin-left: 10px;">
             <i class="pi pi-trash"
-            (click)="deleteClient(client.ClientId,$event)" >
+            (click)="deleteClient(client.ClientId,$event)" *ngIf="client.IsActive === true">
             </i>
         </span>
         <span class="edit-btn" style="margin-left: 10px;">
           <i class="pi pi-pencil"
-          (click)="editClient(client)" >
+          (click)="editClient(client)" *ngIf="client.IsActive === true">
           </i>
       </span>
       <span class="edit-btn" style="margin-left: 10px;">
-        <i class="pi pi-check" *ngIf="client.IsActive === false"
-    >
+        <i class="pi pi-check" *ngIf="client.IsActive === false" (click)="EnableUser(client.ClientId)">
         </i>
     </span>
           <!-- <button pButton icon="pi pi-pencil" label="Edit" (click)="editClient(client)"></button>

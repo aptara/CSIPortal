@@ -69,5 +69,35 @@ namespace AdvisoryDatabase.Business.Controllers
                 return Erroresponse<string>(error);
             }
         }
+
+        public APIResponse<AddClientInfo> EnableClient(AddClientInfo obj)
+        {
+            try
+            {
+                EnableClientService service = new EnableClientService();
+                service.Update(obj);
+                return SuccessReponse(obj);
+                //obj.ClientId = service.Update(obj);
+            }
+            catch (Exception ex)
+            {
+                var error = LogError(ex);
+                return Erroresponse<AddClientInfo>(error);
+            }
+        }
+
+        public APIResponse<List<AddClientInfo>> GetClientList(AddClientInfo obj)
+        {
+            try
+            {
+                AddClientDetail service = new AddClientDetail();
+                return SuccessReponse(service.GetAll(obj));
+            }
+            catch (Exception ex)
+            {
+                var error = LogError(ex);
+                return Erroresponse<List<AddClientInfo>>(error);
+            }
+        }
     }
 }

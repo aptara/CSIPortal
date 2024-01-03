@@ -38,4 +38,20 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
         }
 
     }
+
+    public class EnableClientService : Repository<AddClientInfo, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<AddClientInfo, int> CreateDalManager()
+        {
+            return new DataAccessEnableClient();
+        }
+    }
+
+    public class GetClientService : Repository<AddClientInfo, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<AddClientInfo, int> CreateDalManager()
+        {
+            return new DataAccessClientManagement();
+        }
+    }
 }
