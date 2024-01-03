@@ -32,5 +32,12 @@ namespace AdvisoryDatabase.WebAPI.Controllers
             AdvisoryDatabase.Business.Controllers.ClientManagementController clientManagementController = new Business.Controllers.ClientManagementController();
             return clientManagementController.UpdateClientInfo(obj);
         }
+
+        [System.Web.Http.HttpDelete]
+        public APIResponse<string> DeleteClient(int Id)
+        {
+            AdvisoryDatabase.Business.Controllers.ClientManagementController clientManagementController = new Business.Controllers.ClientManagementController();
+            return clientManagementController.DeleteClient(Id);
+        }
     }
 }
