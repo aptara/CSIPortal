@@ -153,9 +153,11 @@ export class FilterClientListComponent {
     this.service.getClientList(this.RoleId,this.UserMasterID).subscribe({
       next: (data: any) => {
        this.clients = data.Data;
+       if(this.clients!=null){
        this.clients.forEach((element: any) => {
         this.projectName  = element.ClientId;
        });
+      }
       }
     });
   }

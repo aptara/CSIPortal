@@ -58,7 +58,7 @@
                  
                 </td>
                 <td>{{ client.ProjectName }}</td>
-                <td>{{ client.IsActive }}</td>
+                <td>{{ client.IsActive ? 'Active' : 'Inactive' }}</td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
