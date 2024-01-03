@@ -55,5 +55,19 @@ namespace AdvisoryDatabase.Business.Controllers
                 return Erroresponse<AddClientInfo>(error);
             }
         }
+        public APIResponse<string> DeleteClient(int ClientID)
+        {
+            try
+            {
+                DeleteClient service = new DeleteClient();
+                service.Remove(ClientID);
+                return SuccessReponse("Success");
+            }
+            catch (Exception ex)
+            {
+                var error = LogError(ex);
+                return Erroresponse<string>(error);
+            }
+        }
     }
 }

@@ -83,53 +83,29 @@ export class AddClientComponent {
           // 'Role': new FormControl(this.SelectedRole),
           'ProjectId': new FormControl('')
         })
-        // this.ClientAdd.controls.ClientName.setValue(this.clientData[0].ClientName);
-        // this.ClientAdd.controls.ClientEmail.setValue(this.clientData[0].ClientEmail);
-
-        // this.ClientAdd.controls.AptaraContact.setValue(this.clientData[0].AptaraContact);
-        //  this.ClientAdd.controls.AptaraContactEmail.setValue(this.clientData[0].AptaraContactEmail);
-        this.checkbox = this.Tasks.filter(task => this.IsTaskCheckBoxChecked(task));
-        const selectedTasks = this.checkbox.map(task => task.TaskMasterID);
-        this.tmId = selectedTasks.join(",");
-        // window.location.href = '/ClientMaster';
+        if (this.clientData.ProjectId !== null) {
+          this.tmId = this.clientData.ProjectId;
+        }
+        // this.checkbox = this.Tasks.filter(task => this.IsTaskCheckBoxChecked(task));
+        // const selectedTasks = this.checkbox.map(task => task.TaskMasterID);
+        // this.tmId = selectedTasks.join(",");
       }
     })
   }
-  //   getClient(clientId: any){
-  //     this.service.getClientbyId(clientId).subscribe({
-  //       next: (data: any) => {
-  //        this.clientData = data.Data;
-  //       this.ClientAdd = new FormGroup({
-  //         'ClientId': new FormControl(this.clientId),
-  //         'ClientName': new FormControl(this.clientData.ClientName),      
-  //         'ClientEmail': new FormControl(this.clientData.ClientEmail),
-  //         'AptaraContact':new FormControl(this.clientData.AptaraContact),
-  //         'AptaraContactEmail': new FormControl(this.clientData.AptaraContactEmail),
-  //         // 'Role': new FormControl(this.SelectedRole),
-  //          'ProjectId': new FormControl('')        
-  //       })
-  //       // this.ClientAdd.controls.ClientName.setValue(this.clientData[0].ClientName);
-  //       // this.ClientAdd.controls.ClientEmail.setValue(this.clientData[0].ClientEmail);
-
-  //       // this.ClientAdd.controls.AptaraContact.setValue(this.clientData[0].AptaraContact);
-  //       //  this.ClientAdd.controls.AptaraContactEmail.setValue(this.clientData[0].AptaraContactEmail);
-  //       this.checkbox = this.Tasks.filter(task => this.IsTaskCheckBoxChecked(task));
-  //       const selectedTasks = this.checkbox.map(task => task.TaskMasterID);
-  //       this.tmId = selectedTasks.join(",");
-  //       // window.location.href = '/ClientMaster';
-  //     }
-  //   })
-  // }
 
   ProjectIDs: any
   IsTaskCheckBoxChecked(Project: any) {
     if (this.clientData.length !== 0) {
-      this.ProjectIDs = this.clientData.ProjectId.split(",");
-      return this.ProjectIDs.includes(Project.ProjectId.toString());
-
+      if (this.clientData.ProjectId !== null) {
+        this.ProjectIDs = this.clientData.ProjectId.split(",");
+        // this.tmId=this.ProjectIDs.join(",");
+        return this.ProjectIDs.includes(Project.ProjectId.toString());
+      }
     } else {
       return false;
     }
+
+
   }
 
   submitForm() {
@@ -177,29 +153,32 @@ export class AddClientComponent {
     }
   }
 
-
   onCheckboxChange(Project: any, e: any) {
     var Ids: any = []
     if (e.target.checked) {
       this.checkbox.push(Project)
-      console.log(this.checkbox)
     }
     else {
       this.checkbox.forEach((value, index) => {
         if (value == Project)
           this.checkbox.splice(index, 1)
-        console.log(value, Project)
       })
     }
     this.checkbox.forEach(ProjectName => {
-      Ids.push(ProjectName.ProjectId)
-      this.tmId = Ids.join(",")
+      Ids.push(ProjectName.ProjectId)      
     })
-    this.updateTmId();
+    // this.tmId = Ids.join(",")
+    if (this.tmId != "") {
+      this.tmId += "," + Project.ProjectId;
+    }else
+    {
+      this.tmId += Ids.join(",")
+    }
+    //  this.updateTmId();
   }
 
   updateTmId() {
     const SelectedRoleIds = this.checkbox.map(Project => Project.ProjectId);
-    this.tmId = SelectedRoleIds.join(",");
+    this.tmId +="," + SelectedRoleIds.join(",");
   }
 }

@@ -30,4 +30,12 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             return new DataAccessClientManagement();
         }
     }
+    public class DeleteClient : Repository<AddClientInfo, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<AddClientInfo, int> CreateDalManager()
+        {
+            return new DataAccessClientManagement();
+        }
+
+    }
 }

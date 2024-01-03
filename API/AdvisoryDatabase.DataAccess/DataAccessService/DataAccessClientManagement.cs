@@ -48,6 +48,9 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                 case OperationType.Update:
                     spName = "USP_ManageClient";
                     break;
+                case OperationType.Delete:
+                    spName = "USP_ManageClient";
+                    break;
                 default:
                     spName = string.Empty;
                     break;
