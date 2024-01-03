@@ -15,6 +15,7 @@ export class ClientManagementService {
   private updateClientUrl=this.apiurl+'ClientManagement/UpdateClientInfo';
   private deleteClientUrl=this.apiurl+'ClientManagement/DeleteClient/';
   private EnableCient=this.apiurl+'ClientManagement/EnableClient/';
+  
   getClients(){
     const body  ={}
     debugger

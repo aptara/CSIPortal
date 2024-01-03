@@ -34,7 +34,8 @@ constructor(private service:GetQuestionDetailService
   
       // Use the Safe Navigation Operator to handle potential null or undefined values
       this.LoggedUserName = this.FirstName?.FirstName;
-      this.RoleId = this.FirstName?.Role;
+      this.RoleId = this.FirstName[0]?.RoleId;
+      console.log(this.RoleId)
     
     }
   }
@@ -43,7 +44,7 @@ constructor(private service:GetQuestionDetailService
     const url = this.router.url;
   
     // Check if RoleId is 0 or 1 for either this.Client[0] or this.Client[1]
-    const isRoleId0Or1 = (this.RoleId !== '3') 
+    const isRoleId0Or1 = (this.RoleId !== 3) 
                         
   
     return (
