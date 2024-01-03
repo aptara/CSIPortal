@@ -67,7 +67,7 @@ export class UpdateUserComponent {
     this.UserAdd.controls.ProjectId.setValue(this.tmId);
     console.log(localStorage.getItem('loginDetails'));
     // localStorage.getItem('loginDetails');
-    localStorage.setItem('loginDetails',JSON.stringify(this.UserAdd.value))
+    // localStorage.setItem('loginDetails',JSON.stringify(this.UserAdd.value))
     this.service.UpdateUser(this.UserAdd.value).subscribe(res => {
 
       this.Projects = Array.isArray(res) ? res : [res];
@@ -150,10 +150,11 @@ export class UpdateUserComponent {
 
   ProjectIDs: any
   IsTaskCheckBoxChecked(Project: any) {
-    if (this.data) {
-      this.ProjectIDs = this.data[0].ProjectIds.split(",");
+    if (this.data.length !== 0) {
+      if (this.data[0].ProjectId !== null) {
+      this.ProjectIDs = this.data[0].ProjectId.split(",");
       return this.ProjectIDs.includes(Project.ProjectId.toString());
-
+      }
     } else {
       return false;
     }

@@ -188,6 +188,7 @@ export class CollapseMenusComponent {
     if (existingIndex !== -1) {
       // If the question is already in the array, update the selected evaluation
       this.selectedRankings[existingIndex].Remarks = this.Remark;
+     // this.remarkRequired = this.SubmittedEvaluation <= 8 && (!txt || txt.trim().length === 0);
     } else {
       // If the question is not in the array, add a new object to the array
       this.selectedRankings.push({
@@ -197,9 +198,11 @@ export class CollapseMenusComponent {
       });
     }
 
-
+    
   }
 
+  
+  remarkRequired:any
   onSubmit() {
     this.isFormSubmitted = true;
   
