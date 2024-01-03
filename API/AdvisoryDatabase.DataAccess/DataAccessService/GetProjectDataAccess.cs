@@ -222,6 +222,39 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             };
         }
     }
+
+
+    public class DataAccessEnableProject : DataAccessRepository<GetProjectDeatils, Int32>
+    {
+        protected override void FillParameters(OperationType operation, GetProjectDeatils instance, List<DbParameter> parameters)
+        {
+            parameters.Add(DbHelper.CreateParameter("ProjectId", instance.ProjectId));
+          /*  parameters.Add(DbHelper.CreateParameter("IsActive", instance.IsActive));*/
+        }
+
+        protected override string GetProcedureName(OperationType operation)
+        {
+            string spName = string.Empty;
+            switch (operation)
+            {
+                case OperationType.Update:
+                    spName = "USP_ProjectEnableAndDisable";
+                    break;
+                default:
+                    spName = string.Empty;
+                    break;
+            }
+            return spName;
+        }
+
+        protected override GetProjectDeatils Parse(System.Data.DataRow data)
+        {
+            return new GetProjectDeatils
+            {
+
+            };
+        }
+    }
 }
 
     

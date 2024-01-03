@@ -142,7 +142,10 @@ export class AddClientComponent {
           this.ProjectsData = data.Data;
           const ref = this.dialogService.open(DialogeComponent, {
             header: 'Information',
-            width: '300px',
+            style: {
+              'min-width': '500px',
+              'min-height': '200px', // Adjust the height as needed
+            },
             data: {
               message: 'Record saved Succesfully.',
             },
@@ -163,11 +166,15 @@ export class AddClientComponent {
           this.ProjectsData = data.Data;
           const ref = this.dialogService.open(DialogeComponent, {
             header: 'Information',
-            width: '300px',
+            style: {
+              'min-width': '500px',
+              'min-height': '200px', // Adjust the height as needed
+            },
             data: {
-              message: 'Record Updated Succesfully.',
+              message: 'Record Updated Successfully.',
             },
           });
+          
           ref.onClose.subscribe((confirmed: boolean) => {
             window.location.href = '/ClientMaster';
           })

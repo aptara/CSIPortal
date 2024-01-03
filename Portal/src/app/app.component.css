@@ -3,9 +3,19 @@
 }
 .main-container{
   flex: 2;
+
 }
 .Container-First{
   inset: 0;
   padding: 0;
   margin: 0;
 }
+/* .Sidebar {
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  overflow-y: auto;
+} */

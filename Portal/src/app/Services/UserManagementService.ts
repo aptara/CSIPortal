@@ -14,6 +14,7 @@ export class UserManagement {
   private url3 = this.apiurl + 'UserManagement/GetUserDetailById';
   private url4 = this.apiurl + 'UserManagement/UpdateUser';
   private url5 = this.apiurl + 'UserManagement/DeleteUser/';
+  private url6 = this.apiurl + 'UserManagement/EnableUser';
   
   GetRole() {
     return this.httpClient.get(this.url)
@@ -38,14 +39,30 @@ export class UserManagement {
   }
 
   GetUserbyId(UserMasterID: any) {
-    debugger
+
     const body = { UserMasterID }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post(this.url3, body,{headers:headers})
   }
 
   DeleteUser(UserMasterID: any) {
-    debugger
+  
     return this.httpClient.delete(this.url5 + UserMasterID)
+  }
+  EnableUser(UserMasterID: any) {
+    const body = {UserMasterID}
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.url6 , body,{headers:headers})
+  }
+
+
+  public userData: any=[];
+
+  setUserData(data: any) {
+    this.userData = data;
+  }
+
+  getUserData() {
+    return this.userData;
   }
 }

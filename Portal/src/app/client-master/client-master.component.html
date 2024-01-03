@@ -5,21 +5,24 @@
         columnResizeMode="expand" class="table-bordered" [tableStyle]="{'min-height': '10rem;overflow:auto;'}">
     <ng-template pTemplate="header">
       <tr>
+        <th>Action</th>
         <th>Name</th>
         <!-- <th>Last Name</th> -->
         <th>Email</th>
-        <th>Action</th>
+     
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-client>
       <tr>
+        <td>
+          <button pButton icon="pi pi-pencil" label="Edit" (click)="editClient(client)"></button>
+          <button pButton icon="pi pi-trash" label="Delete" (click)="deleteClient(client.ClientId,$event)"></button>
+        </td>
         <td>{{ client.ClientName }}</td>
         <!-- <td>{{ user.lastName }}</td> -->
         <td>{{ client.ClientEmail}}</td>
-        <td>
-          <button pButton icon="pi pi-pencil" label="Edit" (click)="editClient(client)"></button>
-          <button pButton icon="pi pi-trash" label="Delete" ></button>
-        </td>
+      
       </tr>
     </ng-template>
   </p-table>
+  <p-confirmDialog></p-confirmDialog>

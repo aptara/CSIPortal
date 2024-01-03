@@ -81,5 +81,12 @@ namespace AdvisoryDatabase.WebAPI.Controllers
             AdvisoryDatabase.Framework.Logger.AdvisoryLogger.WriteInfo("GetCourse : Project Id " + Id);
             return GetProjectController.GetProjectDetailsById(projectDeatils);
         }
+
+        [System.Web.Http.HttpPost]
+        public APIResponse<GetProjectDeatils> EnableProject(GetProjectDeatils Id)
+        {
+            AdvisoryDatabase.Business.Controllers.GetProjectController GetProjectController = new Business.Controllers.GetProjectController();
+            return GetProjectController.EnableProject(Id);
+        }
     }
 }

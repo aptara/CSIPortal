@@ -64,4 +64,12 @@ namespace AdvisoryDatabase.Business.Service
             return new GetProjectDetailsByIdDataAccess();
         }
     }
+    public class EnableProjectService : Repository<GetProjectDeatils, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<GetProjectDeatils, int> CreateDalManager()
+        {
+            return new DataAccessEnableProject();
+        }
+    }
+
 }

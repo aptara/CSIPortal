@@ -26,11 +26,10 @@ export class AddUserComponent {
     this.UserAdd = new FormGroup({
       'FirstName': new FormControl('', [
           Validators.required,
-          //Validators.pattern('[a-zA-Z]+')
       ]),
       'LastName': new FormControl('', [
           Validators.required,
-          // Validators.pattern('[a-zA-Z]+')
+ 
       ]),
       'Email': new FormControl('', [Validators.required, Validators.email]),
       'Role': new FormControl(this.SelectedRole),
@@ -43,11 +42,14 @@ ngOnInit(){
 this.getRole()
 this.getProject()
 }
-getRole(){
-  this.service.GetRole().subscribe(res=>{
-this.Roles= res
-  })
+getRole() {
+  this.service.GetRole().subscribe((res:any) => {
+    // Exclude the first array element
+    this.Roles = res.Data.slice(1);
+  });
 }
+
+
 getProject(){
   this.FilterClientListService.GetProjectMasterDetails().subscribe(res=>{
 this.Projects = res;
@@ -61,7 +63,10 @@ this.Projects = res;
 
       const ref = this.dialogService.open(DialogeComponent, {
               header: 'Information',
-              width: '300px',
+              style: {
+                'min-width': '300px',
+                'min-height': '200px', // Adjust the height as needed
+              },
               data: {
                 message: 'Record saved Succesfully.',
               },

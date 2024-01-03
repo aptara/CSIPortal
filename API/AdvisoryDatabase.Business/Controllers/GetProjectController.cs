@@ -107,5 +107,20 @@ namespace AdvisoryDatabase.Business.Controllers
             }
 
         }
+
+        public APIResponse<GetProjectDeatils> EnableProject( GetProjectDeatils obj)
+        {
+            try
+            {
+                EnableProjectService service = new EnableProjectService();
+                service.Update(obj);
+                return SuccessReponse(obj);
+            }
+            catch (Exception ex)
+            {
+                var error = LogError(ex);
+                return Erroresponse<GetProjectDeatils>(error);
+            }
+        }
     }
 }

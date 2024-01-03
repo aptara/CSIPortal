@@ -248,4 +248,46 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             };
         }
     }
+
+
+    public class DataAccessEnableUser : DataAccessRepository<AddUserInfo, Int32>
+    {
+        protected override void FillParameters(OperationType operation, AddUserInfo instance, List<DbParameter> parameters)
+        {
+            switch (operation)
+            {
+
+                case OperationType.Update:
+                    parameters.Add(DbHelper.CreateParameter("UserMasterID", instance.UserMasterID));
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        protected override string GetProcedureName(OperationType operation)
+        {
+            string spName = string.Empty;
+            switch (operation)
+            {
+                case OperationType.Update:
+                    spName = "USP_UserEnableAndDisable";
+                    break;
+                default:
+                    spName = string.Empty;
+                    break;
+            }
+            return spName;
+        }
+
+        protected override AddUserInfo Parse(System.Data.DataRow data)
+        {
+            return new AddUserInfo
+            {
+
+
+            };
+        }
+    }
 }

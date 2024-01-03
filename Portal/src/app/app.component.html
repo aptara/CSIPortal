@@ -1,19 +1,17 @@
-
- <!-- <app-main></app-main>  -->
- <div class="container-fluid Container-First">
+<div class="container-fluid Container-First">
   <app-header *ngIf="router.url!='/Login' && router.url!='/ThankYou' && router.url!='/UserDashboard/LinkGUID'  && router.url!='/SubmittedResponse'  && router.url!='/BadResponse'"></app-header>
- <div class="Main-fluid">
 
-  <div class="Sidebar">
-    <app-sidebar *ngIf="!router.url.startsWith('/UserDashboard/') && router.url!='/Login'  && !router.url.startsWith('/SubmittedResponse')  && !router.url.startsWith('/BadResponse') && !router.url.startsWith('/Feedback/') && !router.url.startsWith('/ThankYou')"></app-sidebar>
+  <div class="Main-fluid">
+    <div class="Sidebar">
+      <app-sidebar *ngIf="showSidebar()"></app-sidebar>
+    </div>
+    
+
+    <div class="main-container" >
+      <router-outlet></router-outlet> 
+    </div>
   </div>
-  <div class="main-container" >
-    <router-outlet></router-outlet> 
-  </div>
-</div>
-<app-footer *ngIf="router.url!='/Login'"></app-footer>
-<!-- <app-login></app-login> -->
- <!-- <app-filter-client-list></app-filter-client-list> -->
- <!-- <app-header></app-header> -->
- <p-toast></p-toast>
+
+  <app-footer *ngIf="router.url!='/Login'"></app-footer>
+  <p-toast></p-toast>
 </div>
