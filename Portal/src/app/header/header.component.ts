@@ -48,43 +48,47 @@ constructor(private service:ChangePasswordService,private fb: FormBuilder,
 
 toggleNavbar() {
   this.showNavbar = !this.showNavbar;
+  this.changePassModalData.reset();
   this.changePassModalData.patchValue({
     UserMasterID: this.userID,
   });
+  
 }
 
 
-submitModalForm(event: any) {
-  // console.log(this.changePassModalData.value)
-  if (this.changePassModalData.valid) {
-    console.log(this.changePassModalData.value);
-    
-    this.service.submitModalData(this.changePassModalData.value).subscribe({
-      next: (data: any) => {
-        // this.resultList = data.Data;  
-        // this.submitForm();   
-        const ref = this.dialogService.open(DialogeComponent, {
-          header: 'Information',
-          style: {
-            'min-width': '500px',
-            'min-height': '200px', // Adjust the height as needed
-          },
-          data: {
-            message: 'Password Changed Succesfully.',
-          },
-        });
-        ref.onClose.subscribe((confirmed: boolean) => {
-          // window.location.href = '/ClientMaster';
-        })
-      },
-      error: (error: any) => {
-        console.error('Error submitting form:', error);
-      }
-    });   
-  } else {
-    
-    console.log('Form is not valid');
-  }
+  submitModalForm(event: any) {
+    // console.log(this.changePassModalData.value)
+    if (this.changePassModalData.valid) {
+      console.log(this.changePassModalData.value);
+
+      this.service.submitModalData(this.changePassModalData.value).subscribe({
+        next: (data: any) => {
+          // this.resultList = data.Data;  
+          // this.submitForm();   
+          const ref = this.dialogService.open(DialogeComponent, {
+            header: 'Information',
+            style: {
+              'min-width': '500px',
+              'min-height': '200px', // Adjust the height as needed
+            },
+            data: {
+              message: 'Password Changed Succesfully.',
+            },
+          });
+          ref.onClose.subscribe((confirmed: boolean) => {
+            // window.location.href = '/ClientMaster';
+          })
+        },
+        error: (error: any) => {
+          console.error('Error submitting form:', error);
+        }
+      });
+    } else {
+
+      console.log('Form is not valid');
+    }
+
+    this.changePassModalData.reset();
   }
   
    passwordsMatchValidator(): ValidatorFn {
