@@ -61,7 +61,7 @@ export class LoginAppComponent {
   private showSuccessDialog(): void {
     const ref = this.dialogService.open(DialogeComponent, {
       header: 'Warning',
-      width: '300px',
+      
       data: {
         message: 'This user is not registered. Please contact to administrator.',
       },

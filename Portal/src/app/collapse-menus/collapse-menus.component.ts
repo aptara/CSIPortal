@@ -283,7 +283,7 @@ export class CollapseMenusComponent {
   private showWarningDialog(): void {
     const ref = this.dialogService.open(DialogeComponent, {
       header: 'Warning',
-      width: '300px',
+    
       data: {
         message: 'All mandatory questions must be answered for the Questionnaire to be marked as completed..',
       },
@@ -298,7 +298,7 @@ export class CollapseMenusComponent {
   private showSuccessDialog(): void {
     const ref = this.dialogService.open(DialogeComponent, {
       header: 'Information',
-      width: '300px',
+     
       data: {
         message: 'Thank you so much for your time in completing our survey. We appreciate your answers to this survey.',
       },
