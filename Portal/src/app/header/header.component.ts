@@ -18,6 +18,7 @@ showNavbar = false;
 changePassModalData: FormGroup | any;
 userID:any
 userPass:any
+resultData: any=[]; 
 
 ngOnInit(){
   this.storedFirstName = localStorage.getItem('loginDetails');
@@ -63,7 +64,8 @@ toggleNavbar() {
 
       this.service.submitModalData(this.changePassModalData.value).subscribe({
         next: (data: any) => {
-          // this.resultList = data.Data;  
+           this.resultData = data.Data;  
+          //  localStorage.setItem('loginDetails.Password', JSON.stringify(this.resultData.NewPassword));
           // this.submitForm();   
           const ref = this.dialogService.open(DialogeComponent, {
             header: 'Information',
@@ -76,7 +78,7 @@ toggleNavbar() {
             },
           });
           ref.onClose.subscribe((confirmed: boolean) => {
-            // window.location.href = '/ClientMaster';
+              window.location.href = '/Login';
           })
         },
         error: (error: any) => {
