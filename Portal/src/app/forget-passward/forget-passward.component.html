@@ -4,7 +4,7 @@
     <div class="email-box">
       <label for="email">Send Email : </label>
       <input type="email" id="email" placeholder="Enter your email" [(ngModel)]="email">
-      <div *ngIf="data.ToCheckId !== 0" class="text-danger">Email is not exist.</div>
+      <div *ngIf="TocheckId === -1" class="text-danger">Email is not exist.</div>
       <button (click)="sendEmail()">Send</button>
       <button style="margin-left: 15px;" routerLink="/Login">Login</button>
     </div>
