@@ -111,3 +111,20 @@ width: 1000px;
   border: 1px solid #ccc;
   margin: 10px;
 }
+@media print {
+   body{
+    display: none;
+  }
+  
+  .print-content, .print-content * {
+    visibility: visible;
+  }
+  .container-fluid.hide-header app-header {
+    display: none;
+  }
+  @page {
+    size: auto;
+    margin:10px
+}
+
+}

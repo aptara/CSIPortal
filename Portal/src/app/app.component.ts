@@ -16,10 +16,13 @@ export class AppComponent {
   storedFirstName:any=[]
   LoggedUserName:any
   RoleId:any
+hideHeaderOnPrint= false;
 constructor(private service:GetQuestionDetailService
   ,private route:ActivatedRoute
   ,public router: Router
-  ,private UserManagement: UserManagement ){}
+  ,private UserManagement: UserManagement ){
+    this.hideHeaderOnPrint = this.router.url.includes('/Feedback/');
+  }
   ngOnInit() {
   this.initializeUserData()
 
@@ -54,7 +57,8 @@ constructor(private service:GetQuestionDetailService
       !url.startsWith('/SubmittedResponse') &&
       !url.startsWith('/BadResponse') &&
       !url.startsWith('/Feedback/') &&
-      !url.startsWith('/ThankYou')
+      !url.startsWith('/ThankYou') &&
+      !url.startsWith('/ForgetPassward')
     );
   }
   

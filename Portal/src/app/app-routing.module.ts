@@ -24,6 +24,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { AddClientComponent } from './add-client/add-client.component';
+import { ForgetPasswardComponent } from './forget-passward/forget-passward.component';
 
 const routes: Routes = [
   { path: 'UserDashboard/:LinkGUID', component: MainComponent },
@@ -56,7 +57,8 @@ const routes: Routes = [
     loadChildren: () => import('./add-edit-project/add-edit-project-routing.module').then((m) => m.AddEditProjectRoutingModule)
   },
   {path:'AddEditClient', component:AddClientComponent},
-  {path:'ClientMaster', component:ClientMasterComponent}
+  {path:'ClientMaster', component:ClientMasterComponent},
+  {path:'ForgetPassward', component:ForgetPasswardComponent},
 ];
 
 @NgModule({

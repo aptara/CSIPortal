@@ -53,6 +53,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import { AddEditProjectComponent } from './add-edit-project/add-edit-project/add-edit-project.component';
 import { AddClientComponent } from './add-client/add-client.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ForgetPasswardComponent } from './forget-passward/forget-passward.component';
 
 PrimeIcons
 @NgModule({
@@ -86,7 +87,8 @@ PrimeIcons
     SidebarComponent,
     UpdateUserComponent,
     AddEditProjectComponent,
-    AddClientComponent
+    AddClientComponent,
+    ForgetPasswardComponent
  
   ],
   imports: [

@@ -1,14 +1,15 @@
+<app-header *ngIf="!isPrintMode"></app-header>
 <div class="container">
 
   <form [formGroup]="AddQuestionAnswer">
-    <div class="mb-3" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="mb-3" style="display: flex; justify-content: space-between; align-items: center;" *ngIf="!isPrintMode">
 
       <button type="submit" class="btn btn-primary" style="margin-left:85% ;" (click)="navigateBack()">Home</button>
       <button type="button" class="btn btn-secondary" (click)="printPreview()">Print Preview</button>
     
     </div>
     
-    <div class="mb-2">
+    <div class="mb-2 print-content">
       <div  class="mb3"  style="padding: 10px;">
         <h2
           style="background-color: #cfe2ff; font-family: 'Times New Roman', serif; font-size: 24px; font-weight: bold; text-align: left; padding: 10px;">
@@ -124,7 +125,6 @@
     <button pButton type="button" (click)="expandAll()" style="height: 30px;">Expand All</button>
     <button pButton type="button" (click)="collapseAll()" style="margin-left: 20px; height: 30px;">Collapse All</button>
   </div>
-  
   
     <div class="accordion" id="accordionExample">
       <div class="accordion-item" *ngFor="let item of accordianItems; let i = index">
@@ -293,3 +293,4 @@
     </div>
   </form>
 </div>
+<app-footer *ngIf="!isPrintMode"></app-footer>

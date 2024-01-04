@@ -17,7 +17,7 @@ namespace AdvisoryDatabase.Framework.Entities
         public string AptaraContactName { get; set; }
         public string IsSurveySubmitted { get; set; }
         public string LinkGUID { get; set; }
-        public long ProjectID { get; set; }
+        public int ProjectID { get; set; }
         public string InValidRequest { get; set; }
         
         public string ReviewerEmail { get; set; }
