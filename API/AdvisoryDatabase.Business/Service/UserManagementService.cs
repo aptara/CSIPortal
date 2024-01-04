@@ -73,4 +73,13 @@ namespace AdvisoryDatabase.Business.Service
         }
 
     }
+
+    public class ForgetPasswardService : Repository<ForgetPassward, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<ForgetPassward, int> CreateDalManager()
+        {
+            return new DataAccessForgetPassward();
+        }
+
+    }
 }

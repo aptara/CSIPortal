@@ -15,6 +15,7 @@ export class UserManagement {
   private url4 = this.apiurl + 'UserManagement/UpdateUser';
   private url5 = this.apiurl + 'UserManagement/DeleteUser/';
   private url6 = this.apiurl + 'UserManagement/EnableUser';
+  private ForgetPasswardUser = this.apiurl + 'UserManagement/ForgetPassward';
   
   GetRole() {
     return this.httpClient.get(this.url)
@@ -66,5 +67,12 @@ export class UserManagement {
 
   getUserData() {
     return this.userData;
+  }
+
+  ForgetPassward(EmailId:any) {
+    debugger
+   const body = {EmailId}
+   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.ForgetPasswardUser,body,{headers:headers})
   }
 }

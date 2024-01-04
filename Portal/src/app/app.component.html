@@ -1,5 +1,5 @@
-<div class="container-fluid Container-First">
-  <app-header *ngIf="router.url!='/Login' && router.url!='/ThankYou' && router.url!='/UserDashboard/LinkGUID'  && router.url!='/SubmittedResponse'  && router.url!='/BadResponse'"></app-header>
+<div class="container-fluid Container-First" [ngClass]="{ 'hide-header': hideHeaderOnPrint }">
+  <app-header *ngIf="router.url!='/Login' && router.url!='/ThankYou' && router.url!='/UserDashboard/LinkGUID'  && router.url!='/SubmittedResponse'  && router.url!='/BadResponse'&& !router.url.startsWith('/Feedback/') && !router.url.startsWith('/ForgetPassward')"></app-header>
 
   <div class="Main-fluid">
     <div class="Sidebar">
@@ -12,6 +12,6 @@
     </div>
   </div>
 
-  <app-footer *ngIf="router.url!='/Login'"></app-footer>
+  <app-footer *ngIf="router.url!='/Login'&& !router.url.startsWith('/Feedback/')&& !router.url.startsWith('/ForgetPassward/')"></app-footer>
   <p-toast></p-toast>
 </div>

@@ -1,10 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
-
+import * as jsPDF from 'jspdf';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild,Renderer2 } from '@angular/core';
 import { GetQuestionDetailService } from '../get-question-detail.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute ,Router} from '@angular/router';
 import { MenuReadService } from './menu-read.service';
 declare var bootbox: any;
 import { Chart } from 'chart.js/auto';
@@ -17,13 +17,17 @@ export class MenuReadComponent {
   @ViewChild('myChart') myChart!: ElementRef;
   @ViewChild('radioButtonGroup') radioButtonGroup!: ElementRef;
   AddQuestionAnswer: FormGroup | any;
-i: any;
+  i: any;
+  hideHeaderOnPrint = false
   constructor(private service: GetQuestionDetailService,
     private menuservice: MenuReadService,
     private path: ActivatedRoute,
     private fb: FormBuilder,
-    private renderer: Renderer2, private el: ElementRef
-  ) { }
+    private renderer: Renderer2, private el: ElementRef,
+    private router:Router
+  ) { 
+   
+  }
   //accordianItems = [
   // { question: "1.Project Planning and Management  ", answer: "My name is Demo." },
   // { question: "2.Schedule Adherence ", answer: "I generate responses based on the input I receive." },
@@ -117,12 +121,25 @@ i: any;
 
   }
  
-  printPreview(): void {
-    this.accordianItems.forEach((item: { isOpen: boolean; }) => (item.isOpen = true));
-    setTimeout(() => {
-      window.print();
-    });
-  }
+  public isPrintMode: boolean = false;
+
+printPreview(): void {
+  this.isPrintMode = true;
+  this.accordianItems.forEach((item: { isOpen: boolean; }) => (item.isOpen = true));
+  setTimeout(() => {
+    window.print();
+    this.isPrintMode = false;
+  });
+}
+
+  // printPreview(): void {
+  //   const pdf = new (jsPDF as any)();
+  //   const content = document.getElementById('your-content-id')!;
+  
+  //   pdf.fromHTML(content, 15, 15, { pagesplit: true }, function() {
+  //     pdf.save('your-file-name.pdf');
+  //   });
+  // }
   
   GetSubmittedData(cId:number){
 

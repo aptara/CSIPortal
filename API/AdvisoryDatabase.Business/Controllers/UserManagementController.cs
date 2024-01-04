@@ -18,6 +18,7 @@ namespace AdvisoryDatabase.Business.Controllers
             try
             {
                 UserManagement service = new UserManagement();
+
                 return SuccessReponse(service.GetAll());
             }
             catch (Exception ex)
@@ -40,21 +41,23 @@ namespace AdvisoryDatabase.Business.Controllers
                 return Erroresponse<List<AddUserInfo>>(error);
             }
         }
-        public APIResponse<List<GetUserDetail>> GetUserInfo()
+    
+    public APIResponse<List<GetUserDetail>> GetUserInfo(GetUserDetail obj)
+    {
+        try
         {
-            try
-            {
-                GetserInfoDetail service = new GetserInfoDetail();
-                return SuccessReponse(service.GetAll());
-            }
-            catch (Exception ex)
-            {
-                var error = LogError(ex);
-                return Erroresponse<List<GetUserDetail>>(error);
-            }
+            GetserInfoDetail service = new GetserInfoDetail();
+            return SuccessReponse(service.GetAll(obj));
         }
+        catch (Exception ex)
+        {
+            var error = LogError(ex);
+            return Erroresponse<List<GetUserDetail>>(error);
+        }
+    }
 
-        public APIResponse<List<GetUserDetail>> GetUserDetailById(GetUserDetail obj)
+
+    public APIResponse<List<GetUserDetail>> GetUserDetailById(GetUserDetail obj)
         {
             try
             {
@@ -115,6 +118,21 @@ namespace AdvisoryDatabase.Business.Controllers
             {
                 var error = LogError(ex);
                 return Erroresponse<AddUserInfo>(error);
+            }
+        }
+
+        public APIResponse<ForgetPassward> ForgetPassward(ForgetPassward obj)
+        {
+            try
+            {
+                ForgetPasswardService service = new ForgetPasswardService();
+                service.Add(obj);
+                return SuccessReponse(obj);
+            }
+            catch (Exception ex)
+            {
+                var error = LogError(ex);
+                return Erroresponse<ForgetPassward>(error);
             }
         }
     }

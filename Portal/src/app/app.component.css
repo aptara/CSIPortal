@@ -19,3 +19,9 @@
 
   overflow-y: auto;
 } */
+@media print {
+  /* Hide the app-header when printing */
+  .container-fluid.hide-header app-header {
+    display: none;
+  }
+}

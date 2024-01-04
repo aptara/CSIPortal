@@ -21,7 +21,7 @@ namespace AdvisoryDatabase.Framework.Entities
         public int Role { get; set; }
         public string ProjectId { get; set; }
         public int UserMasterID { get; set; }
-       
+
     }
 
 
@@ -35,5 +35,12 @@ namespace AdvisoryDatabase.Framework.Entities
         public int UserMasterID { get; set; }
         public string ProjectIds { get; set; }
         public string StatusID { get; set; }
+        public int IsIncludeDeleted { get; set; }
+
+    }
+    public class ForgetPassward : BaseEntity<Int32>
+    {
+        public string EmailId { get; set; }
+        public int ToCheckId { get; set; }
     }
 }

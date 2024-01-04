@@ -124,7 +124,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
         AptaraContact = data.ReadString("AptaraContact"),
           AptaraContactName = data.ReadString("AptaraContactName"),
         IsSurveySubmitted = data.ReadString("IsSurveySubmitted"),
-         ProjectID = data.Read<Int64>("ProjectID"),
+         ProjectID = data.Read<Int32>("ProjectID"),
           InValidRequest = data.ReadString("InValidRequest"),
           ReviewerName = data.ReadString("ReviewerName"),
           ReviewerEmail = data.ReadString("ReviewerEmail"),

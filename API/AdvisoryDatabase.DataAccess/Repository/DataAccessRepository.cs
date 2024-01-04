@@ -182,7 +182,15 @@ namespace AdvisoryDatabase.DataAccess.Repository
                 //WkfsLogger.WriteInfo(string.Format("Params {0}", string.Join(", ", parameters.Select(f=> f.Value).ToList())));
                 TId id = default(TId);
                 if (idValue != null)
+                {
                     id = (TId)idValue;
+                  //Added on 04/Jan/2024
+                    var idProperty = instance.GetType().GetProperty("ToCheckId");
+                    if (idProperty != null)
+                    {
+                        idProperty.SetValue(instance, id);
+                    }
+                }
                 // Invoke After Hook
                 this.AfterAddUpdate(OperationType.Add, id, instance);
                 // Complete transaction

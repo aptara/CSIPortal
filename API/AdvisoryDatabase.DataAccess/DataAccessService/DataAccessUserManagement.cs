@@ -65,7 +65,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             string spName = string.Empty;
             switch (operation)
             {
-                case OperationType.GetAll:
+                case OperationType.Add:
                     spName = "USP_AddUser";
                     break;
                 
@@ -88,7 +88,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
     {
         protected override void FillParameters(OperationType operation, GetUserDetail instance, List<DbParameter> parameters)
         {
-            throw new NotImplementedException();
+            parameters.Add(DbHelper.CreateParameter("IsIncludeDeleted", instance.IsIncludeDeleted));
         }
 
         protected override string GetProcedureName(OperationType operation)
@@ -151,7 +151,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                 Email = data.ReadString("EmailId"),
                 RoleId = data.Read<Int32>("RoleId"),
                 UserMasterID = data.Read<Int32>("UserMasterID"),
-                ProjectIds = data.ReadString("ProjectIds")
+                ProjectId = data.ReadString("ProjectIds")
             };
         }
 
@@ -289,5 +289,51 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
 
             };
         }
+    }
+
+    public class DataAccessForgetPassward : DataAccessRepository<ForgetPassward, Int32>
+    {
+        public Int32 AddForgetPassword(ForgetPassward instance)
+        {
+            return Add(instance);
+        }
+        protected override void FillParameters(OperationType operation, ForgetPassward instance, List<DbParameter> parameters)
+        {
+            switch (operation)
+            {
+
+                case OperationType.Add:
+                    parameters.Add(DbHelper.CreateParameter("EmailId", instance.EmailId));
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        protected override string GetProcedureName(OperationType operation)
+        {
+            string spName = string.Empty;
+            switch (operation)
+            {
+                case OperationType.Add:
+                    spName = "USP_ForgotPassword";
+                    break;
+                default:
+                    spName = string.Empty;
+                    break;
+            }
+            return spName;
+        }
+
+        protected override ForgetPassward Parse(System.Data.DataRow data)
+        {
+            return new ForgetPassward
+            {
+                ToCheckId = data.Read<Int32>("ToCheckId")
+            };
+        }
+
+     
     }
 }

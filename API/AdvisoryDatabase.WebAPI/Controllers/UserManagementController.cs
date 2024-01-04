@@ -35,12 +35,13 @@ namespace AdvisoryDatabase.WebAPI.Controllers
 
 
 
-        [System.Web.Http.HttpGet]
-        public APIResponse<List<GetUserDetail>> GetUserInfo()
+        [System.Web.Http.HttpPost]
+        public APIResponse<List<GetUserDetail>> GetUserInfo([FromBody] GetUserDetail obj)
         {
             AdvisoryDatabase.Business.Controllers.UserManagementController UserManagementController = new Business.Controllers.UserManagementController();
-            return UserManagementController.GetUserInfo();
+            return UserManagementController.GetUserInfo(obj);
         }
+
 
 
 
@@ -78,6 +79,15 @@ namespace AdvisoryDatabase.WebAPI.Controllers
             obj.LastUpdatedBy = 1;
             obj.CreatedBy = 1;
             return UserManagementController.EnableUser(obj);
+
+        }
+
+        [System.Web.Http.HttpPost]
+        public APIResponse<ForgetPassward> ForgetPassward([FromBody] ForgetPassward obj)
+        {
+            AdvisoryDatabase.Business.Controllers.UserManagementController UserManagementController = new Business.Controllers.UserManagementController();
+
+            return UserManagementController.ForgetPassward(obj);
 
         }
     }
