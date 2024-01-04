@@ -1,6 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
-import * as jsPDF from 'jspdf';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild,Renderer2 } from '@angular/core';
 import { GetQuestionDetailService } from '../get-question-detail.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
