@@ -28,11 +28,11 @@ namespace AdvisoryDatabase.WebAPI.Controllers
             return GetProjectController.GetProject(obj);
         }
 
-        [System.Web.Http.HttpGet]
-        public APIResponse<List<GetProjectDeatils>> GetProjectDetails()
+        [System.Web.Http.HttpPost]
+        public APIResponse<List<GetProjectDeatils>> GetProjectDetails([FromBody] GetProjectDeatils obj)
         {
             AdvisoryDatabase.Business.Controllers.GetProjectController GetProjectController = new Business.Controllers.GetProjectController();
-            return GetProjectController.GetProjectDetails();
+            return GetProjectController.GetProjectDetails(obj);
         }
 
         [System.Web.Http.HttpPost]

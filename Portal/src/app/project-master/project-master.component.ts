@@ -26,6 +26,8 @@ export class ProjectMasterComponent {
   newProjects: any[] = [];
   modalTitle: string = 'Add New Record';
   data: any;
+  isChecked: boolean = false;
+  isIncludeDeleted: any;
 
   constructor(private service: ProjectMasterService,
     private fb: FormBuilder,
@@ -47,8 +49,8 @@ export class ProjectMasterComponent {
     this.sortOrder = event.order
   }
 
-  GetProjectMasterDetail() {
-    this.service.GetProjectMasterDetails().subscribe({
+  GetProjectMasterDetail(isDeleted: any) {
+    this.service.GetProjectMasterDetails(isDeleted).subscribe({
       next: (response: any) => {
         // Handle the API response here
         this.Project = response.Data
@@ -62,7 +64,7 @@ export class ProjectMasterComponent {
   }
 
   ngOnInit() {
-    this.GetProjectMasterDetail();
+    this.GetProjectMasterDetail(this.isIncludeDeleted);
   }
 
   DeleteProject(ProjectId: any) {
@@ -114,5 +116,17 @@ this.service.EnableProject(projectId).subscribe(res=>{
 
 this.ngOnInit()
 })
+  }
+
+  retrieveData(): void {
+    if (this.isChecked) {
+      // Checkbox is checked, retrieve data accordingly
+      this.isIncludeDeleted=1;
+      this.ngOnInit()
+    } else {
+      // Checkbox is not checked, handle accordingly
+      this.isIncludeDeleted=0;
+      this.ngOnInit()
+    }
   }
 }

@@ -14,12 +14,14 @@ import { DialogeComponent } from '../dialoge/dialoge.component';
 export class UpdateUserComponent {
   Roles: any = []
   Projects: any = []
+  ProjectsData: any = []
   UserAdd: FormGroup | any
   SelectedRole: any
   Tasks: any[] = [];
   checkbox: any[] = []
   tmId: any = ""
   UserID: any
+  isIncludeDeleted: any;
 
   constructor(
     private service: UserManagement,
@@ -58,10 +60,23 @@ export class UpdateUserComponent {
   }
 
   getProject() {
-    this.FilterClientListService.GetProjectMasterDetails().subscribe(res => {
-      this.Projects = res;
+    this.FilterClientListService.GetProjectMasterDetails(this.isIncludeDeleted).subscribe(res => {
+       this.Projects = res;      
     })
   }
+
+  // getProject() {
+  //   this.FilterClientListService.GetProjectMasterDetails().subscribe(res => {
+  //     // Check if the response is an object
+  //     if (typeof res === 'object') {
+  //       // Convert object properties to an array
+  //       this.Projects = Object.values(res).filter((project: any) => project.isActive === true);
+  //     } else {
+  //       console.error('Invalid response format'); // Handle invalid response
+  //     }
+  //   });
+  // }
+  
 
   submitForm() {
     this.UserAdd.controls.ProjectId.setValue(this.tmId);
@@ -126,9 +141,13 @@ export class UpdateUserComponent {
       this.checkbox = this.Tasks.filter(task => this.IsTaskCheckBoxChecked(task));
       const selectedTasks = this.checkbox.map(task => task.TaskMasterID);
       this.tmId = selectedTasks.join(",");
+      if (this.data[0].ProjectId !== null) {
+        this.tmId = this.data[0].ProjectId;
+      }
     })
   }
   onCheckboxChange(Project: any, e: any) {
+    var Ids: any = []
     if (e.target.checked) {
       this.checkbox.push(Project);
     } else {
@@ -139,8 +158,17 @@ export class UpdateUserComponent {
         });
       }
     }
+    this.checkbox.forEach(ProjectName => {
+      Ids.push(ProjectName.ProjectId)      
+    })
+    if (this.tmId != "") {
+      this.tmId += "," + Project.ProjectId;
+    }else
+    {
+      this.tmId += Ids.join(",")
+    }
 
-    this.updateTmId();
+    // this.updateTmId();
   }
 
   updateTmId() {

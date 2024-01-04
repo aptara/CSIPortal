@@ -23,6 +23,7 @@ export class AddClientComponent {
   clientId: any
   clientData: any = []
   heading: any = ""
+  isIncludeDeleted:any=""
   // dialogService: any;
   constructor(
     private service: ClientManagementService,
@@ -64,7 +65,7 @@ export class AddClientComponent {
   // }
 
   getProject() {
-    this.FilterClientListService.GetProjectMasterDetails().subscribe(res => {
+    this.FilterClientListService.GetProjectMasterDetails(this.isIncludeDeleted).subscribe(res => {
       this.Projects = res;
     })
   }

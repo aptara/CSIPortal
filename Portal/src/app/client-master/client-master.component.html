@@ -1,42 +1,46 @@
 <button pButton routerLink="/AddEditClient">Add</button>
 <!-- <p-table [value]="clients"> -->
-  <p-table #dt [value]="clients" [paginator]="true" [rows]="20" [rowsPerPageOptions]="[20]"
-        [showCurrentPageReport]="true" [resizableColumns]="true" styleClass="p-datatable-gridlines" scrollHeight="350px"
-        columnResizeMode="expand" class="table-bordered" [tableStyle]="{'min-height': '10rem;overflow:auto;'}">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Action</th>
-        <th>Name</th>
-        <!-- <th>Last Name</th> -->
-        <th>Email</th>
-     
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-client>
-      <tr>
-        <td>
-          <span class="edit-btn" style="margin-left: 10px;">
-            <i class="pi pi-trash"
-            (click)="deleteClient(client.ClientId,$event)" *ngIf="client.IsActive === true">
-            </i>
+<div class="checkbox">
+  <input type="checkbox" [(ngModel)]="isChecked" (change)="retrieveData()">
+  Include Deleted Records
+</div>
+<p-table #dt [value]="clients" [paginator]="true" [rows]="20" [rowsPerPageOptions]="[20]" [showCurrentPageReport]="true"
+  [resizableColumns]="true" styleClass="p-datatable-gridlines" scrollHeight="350px" columnResizeMode="expand"
+  class="table-bordered" [tableStyle]="{'min-height': '10rem;overflow:auto;'}">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Action</th>
+      <th>Name</th>
+      <!-- <th>Last Name</th> -->
+      <th>Email</th>
+      <th>Status</th>
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-client>
+    <tr>
+      <td>
+        <span class="edit-btn" style="margin-left: 10px;">
+          <i class="pi pi-trash" (click)="deleteClient(client.ClientId,$event)" *ngIf="client.IsActive === true">
+          </i>
         </span>
         <span class="edit-btn" style="margin-left: 10px;">
-          <i class="pi pi-pencil"
-          (click)="editClient(client)" *ngIf="client.IsActive === true">
+          <i class="pi pi-pencil" (click)="editClient(client)" *ngIf="client.IsActive === true">
           </i>
-      </span>
-      <span class="edit-btn" style="margin-left: 10px;">
-        <i class="pi pi-check" *ngIf="client.IsActive === false" (click)="EnableUser(client.ClientId)">
-        </i>
-    </span>
-          <!-- <button pButton icon="pi pi-pencil" label="Edit" (click)="editClient(client)"></button>
+        </span>
+        <span class="edit-btn" style="margin-left: 10px;">
+          <i class="pi pi-check" *ngIf="client.IsActive === false" (click)="EnableUser(client.ClientId)">
+          </i>
+        </span>
+        <!-- <button pButton icon="pi pi-pencil" label="Edit" (click)="editClient(client)"></button>
           <button pButton icon="pi pi-trash" label="Delete" ></button> -->
-        </td>
-        <td>{{ client.ClientName }}</td>
-        <!-- <td>{{ user.lastName }}</td> -->
-        <td>{{ client.ClientEmail}}</td>
-      
-      </tr>
-    </ng-template>
-  </p-table>
-  <p-confirmDialog></p-confirmDialog>
+      </td>
+      <td>{{ client.ClientName }}</td>
+      <!-- <td>{{ user.lastName }}</td> -->
+      <td>{{ client.ClientEmail}}</td>
+      <td>{{ client.IsActive? 'ACTIVE' : 'INACTIVE' }}</td>
+
+    </tr>
+  </ng-template>
+</p-table>
+<p-confirmDialog></p-confirmDialog>

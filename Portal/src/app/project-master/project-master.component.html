@@ -2,6 +2,10 @@
     <!-- <button class="btn btn-primary btn-lg" style="min-width: 150px;" data-bs-toggle="modal" data-bs-target="#linkModal" (click)="openAddModal()">Add</button> -->
     <button class="btn btn-primary btn-lg" style="min-width: 150px;" routerLink="/PrjectDetails/Add">Add</button>
     <br><br>
+    <div class="checkbox">
+        <input type="checkbox" [(ngModel)]="isChecked" (change)="retrieveData()">
+        Include Deleted Records
+    </div>
     <p-table #dt [value]="Project" [paginator]="true" [rows]="20" [rowsPerPageOptions]="[20]"
         [showCurrentPageReport]="true" [resizableColumns]="true" styleClass="p-datatable-gridlines" scrollHeight="350px"
         columnResizeMode="expand" class="table-bordered" [tableStyle]="{'min-height': '10rem;overflow:auto;'}"
@@ -58,7 +62,7 @@
                  
                 </td>
                 <td>{{ client.ProjectName }}</td>
-                <td>{{ client.IsActive ? 'Active' : 'Inactive' }}</td>
+                <td>{{ client.IsActive ? 'ACTIVE' : 'INACTIVE' }}</td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">

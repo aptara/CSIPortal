@@ -47,7 +47,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
         }
     }
 
-    public class GetClientService : Repository<AddClientInfo, Int32>
+    public class GetClientListService : Repository<AddClientInfo, Int32>
     {
         protected override DataAccess.Repository.DataAccessRepository<AddClientInfo, int> CreateDalManager()
         {

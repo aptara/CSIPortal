@@ -10,16 +10,18 @@ import { DialogeComponent } from '../dialoge/dialoge.component';
   styleUrls: ['./user-master.component.css']
 })
 export class UserMasterComponent {
-  users: any[]=[];
+  users: any[] = [];
+  isChecked: boolean = false;
+  isIncludeDeleted: any;
 
   constructor(private userService: UserService,
-    private UserManagementService:UserManagement,
+    private UserManagementService: UserManagement,
     private dialogService: DialogService,
-    private Router:Router) {}
+    private Router: Router) { }
 
   ngOnInit() {
-    
-  this.GetUser()
+
+    this.GetUser(this.isIncludeDeleted)
   }
 
   editUser(Id: any) {
@@ -28,15 +30,15 @@ export class UserMasterComponent {
       console.log(Id);
     }
   }
-  
+
 
   deleteUser(user: any) {
-    this.UserManagementService.DeleteUser(user).subscribe(res=>{
+    this.UserManagementService.DeleteUser(user).subscribe(res => {
       const ref = this.dialogService.open(DialogeComponent, {
         header: 'Information',
         style: {
           'min-width': '500px',
-          'min-height': '200px', 
+          'min-height': '200px',
         },
         data: {
           message: 'Record Deleted Succesfully.',
@@ -45,22 +47,22 @@ export class UserMasterComponent {
       ref.onClose.subscribe((confirmed: boolean) => {
         window.location.href = '/UserMaster';
       })
- }) 
-}
+    })
+  }
 
-  
 
-  GetUser(){
-    this.UserManagementService.GetUserDetail().subscribe( (response:any) =>{
+
+  GetUser(isDeleted: any) {
+    this.UserManagementService.GetUserDetail(isDeleted).subscribe((response: any) => {
       this.users = response.Data
       console.log(response.Data)
-    } 
-   
+    }
+
     )
   }
 
-  onUnableButtonClick(user:any){
-    this.UserManagementService.EnableUser(user).subscribe(res=>{
+  onUnableButtonClick(user: any) {
+    this.UserManagementService.EnableUser(user).subscribe(res => {
       const ref = this.dialogService.open(DialogeComponent, {
         header: 'Information',
         style: {
@@ -76,6 +78,18 @@ export class UserMasterComponent {
       })
       this.ngOnInit()
     }
-      )
+    )
+  }
+
+  retrieveData(): void {
+    if (this.isChecked) {
+      // Checkbox is checked, retrieve data accordingly
+      this.isIncludeDeleted=1;
+      this.ngOnInit()
+    } else {
+      // Checkbox is not checked, handle accordingly
+      this.isIncludeDeleted=0;
+      this.ngOnInit()
+    }
   }
 }

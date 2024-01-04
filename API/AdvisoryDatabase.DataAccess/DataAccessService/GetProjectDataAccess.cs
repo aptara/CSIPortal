@@ -55,7 +55,8 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
     {
         protected override void FillParameters(OperationType operation, GetProjectDeatils instance, List<DbParameter> parameters)
         {
-            throw new NotImplementedException();
+            parameters.Add(DbHelper.CreateParameter("IsIncludeDeleted", instance.IsIncludeDeleted));
+            //throw new NotImplementedException();
         }
 
         protected override string GetProcedureName(OperationType operation)

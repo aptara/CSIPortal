@@ -26,11 +26,12 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             parameters.Add(DbHelper.CreateParameter("ProjectId", instance.ProjectId));
             parameters.Add(DbHelper.CreateParameter("AptaraContact", instance.AptaraContact));
             parameters.Add(DbHelper.CreateParameter("AptaraContactEmail", instance.AptaraContactEmail));
-                    //break;
-                //case OperationType.Get:
-                //    parameters.Add(DbHelper.CreateParameter("ClientId", instance.ClientId));
-                //    parameters.Add(DbHelper.CreateParameter("ClientName", instance.ClientName));
-                ////    break;
+            parameters.Add(DbHelper.CreateParameter("IsIncludeDeleted", instance.IsIncludeDeleted));
+            //break;
+            //case OperationType.Get:
+            //    parameters.Add(DbHelper.CreateParameter("ClientId", instance.ClientId));
+            //    parameters.Add(DbHelper.CreateParameter("ClientName", instance.ClientName));
+            ////    break;
             //}
         }
 

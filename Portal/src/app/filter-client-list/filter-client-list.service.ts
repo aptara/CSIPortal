@@ -46,7 +46,9 @@ export class FilterClientListService {
     return this.httpClient.post(this.url3, formData);
   }
 
-  GetProjectMasterDetails() {
-    return this.httpClient.get(this.url5);
+  GetProjectMasterDetails(IsIncludeDeleted: any) {
+    const body = { IsIncludeDeleted };
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.url5,body,{headers:headers});
   }
 }

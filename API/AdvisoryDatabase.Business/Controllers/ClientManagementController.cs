@@ -44,7 +44,7 @@ namespace AdvisoryDatabase.Business.Controllers
         {
             try
             {
-                AddClientDetail service = new AddClientDetail();
+                UpdateClientDetail service = new UpdateClientDetail();
                 service.Update(obj);
                 return SuccessReponse(obj);
                 //obj.ClientId = service.Update(obj);
@@ -90,7 +90,7 @@ namespace AdvisoryDatabase.Business.Controllers
         {
             try
             {
-                AddClientDetail service = new AddClientDetail();
+                GetClientListService service = new GetClientListService();
                 return SuccessReponse(service.GetAll(obj));
             }
             catch (Exception ex)

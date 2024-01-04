@@ -16,10 +16,11 @@ export class ClientManagementService {
   private deleteClientUrl=this.apiurl+'ClientManagement/DeleteClient/';
   private EnableCient=this.apiurl+'ClientManagement/EnableClient/';
   
-  getClients(){
-    const body  ={}
-    debugger
-    return this.httpClient.post(this.getClientUrl,body); 
+  getClients(IsIncludeDeleted: any) {
+    const body = { IsIncludeDeleted };
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.getClientUrl, body,{headers:headers});
+    // return this.httpClient.post(this.getClientUrl,body); 
   }
 
   getClientbyId(clientId: any){

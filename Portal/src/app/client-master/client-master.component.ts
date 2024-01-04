@@ -14,6 +14,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 })
 export class ClientMasterComponent {
   clients: any[] = [];
+  isChecked: boolean = false;
+  isIncludeDeleted: any;
 
   constructor(private clientService: ClientManagementService,
     private confirmationService: ConfirmationService,
@@ -21,11 +23,11 @@ export class ClientMasterComponent {
     private router: Router) {}
 
   ngOnInit() {
-    this.getClient();
+    this.getClient(this.isIncludeDeleted);
   }
 
-  getClient(){
-    this.clientService.getClients().subscribe({
+  getClient(isDeleted: any){
+    this.clientService.getClients(isDeleted).subscribe({
       next: (data: any) => {
        this.clients = data.Data;
        console.log(this.clients)
@@ -92,5 +94,16 @@ export class ClientMasterComponent {
     })
   }
 
+  retrieveData(): void {
+    if (this.isChecked) {
+      // Checkbox is checked, retrieve data accordingly
+      this.isIncludeDeleted=1;
+      this.ngOnInit()
+    } else {
+      // Checkbox is not checked, handle accordingly
+      this.isIncludeDeleted=0;
+      this.ngOnInit()
+    }
+  }
 
 }

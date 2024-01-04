@@ -33,9 +33,11 @@ export class UserManagement {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post(this.url4, UserDetail,{headers:headers})
   }
-  GetUserDetail() {
-  
-    return this.httpClient.get(this.url2)
+  GetUserDetail(IsIncludeDeleted: any) {
+    const body = { IsIncludeDeleted };
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.url2, body,{headers:headers});
+    // return this.httpClient.get(this.url2)
   }
 
   GetUserbyId(UserMasterID: any) {

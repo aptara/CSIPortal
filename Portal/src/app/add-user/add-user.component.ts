@@ -18,6 +18,8 @@ export class AddUserComponent {
   Tasks: any[] = [];
   checkbox: any[] = []
   tmId: any = ""
+  isIncludeDeleted: any;
+
   constructor(
     private service:UserManagement,
     private FilterClientListService: FilterClientListService,
@@ -51,7 +53,7 @@ getRole() {
 
 
 getProject(){
-  this.FilterClientListService.GetProjectMasterDetails().subscribe(res=>{
+  this.FilterClientListService.GetProjectMasterDetails(this.isIncludeDeleted).subscribe(res=>{
 this.Projects = res;
   })
 }

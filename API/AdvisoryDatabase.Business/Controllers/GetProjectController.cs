@@ -27,12 +27,12 @@ namespace AdvisoryDatabase.Business.Controllers
             }
         }
 
-        public APIResponse<List<GetProjectDeatils>> GetProjectDetails()
+        public APIResponse<List<GetProjectDeatils>> GetProjectDetails(GetProjectDeatils obj)
         {
             try
             {
                 GetProjectDetailService service = new GetProjectDetailService();
-                return SuccessReponse(service.GetAll());
+                return SuccessReponse(service.GetAll(obj));
             }
             catch (Exception ex)
             {

@@ -18,5 +18,6 @@ namespace AdvisoryDatabase.Framework.Entities
         public string ProjectId { get; set; }
         public string AptaraContact { get; set; }
         public string AptaraContactEmail { get; set; }
+        public int IsIncludeDeleted { get; set; }
     }
 }

@@ -17,8 +17,10 @@ export class ProjectMasterService {
 
   constructor(private httpClient: HttpClient) { }
 
-  GetProjectMasterDetails() {
-    return this.httpClient.get(this.url);
+  GetProjectMasterDetails(IsIncludeDeleted: any) {
+    const body = { IsIncludeDeleted };
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.url, body,{headers:headers});
   }
 
   AddProjectMasterDetails(formData: any) {
