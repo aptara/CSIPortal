@@ -85,6 +85,8 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                 LastUpdatedBy = data.Read<int>("LastUpdatedBy"),
                 LastUpdatedOn = data.Read<DateTime>("LastUpdatedOn"),
                 IsActive = data.Read<bool>("IsActive"),
+                ClientName = data.ReadString("ClientName"),
+                ClientId = data.Read<Int32>("ClientId"),
             };
         }
     }
@@ -220,6 +222,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                 ProjectId = data.Read<Int32>("ProjectId"),
                 ProjectName = data.ReadString("ProjectName"),
                 IsActive = data.Read<bool>("IsActive"),
+                ClientId = data.Read<Int32>("ClientId"),
             };
         }
     }

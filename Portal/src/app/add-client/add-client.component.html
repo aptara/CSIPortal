@@ -14,41 +14,7 @@
     </div>
     
   </div>
-  <div class="row">
-    <div class="col-md-6 mb-3">
-        <label for="aptaraContact" class="form-label">Aptara Contact:</label>
-        <input type="text" class="form-control" id="aptaraContact" name="aptaraContact"  formControlName="AptaraContact">
-      </div>
 
-      <div class="col-md-6 mb-3">
-      <label for="AptaraContactEmail" class="form-label">Aptara Contact Email:</label>
-      <input type="email" class="form-control" id="AptaraContactEmail" name="AptaraContactEmail" formControlName="AptaraContactEmail">
-    </div>
-  </div>
-  <div class="group-row">
-    <table>
-        <tr>
-            <th></th>
-            <th>Project Name</th>
-        </tr>
-        <tr *ngFor="let Project of Projects.Data">
-            <td class="checkbox-wrapper">
-                <div class="checkbox">
-                     <!-- Conditionally show the checkbox based on clientId -->
-                <!-- <ng-container *ngIf="clientId !== null; else noClientIdCheckbox"> -->
-                    <input type="checkbox" [checked]="IsTaskCheckBoxChecked(Project)" (change)="onCheckboxChange(Project, $event)">
-                <!-- </ng-container> -->
-                <!-- Template for when clientId is undefined -->
-                <!-- <ng-template #noClientIdCheckbox>
-                    <input type="checkbox" (change)="onCheckboxChange(Project, $event)">
-                </ng-template> -->
-                    <!-- <input type="checkbox" [checked]="IsTaskCheckBoxChecked(Project)"  (change)="onCheckboxChange(Project,$event)" > -->
-                </div>
-            </td>
-            <td class="task-name-cell" >{{Project.ProjectName}}</td>
-        </tr>
-    </table>
-  </div>
   
     <button type="submit" class="btn btn-primary" >Submit</button>
   </form>

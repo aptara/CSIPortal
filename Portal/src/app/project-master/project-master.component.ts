@@ -57,7 +57,7 @@ export class ProjectMasterComponent {
       next: (response: any) => {
         // Handle the API response here
         this.Project = response.Data
-        // console.log(this.Project.ProjectName)
+         console.log(this.Project)
         // this.Project.forEach((element: any) => {
         // this.projectName = element.ProjectName;
         //   //console.log(projectName)

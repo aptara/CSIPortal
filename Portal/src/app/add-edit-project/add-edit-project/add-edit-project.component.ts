@@ -5,7 +5,8 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ProjectMasterService } from 'src/app/project-master/project-master.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DialogeComponent } from 'src/app/dialoge/dialoge.component';
-
+import { ClientManagementService } from 'src/app/Services/client-management.service';
+ClientManagementService
 @Component({
   selector: 'app-add-edit-project',
   templateUrl: './add-edit-project.component.html',
@@ -25,29 +26,36 @@ export class AddEditProjectComponent {
   newProjects: any[] = [];
   modalTitle: string = 'Add New Record';
   data: any;
+  SelectedClient:any;
   public mode: any = 'Add';
   private sub: any;
   storedFirstName:any;
   StoredData:any;
   UsermasterId:any
+  isIncludeDeleted: any;
+  clients: any[] = [];
+  selectedClient:any;
   constructor(private service: ProjectMasterService,
     private fb: FormBuilder,
     private messageService: MessageService,
     private zone: NgZone,
     private cdr: ChangeDetectorRef,
     private dialogService: DialogService,
-    private ActivatedRoute: ActivatedRoute) {
+    private ActivatedRoute: ActivatedRoute,
+    private clientService: ClientManagementService) {
     this.projectMasterData = this.fb.group({
       ProjectId: [this.projectId],
       ProjectName: ['', Validators.required],  // ProjectName is now required
       ClientName: [''],   // ClientName is now required
       ClientId: [''],
       CreatedBy:[''],
-      LastUpdatedBy:['']
+      LastUpdatedBy:[''],
+     
     });
   }
 
   ngOnInit(): void {
+    console.log(this.projectMasterData)
     this.sub = this.ActivatedRoute.paramMap.subscribe(params => {
       this.projectMasterData.controls['ProjectId'].setValue(params.get('id'));
       if (this.projectMasterData.controls['ProjectId'].value > 0) {
@@ -56,8 +64,16 @@ export class AddEditProjectComponent {
       }
     });
     this.GetLocalStorageDataForId();
+    this.getClient(this.isIncludeDeleted);
   }
-
+  getClient(isDeleted: any){
+    this.clientService.getClients(isDeleted).subscribe({
+      next: (data: any) => {
+       this.clients = data.Data;
+  
+      }
+    });
+  }
   GetLocalStorageDataForId(){
     this.storedFirstName = localStorage.getItem('loginDetails');
 
@@ -68,8 +84,11 @@ export class AddEditProjectComponent {
       this.UsermasterId = this.StoredData[0].UserMasterID;
     }
   }
+
+  
   OnSubmit() {
     if (this.mode == "Add") {
+      
       if (this.projectMasterData.valid) {
         this.projectMasterData.controls['CreatedBy'].setValue(this.UsermasterId)
         debugger
@@ -146,6 +165,7 @@ export class AddEditProjectComponent {
       this.data = res;
       this.projectMasterData.controls.ProjectId.setValue(this.data.Data.ProjectId);
       this.projectMasterData.controls.ProjectName.setValue(this.data.Data.ProjectName);
+      this.projectMasterData.controls.ClientId.setValue(this.data.Data.ClientId);
     });
   }
 
