@@ -35,6 +35,7 @@ namespace AdvisoryDatabase.Framework.Entities
         public int UserMasterID { get; set; }
         public string ProjectIds { get; set; }
         public string StatusID { get; set; }
+        public string Role { get; set; }
         public int IsIncludeDeleted { get; set; }
 
     }

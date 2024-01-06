@@ -115,7 +115,8 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                 Email = data.ReadString("EmailId"),
                 RoleId = data.Read<Int32>("RoleId"),
                 UserMasterID = data.Read<Int32>("UserMasterID"),
-                StatusID = data.ReadString("StatusID")
+                StatusID = data.ReadString("StatusID"),
+                Role = data.ReadString("Role")
             };
         }
     }

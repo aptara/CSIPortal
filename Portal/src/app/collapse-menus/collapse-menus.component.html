@@ -67,7 +67,7 @@
         <button class="accordion-button" type="button" (click)="toggleAccordion(item)"
                 [attr.aria-expanded]="isAccordionOpen(item)">
           <span>
-            <strong>{{item.QuestionSerialNumber}}.{{ item.question }}</strong>
+            <strong>{{item.QuestionSerialNumber}}. {{ item.question }}</strong>
           </span>
         </button>
       </h2>
@@ -212,7 +212,7 @@
                 
                 <div *ngFor="let evalue of selectedRankings">
                   <div class="text-danger" 
-                    *ngIf="evalue.SubmittedEvaluation <= 8 && evalue.QuestionId === item.QuestionSerialNumber && (!txt.value || txt.value.trim().length === 0)">
+                    *ngIf="evalue.SubmittedEvaluation <= 7 && evalue.QuestionId === item.QuestionSerialNumber && (!txt.value || txt.value.trim().length === 0)">
                     Required.
                   </div>
                 </div>
@@ -226,6 +226,7 @@
       <p-toast key="global"></p-toast>
     </div>
     <p-dialog [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '100vw'}">
+      <h3>Survey Summary</h3>
       <div class="chart-container">
         <div class="question-column">
           <div class="evaluation-header">
@@ -234,7 +235,7 @@
           </div>
           <div *ngFor="let item of accordianItems" class="evaluation-item">
            
-            <div class="evaluation-cell left-align">{{ item.QuestionSerialNumber }}.{{ item.question }}</div>
+            <div class="evaluation-cell left-align">{{ item.QuestionSerialNumber }}. {{ item.question }}</div>
           </div>
         </div>
         <div class="evaluation-column">

@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { GetQuestionDetailService } from '../get-question-detail.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,12 +9,12 @@ declare var bootbox: any;
 import { DialogService } from 'primeng/dynamicdialog';
 import { DialogeComponent } from '../dialoge/dialoge.component';
 import { MenuReadService } from '../menu-read/menu-read.service';
-MenuReadService
+
 @Component({
   selector: 'app-collapse-menus',
   templateUrl: './collapse-menus.component.html',
   styleUrls: ['./collapse-menus.component.css'],
-
+  encapsulation: ViewEncapsulation.None 
 })
 export class CollapseMenusComponent {
   AddQuestionAnswer: FormGroup | any;
@@ -231,8 +231,7 @@ export class CollapseMenusComponent {
   
       this.service.PostAllDetail(this.selectedRankings).subscribe(res => {
         if (res !== null) {
-          this.showSuccessDialog();
-  
+        
           // Navigate to '/ThankYou/' using Angular Router instead of window.location.href
           this.router.navigate(['/ThankYou/']);
         }
@@ -348,6 +347,8 @@ export class CollapseMenusComponent {
       return 'white';
     } else if (submittedEvaluation <= 7) {
       return 'red';
+    } else if (submittedEvaluation === 1) {
+      return 'gray';
     } else if (submittedEvaluation == 8) {
       return 'yellow';
     } else {
