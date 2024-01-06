@@ -22,7 +22,9 @@ export class UpdateUserComponent {
   tmId: any = ""
   UserID: any
   isIncludeDeleted: any;
-
+  storedFirstName:any;
+  StoredData:any;
+  UsermasterId:any
   constructor(
     private service: UserManagement,
     private FilterClientListService: FilterClientListService,
@@ -43,7 +45,7 @@ export class UpdateUserComponent {
       'Email': new FormControl('', [Validators.required, Validators.email]),
       'Role': new FormControl(''),
       'ProjectId': new FormControl(''),
-
+      'LastUpdatedBy':new FormControl('')
     });
   }
 
@@ -51,6 +53,7 @@ export class UpdateUserComponent {
     this.getRole()
     this.getProject()
     this.GetUserData()
+    this.GetLocalStorageDataForId()
   }
   getRole() {
     this.service.GetRole().subscribe((res: any) => {
@@ -104,7 +107,16 @@ export class UpdateUserComponent {
     });
   }
 
+  GetLocalStorageDataForId(){
+    this.storedFirstName = localStorage.getItem('loginDetails');
 
+    // Check if the value is not null before parsing
+    if (this.storedFirstName !== null) {
+      this.StoredData = JSON.parse(this.storedFirstName);
+      console.log(this.StoredData[0].UserMasterID);
+      this.UsermasterId = this.StoredData[0].UserMasterID;
+    }
+  }
   //   onCheckboxChange(Project: any, e: any) {
   //     var Ids: any = []
   //     if (e.target.checked) {
@@ -134,7 +146,7 @@ export class UpdateUserComponent {
       // this.UserAdd.controls.UserMasterID.setValue(this.data.Data.UserMasterID);
       this.UserAdd.controls.FirstName.setValue(this.data[0].FirstName);
       this.UserAdd.controls.LastName.setValue(this.data[0].LastName);
-
+      this.UserAdd.controls.LastUpdatedBy.setValue(this.UsermasterId);
       this.UserAdd.controls.Email.setValue(this.data[0].Email);
       this.UserAdd.controls.Role.setValue(this.data[0].RoleId);
       this.UserAdd.controls.UserMasterID.setValue(this.UserID);

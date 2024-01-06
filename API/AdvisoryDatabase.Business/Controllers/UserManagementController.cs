@@ -18,7 +18,7 @@ namespace AdvisoryDatabase.Business.Controllers
             try
             {
                 UserManagement service = new UserManagement();
-
+                
                 return SuccessReponse(service.GetAll());
             }
             catch (Exception ex)
@@ -28,17 +28,18 @@ namespace AdvisoryDatabase.Business.Controllers
             }
         }
 
-        public APIResponse<List<AddUserInfo>> AddUserDetail(AddUserInfo obj)
+        public APIResponse<AddUserInfo> AddUserDetail(AddUserInfo obj)
         {
             try
             {
                 AddUserInfoDetail service = new AddUserInfoDetail();
-                return SuccessReponse(service.GetAll(obj));
+                service.Add(obj);
+                return SuccessReponse(obj);
             }
             catch (Exception ex)
             {
                 var error = LogError(ex);
-                return Erroresponse<List<AddUserInfo>>(error);
+                return Erroresponse<AddUserInfo>(error);
             }
         }
     

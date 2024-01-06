@@ -35,13 +35,13 @@
             <td class="checkbox-wrapper">
                 <div class="checkbox">
                      <!-- Conditionally show the checkbox based on clientId -->
-                <ng-container *ngIf="clientId !== null; else noClientIdCheckbox">
+                <!-- <ng-container *ngIf="clientId !== null; else noClientIdCheckbox"> -->
                     <input type="checkbox" [checked]="IsTaskCheckBoxChecked(Project)" (change)="onCheckboxChange(Project, $event)">
-                </ng-container>
+                <!-- </ng-container> -->
                 <!-- Template for when clientId is undefined -->
-                <ng-template #noClientIdCheckbox>
+                <!-- <ng-template #noClientIdCheckbox>
                     <input type="checkbox" (change)="onCheckboxChange(Project, $event)">
-                </ng-template>
+                </ng-template> -->
                     <!-- <input type="checkbox" [checked]="IsTaskCheckBoxChecked(Project)"  (change)="onCheckboxChange(Project,$event)" > -->
                 </div>
             </td>

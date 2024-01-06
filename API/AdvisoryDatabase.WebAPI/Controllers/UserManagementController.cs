@@ -26,10 +26,10 @@ namespace AdvisoryDatabase.WebAPI.Controllers
 
 
         [System.Web.Http.HttpPost]
-        public APIResponse<List<AddUserInfo>> AddUserInfo([FromBody] AddUserInfo obj)
+        public APIResponse<AddUserInfo>AddUserInfo([FromBody] AddUserInfo obj)
         {
             AdvisoryDatabase.Business.Controllers.UserManagementController UserManagementController = new Business.Controllers.UserManagementController();
-          
+            
             return UserManagementController.AddUserDetail(obj);
         }
 
@@ -57,11 +57,7 @@ namespace AdvisoryDatabase.WebAPI.Controllers
         public APIResponse<AddUserInfo> UpdateUser([FromBody] AddUserInfo obj)
         {
             AdvisoryDatabase.Business.Controllers.UserManagementController UserManagementController = new Business.Controllers.UserManagementController();
-            
-            obj.LastUpdatedBy = 1;
-            obj.CreatedBy = 1;
             return UserManagementController.UpdateUser(obj);
-
         }
    
     [System.Web.Http.HttpDelete]

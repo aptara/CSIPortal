@@ -48,7 +48,6 @@ namespace AdvisoryDatabase.WebAPI.Controllers
             AdvisoryDatabase.Business.Controllers.GetProjectController GetProjectController = new Business.Controllers.GetProjectController();
             GetProjectDeatils ObjInputParameters = new GetProjectDeatils();
             ObjInputParameters = obj;
-            ObjInputParameters.LastUpdatedBy = 1;
             ObjInputParameters.IsActive = true;
             ObjInputParameters.ProjectId = obj.ProjectId;
             ObjInputParameters.ProjectName = obj.ProjectName;

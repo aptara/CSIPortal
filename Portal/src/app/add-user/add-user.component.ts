@@ -19,6 +19,19 @@ export class AddUserComponent {
   checkbox: any[] = []
   tmId: any = ""
   isIncludeDeleted: any;
+  storedFirstName:any;
+  StoredData:any;
+  UsermasterId:any
+  GetLocalStorageDataForId(){
+    this.storedFirstName = localStorage.getItem('loginDetails');
+
+    // Check if the value is not null before parsing
+    if (this.storedFirstName !== null) {
+      this.StoredData = JSON.parse(this.storedFirstName);
+      console.log(this.StoredData[0].UserMasterID);
+      this.UsermasterId = this.StoredData[0].UserMasterID;
+    }
+  }
 
   constructor(
     private service:UserManagement,
@@ -36,6 +49,7 @@ export class AddUserComponent {
       'Email': new FormControl('', [Validators.required, Validators.email]),
       'Role': new FormControl(this.SelectedRole),
       'ProjectId':new FormControl(''),
+      'CreatedBy':new FormControl('')
  
   });
   }
@@ -43,6 +57,8 @@ export class AddUserComponent {
 ngOnInit(){
 this.getRole()
 this.getProject()
+this.GetLocalStorageDataForId()
+console.log(this.UserAdd)
 }
 getRole() {
   this.service.GetRole().subscribe((res:any) => {
@@ -58,17 +74,12 @@ this.Projects = res;
   })
 }
   submitForm(){
+    this.UserAdd.controls.CreatedBy.setValue(this.UsermasterId)
     this.UserAdd.controls.ProjectId.setValue(this.tmId);
     this.service.AddUserDetail(this.UserAdd.value).subscribe(res=>{
-      debugger
-      this.Projects = res;
-
+     
       const ref = this.dialogService.open(DialogeComponent, {
               header: 'Information',
-              style: {
-                'min-width': '300px',
-                'min-height': '200px', // Adjust the height as needed
-              },
               data: {
                 message: 'Record saved Succesfully.',
               },

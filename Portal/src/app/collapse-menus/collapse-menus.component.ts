@@ -221,16 +221,13 @@ export class CollapseMenusComponent {
         element.ReviewerEmail = this.ViewerEmail;
         element.LinkGUID = this.LinkGUID;
         element.ProjectID = this.ProjectId;
-  
+        element.CreatedBy = this.ClientId;
+        element.LastUpdatedBy = this.ClientId;
       
         console.log(element);
       });
   
-      if (isInvalid) {
-        // Display a message or alert
-        alert('Please enter a remark if your evaluation is below 8.');
-        return; // Prevent form submission
-      }
+   
   
       this.service.PostAllDetail(this.selectedRankings).subscribe(res => {
         if (res !== null) {

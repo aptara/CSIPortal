@@ -31,7 +31,9 @@ export class FilterClientListComponent {
       ProjectName: [''],
       ReviewerName:[''],
       ReviewerEmail:['',[Validators.required ,this.multipleEmailsValidator]],
-      Remark : ['']
+      Remark : [''],
+      CreatedBy:[''],
+      LastUpdatedBy:['']
     });
     
 
@@ -193,6 +195,8 @@ export class FilterClientListComponent {
   //modal submit
   submitModalForm(event: any) {
   console.log(this.linkModalData.value)
+  this.linkModalData.controls.CreatedBy.setValue(this.UserMasterID)
+  this.linkModalData.controls.LastUpdatedBy.setValue(this.UserMasterID)
     this.service.submitModalData(this.linkModalData.value).subscribe({
       next: (data: any) => {
         this.resultList = data.Data;  

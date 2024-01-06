@@ -21,7 +21,7 @@
           <span class="edit-btn">
             <i class="pi pi-check"
             *ngIf="user.StatusID === '0'"
-            (click)="onUnableButtonClick(user.UserMasterID)"  >
+            (click)="onUnableButtonClick(user.UserMasterID,$event)"  >
             </i>
         </span>
         <span class="edit-btn">
@@ -33,7 +33,7 @@
       <span class="edit-btn" style="margin-left: 10px;">
         <i class="pi pi-trash"
         *ngIf="user.StatusID === '1'"
-        (click)="deleteUser(user.UserMasterID)" >
+        (click)="deleteUser(user.UserMasterID,$event)" >
         </i>
     </span>
           <!-- <button pButton icon="pi pi-trash" label="Delete" (click)="deleteUser(user.UserMasterID)"></button> -->
@@ -53,3 +53,4 @@
       </tr>
     </ng-template>
   </p-table>
+  <p-confirmDialog></p-confirmDialog>

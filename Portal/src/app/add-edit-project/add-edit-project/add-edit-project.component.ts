@@ -27,7 +27,9 @@ export class AddEditProjectComponent {
   data: any;
   public mode: any = 'Add';
   private sub: any;
-
+  storedFirstName:any;
+  StoredData:any;
+  UsermasterId:any
   constructor(private service: ProjectMasterService,
     private fb: FormBuilder,
     private messageService: MessageService,
@@ -39,7 +41,9 @@ export class AddEditProjectComponent {
       ProjectId: [this.projectId],
       ProjectName: ['', Validators.required],  // ProjectName is now required
       ClientName: [''],   // ClientName is now required
-      ClientId: ['']
+      ClientId: [''],
+      CreatedBy:[''],
+      LastUpdatedBy:['']
     });
   }
 
@@ -51,21 +55,33 @@ export class AddEditProjectComponent {
         this.mode = "Edit";
       }
     });
-
+    this.GetLocalStorageDataForId();
   }
 
+  GetLocalStorageDataForId(){
+    this.storedFirstName = localStorage.getItem('loginDetails');
+
+    // Check if the value is not null before parsing
+    if (this.storedFirstName !== null) {
+      this.StoredData = JSON.parse(this.storedFirstName);
+    // alert(this.StoredData[0].UserMasterID);
+      this.UsermasterId = this.StoredData[0].UserMasterID;
+    }
+  }
   OnSubmit() {
     if (this.mode == "Add") {
       if (this.projectMasterData.valid) {
+        this.projectMasterData.controls['CreatedBy'].setValue(this.UsermasterId)
         debugger
         console.log(this.projectMasterData.value);
         this.projectMasterData.ClientId = 0;
+        
         this.service.AddProjectMasterDetails(this.projectMasterData.value).subscribe({
           next: (data: any) => {
             this.projectNameList = data.Data;
             const ref = this.dialogService.open(DialogeComponent, {
               header: 'Information',
-              width: '300px',
+           
               data: {
                 message: 'Record saved Succesfully.',
               },
@@ -82,6 +98,7 @@ export class AddEditProjectComponent {
     }
     else {
       if (this.projectMasterData.valid) {
+        this.projectMasterData.controls['LastUpdatedBy'].setValue(this.UsermasterId)
         //this.projectMasterData.controls.ProjectId.setValue(this.data.Data.ProjectId);
         this.service.UpdateProjectMasterDetails(this.projectMasterData.value).subscribe((data: any) => {
           if (data != null) {

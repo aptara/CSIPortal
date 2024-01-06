@@ -51,12 +51,12 @@
                     <span class="edit-btn" style="margin-left: 10px;">
                         <i class="pi pi-trash"
                         *ngIf="client.IsActive === true"
-                    (click)="DeleteProject(client.ProjectId)" >
+                    (click)="DeleteProject(client.ProjectId,$event)" >
                         </i>
                     </span>
                     <span class="edit-btn" style="margin-left: 10px;">
                         <i class="pi pi-check"
-                        *ngIf="client.IsActive === false" (click)="EnanbleUser(client.ProjectId)" >
+                        *ngIf="client.IsActive === false" (click)="EnanbleUser(client.ProjectId,$event)" >
                         </i>
                     </span>
                  
@@ -72,3 +72,4 @@
         </ng-template>
     </p-table>
 </div>
+<p-confirmDialog></p-confirmDialog>

@@ -72,27 +72,61 @@ export class ClientMasterComponent {
         this.clientService.DeleteClientDetails(client).subscribe(res => {
           const ref = this.dialogService.open(DialogeComponent, {
             header: 'Information',
-            width: '300px',
+          
             data: {
               message: 'Record updated Succesfully.',
             },
           });
           ref.onClose.subscribe((confirmed: boolean) => {
+           
             window.location.href = '/ClientMaster';
           })
         })
+       
       },
+   
       reject: () => {
           // this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
       }
   });
   }
 
-  EnableUser(ClientId:any){
-    this.clientService.EnableClient(ClientId).subscribe(res=>{
-      console.log(res)
-    })
-  }
+  EnableUser(ClientId:any,event:Event){
+  
+      this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        acceptButtonStyleClass:"p-button-danger p-button-text",
+        rejectButtonStyleClass:"p-button-text p-button-text",
+        acceptIcon:"none",
+        rejectIcon:"none",
+  
+        accept: () => {
+            // this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+            this.clientService.EnableClient(ClientId).subscribe(res=>{
+            const ref = this.dialogService.open(DialogeComponent, {
+              header: 'Information',
+            
+              data: {
+                message: 'Record updated Succesfully.',
+              },
+            });
+            ref.onClose.subscribe((confirmed: boolean) => {
+             
+              window.location.href = '/ClientMaster';
+            })
+          })
+         
+        },
+     
+        reject: () => {
+            // this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+        }
+    });
+    }
+  
 
   retrieveData(): void {
     if (this.isChecked) {

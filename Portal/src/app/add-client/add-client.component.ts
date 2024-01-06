@@ -24,7 +24,11 @@ export class AddClientComponent {
   clientData: any = []
   heading: any = ""
   isIncludeDeleted:any=""
-  // dialogService: any;
+  storedFirstName:any;
+  StoredData:any;
+  UsermasterId:any
+  Project: any[] = []
+  projectIds:any=""
   constructor(
     private service: ClientManagementService,
     private dialogService: DialogService,
@@ -40,8 +44,9 @@ export class AddClientComponent {
       'ClientEmail': new FormControl('', [Validators.required, Validators.email]),
       'AptaraContact': new FormControl('', [Validators.required]),
       'AptaraContactEmail': new FormControl('', [Validators.required, Validators.email]),
-      'ProjectId': new FormControl('')
-
+      'ProjectId': new FormControl(''),
+      'CreatedBy': new FormControl(''),
+      'LastUpdatedBy':new FormControl('')
     });
 
   }
@@ -57,16 +62,23 @@ export class AddClientComponent {
     }else{
       this.heading="Add Client"
     }
+    this.GetLocalStorageDataForId()
   }
-  // getRole() {
-  //   this.service.GetRole().subscribe(res => {
-  //     this.Roles = res
-  //   })
-  // }
+  GetLocalStorageDataForId(){
+    this.storedFirstName = localStorage.getItem('loginDetails');
+
+    // Check if the value is not null before parsing
+    if (this.storedFirstName !== null) {
+      this.StoredData = JSON.parse(this.storedFirstName);
+      console.log(this.StoredData[0].UserMasterID);
+      this.UsermasterId = this.StoredData[0].UserMasterID;
+    }
+  }
 
   getProject() {
-    this.FilterClientListService.GetProjectMasterDetails(this.isIncludeDeleted).subscribe(res => {
+    this.FilterClientListService.GetProjectMasterDetails(this.isIncludeDeleted).subscribe((res:any) => {
       this.Projects = res;
+      this.Project=Object.values(res.Data);
     })
   }
 
@@ -82,14 +94,15 @@ export class AddClientComponent {
           'AptaraContact': new FormControl(this.clientData.AptaraContact),
           'AptaraContactEmail': new FormControl(this.clientData.AptaraContactEmail),
           // 'Role': new FormControl(this.SelectedRole),
-          'ProjectId': new FormControl('')
+          'ProjectId': new FormControl(''),
+          'LastUpdatedBy':new FormControl('')
         })
         if (this.clientData.ProjectId !== null) {
           this.tmId = this.clientData.ProjectId;
         }
-        // this.checkbox = this.Tasks.filter(task => this.IsTaskCheckBoxChecked(task));
-        // const selectedTasks = this.checkbox.map(task => task.TaskMasterID);
-        // this.tmId = selectedTasks.join(",");
+        this.checkbox = this.Project.filter((task: any) => this.IsTaskCheckBoxChecked(task));
+        const selectedTasks = this.checkbox.map(task => task.ProjectId);
+        this.tmId = selectedTasks.join(",");
       }
     })
   }
@@ -112,6 +125,7 @@ export class AddClientComponent {
   submitForm() {
     //  this.ClientAdd.controls.ProjectId.setValue(this.tmId);
     if (this.clientId === null) {
+      this.ClientAdd.controls.CreatedBy.setValue(this.UsermasterId);
       this.ClientAdd.controls.ProjectId.setValue(this.tmId);
       this.service.AddClientDetails(this.ClientAdd.value).subscribe({
         next: (data: any) => {
@@ -135,6 +149,9 @@ export class AddClientComponent {
       })
 
     } else {
+      console.log(this.ClientAdd)
+      this.ClientAdd.controls.LastUpdatedBy.setValue(this.UsermasterId);
+
       this.ClientAdd.controls.ProjectId.setValue(this.tmId);
       this.service.UpdateClientDetails(this.ClientAdd.value).subscribe({
         next: (data: any) => {
@@ -143,10 +160,7 @@ export class AddClientComponent {
           this.ProjectsData = data.Data;
           const ref = this.dialogService.open(DialogeComponent, {
             header: 'Information',
-            style: {
-              'min-width': '500px',
-              'min-height': '200px', // Adjust the height as needed
-            },
+           
             data: {
               message: 'Record Updated Successfully.',
             },
@@ -173,20 +187,16 @@ export class AddClientComponent {
       })
     }
     this.checkbox.forEach(ProjectName => {
-      Ids.push(ProjectName.ProjectId)      
+      Ids.push(ProjectName.ProjectId)  
+      this.tmId = Ids.join(",")      
     })
-    // this.tmId = Ids.join(",")
-    if (this.tmId != "") {
-      this.tmId += "," + Project.ProjectId;
-    }else
-    {
-      this.tmId += Ids.join(",")
-    }
-    //  this.updateTmId();
+ 
+  
+      this.updateTmId();
   }
 
   updateTmId() {
     const SelectedRoleIds = this.checkbox.map(Project => Project.ProjectId);
-    this.tmId +="," + SelectedRoleIds.join(",");
+    this.tmId = SelectedRoleIds.join(",");
   }
 }
