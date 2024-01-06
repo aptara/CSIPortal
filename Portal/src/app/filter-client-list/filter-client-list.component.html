@@ -1,12 +1,12 @@
+<body>  
 
-
-<div class="container">
+  <div style="margin-left: 25px;" >
  
   <form (ngSubmit)="submitForm()" class="mt-4" #surveyForm="ngForm" novalidate>
     <h2>Customer Satisfaction Survey</h2>
     
     <div class="row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-4">
         <label for="category"><strong>Client Name:</strong></label>
         <select id="category" name="category" [(ngModel)]="selectedClient" #txt="ngModel" 
           (change)="onClientChange(txt.value)" class="form-control" aria-placeholder="select" required>
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-4">
         <label for="project"><strong>Project Name:</strong></label>
         <select id="project" name="project" [(ngModel)]="selectedProject" #Ac="ngModel" 
           (change)="onProjectChange(Ac.value)" class="form-control" required>
@@ -48,11 +48,11 @@
 
 
   
-    <div class="mt-4" style="max-width: 1300px; overflow-y: auto;margin-left: 10px;">
-      <p-table #dt [value]="resultList" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[50]" [showCurrentPageReport]="true"
+<div class="mt-4" style="margin: 25px;">
+      <p-table #dt class="pTable" [value]="resultList" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[50]" [showCurrentPageReport]="true"
       [resizableColumns]="true" styleClass="p-datatable-gridlines" scrollHeight="350px"
-      columnResizeMode="expand"  class="table-bordered" [tableStyle]="{'min-height': '10rem;overflow:auto;'}"
-      [globalFilterFields]="['ProjectName', 'ClientName', 'Email','ConatactName','IsSurveySubmittedOn','IsSurveySubmitted']" >
+      columnResizeMode="expand" class="table-bordered" [tableStyle]="{ 'min-height': '10rem; overflow: hidden;'}"
+      [globalFilterFields]="['ProjectName', 'ClientName', 'Email','ConatactName','IsSurveySubmittedOn','LinkGUID']">
       
       <ng-template pTemplate="caption">
         <div class="table-header">
@@ -79,11 +79,11 @@
             
             <th pFrozenColumn style="min-width:200px; border: 1px solid #ddd;" field="ClientName" pResizableColumn pSortableColumn="ClientName" style="min-width:200px">Client Name <p-sortIcon ></p-sortIcon></th>
             <th pFrozenColumn style="min-width:200px; border: 2px solid #ddd;" field="ProjectName" pResizableColumn pSortableColumn="ProjectName" style="min-width:200px">Project Name <p-sortIcon field="ProjectName"></p-sortIcon></th>
-            <th  style="min-width:200px; border: 1px solid #ddd;"field="ConatactName" pResizableColumn pSortableColumn="ConatactName" style="min-width:200px"> Aptara Contact Name <p-sortIcon field="ConatactName"></p-sortIcon></th>
-            <th field="Email" pResizableColumn pSortableColumn="Email" style="min-width:200px">Aptara Contact<p-sortIcon field="Email"></p-sortIcon></th>
-            <th field="IsSurveySubmittedOn" pResizableColumn pSortableColumn="IsSurveyCreatedOn" style="min-width:200px">Survey Created Date<p-sortIcon field="IsSurveySubmittedOn"></p-sortIcon></th>
+            <th  style="min-width:200px; border: 1px solid #ddd;"field="ConatactName" pResizableColumn pSortableColumn="ConatactName" style="min-width:200px"> Reviewer Name <p-sortIcon field="ConatactName"></p-sortIcon></th>
+            <th field="Email" pResizableColumn pSortableColumn="Email" style="min-width:200px">Reviewer Email<p-sortIcon field="Email"></p-sortIcon></th>
+            <th field="IsSurveyCreatedOn" pResizableColumn pSortableColumn="IsSurveyCreatedOn" style="min-width:200px">Survey Created Date<p-sortIcon field="IsSurveySubmittedOn"></p-sortIcon></th>
             <th field="IsSurveySubmittedOn" pResizableColumn pSortableColumn="IsSurveySubmittedOn" style="min-width:200px">Survey Feedback Date<p-sortIcon field="IsSurveySubmittedOn"></p-sortIcon></th>
-            <th field="IsSurveySubmitted" pResizableColumn pSortableColumn="IsSurveySubmitted" style="min-width:200px">Is Survey Submitted?<p-sortIcon field="IsSurveySubmitted"></p-sortIcon></th>
+            <th field="LinkGUID" pResizableColumn pSortableColumn="LinkGUID" style="min-width:200px">GUID<p-sortIcon field="LinkGUID"></p-sortIcon></th>
             
           </tr>
           <tr>
@@ -125,7 +125,7 @@
         
         <th style="min-width:150px">
           <div class="flex justify-content-between align-items-center">
-              <p-columnFilter type="text" field="IsSurveySubmitted" matchMode="contains"></p-columnFilter>
+              <p-columnFilter type="text" field="LinkGUID" matchMode="contains"></p-columnFilter>
           </div>
       </th>
         </tr>
@@ -135,17 +135,20 @@
             <td pFrozenColumn>
           
               <!-- "View" button column -->
+              <ng-container *ngIf="client.IsSurveySubmitted === 'No'">
+                <button pButton type="button" class="p-button-info" (click)="sendData(client)">Resend</button>
+              </ng-container>
               <ng-container *ngIf="client.IsSurveySubmitted === 'Yes'">
                 <button pButton type="button" class="p-button-info" [routerLink]="['/Feedback/Show', client.LinkGUID]">View</button>
               </ng-container>
             </td>
             <td pFrozenColumn>{{ client.ClientName }}</td>
             <td pFrozenColumn>{{ client.ProjectName }}</td>
-            <td>{{ client.AptaraContactName }}</td>
-            <td>{{ client.AptaraContact }}</td>
+            <td>{{ client.ReviewerName }}</td>
+            <td>{{ client.ReviewerEmail }}</td>
             <td>{{client.SurveyCreatedOn}}</td>
             <td>{{ client.ClientDate }}</td> 
-            <td>{{ client.IsSurveySubmitted }}</td>
+            <td>{{ client.LinkGUID }}</td>
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage" >
@@ -204,14 +207,14 @@
             </div>
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" formControlName="Clientemail" id="Clientemail">
-                <div *ngIf="linkModalData.get('Clientemail').hasError('required') && linkModalData.get('Clientemail').touched" class="text-danger">
+                <input type="text" class="form-control" formControlName="ReviewerEmail" id="ReviewerEmail">
+                <div *ngIf="linkModalData.get('ReviewerEmail').hasError('required') && linkModalData.get('ReviewerEmail').touched" class="text-danger">
                   Email is required.
                 </div>
-                <div *ngIf="linkModalData.get('Clientemail').hasError('email') && linkModalData.get('Clientemail').touched" class="text-danger">
+                <div *ngIf="linkModalData.get('ReviewerEmail').hasError('email') && linkModalData.get('ReviewerEmail').touched" class="text-danger">
                   Invalid email format.
                 </div>
-                <div *ngIf="linkModalData.get('Clientemail').hasError('invalidEmails') && linkModalData.get('Clientemail').touched" class="text-danger">
+                <div *ngIf="linkModalData.get('ReviewerEmail').hasError('invalidEmails') && linkModalData.get('ReviewerEmail').touched" class="text-danger">
                   Invalid email addresses.
                 </div>
                
@@ -253,10 +256,11 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submitModalForm($event)">Share</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submitModalForm($event)">Send</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeLinkModal()">Close</button>
         </div>
       </div>
     </div>
   </div>
 </form>
+</body>

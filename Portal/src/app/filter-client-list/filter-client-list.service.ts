@@ -15,6 +15,7 @@ export class FilterClientListService {
   private url3=this.apiurl+'GenerateLink/GenerateLink';
   private url4 = this.apiurl +'GetProject/GetProject';
   private url5 = this.apiurl +'GetProject/GetProjectDetails';
+  private recentUrl=this.apiurl+'GenerateLink/GenerateRecentLink';
   
   getClientList(RoleId:any,UserMasterID:any){
     const body  ={RoleId,UserMasterID}
@@ -52,5 +53,11 @@ export class FilterClientListService {
     const body = { IsIncludeDeleted };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.post(this.url5,body,{headers:headers});
+  }
+
+  submitRecentData(client:any){
+    const body = { client };
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post(this.recentUrl, client);
   }
 }

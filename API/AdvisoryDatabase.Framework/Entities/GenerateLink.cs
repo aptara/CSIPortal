@@ -16,5 +16,6 @@ namespace AdvisoryDatabase.Framework.Entities
         public string Remark { get; set; }
         public string ReviewerName { get; set; }
         public string ReviewerEmail { get; set; }
+        public string LinkGUID { get; set; }
     }
 }

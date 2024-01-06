@@ -16,4 +16,12 @@ namespace AdvisoryDatabase.Business.Service
             return new DataAccessGenerateLink();
         }
     }
+
+    public class GenerateRecentLinkService : Repository<GenerateLink, Int32>
+    {
+        protected override DataAccess.Repository.DataAccessRepository<GenerateLink, int> CreateDalManager()
+        {
+            return new DataAccessGenerateRecentLink();
+        }
+    }
 }

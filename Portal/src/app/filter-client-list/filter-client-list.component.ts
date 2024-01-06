@@ -215,6 +215,17 @@ export class FilterClientListComponent {
     return valid ? null : { invalidEmails: true };
   }
 
+  sendData(Client: any ){
+    this.service.submitRecentData(Client).subscribe({
+      next: (data: any) => {
+        this.resultList = data.Data;  
+        this.submitForm();   
+      },
+      error: (error: any) => {
+        console.error('Error submitting form:', error);
+      }
+    });   
+  }
 
 
 }

@@ -44,8 +44,8 @@ namespace AdvisoryDatabase.Framework.Entities
         public string ClientDate { get; set; }
         public string SurveyCreatedOn { get; set; }
         public string LinkGUID { get; set; }
-        
-
+        public string ReviewerName { get; set; }
+        public string ReviewerEmail { get; set; }
     }
 
     public class clientFeedback : BaseEntity<Int32>

@@ -14,3 +14,11 @@
   display:flex;
   
 }
+
+.pTable{
+  overflow: hidden;
+}
+
+*{
+  margin:0px
+ }

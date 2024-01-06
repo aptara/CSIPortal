@@ -44,5 +44,25 @@ namespace AdvisoryDatabase.Business.Controllers
             return SuccessReponse(ObjInputParameters);
 
         }
+
+        
+        public APIResponse<GenerateLink> GenerateRecentLink(GenerateLink ObjInputParameters)
+        {
+
+            try
+            {
+                GenerateRecentLinkService service = new GenerateRecentLinkService();
+                //return SuccessReponse(service.Add(ObjInputParameters));
+                ObjInputParameters.ClientId = service.Add(ObjInputParameters);
+            }
+            catch (Exception ex)
+            {
+
+                Log4NetLogger.Error(ex.Message);
+                // return Erroresponse<ObjInputParameters>(error);
+            }
+            return SuccessReponse(ObjInputParameters);
+
+        }
     }
 }
