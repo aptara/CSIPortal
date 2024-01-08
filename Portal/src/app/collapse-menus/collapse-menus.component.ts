@@ -333,7 +333,7 @@ displayDialog: any;
     // Check if the counts match
     if (accordianItemCount === selectedRankingsCount) {
     this.display = true;
-    document.body.style.overflow = 'hidden';
+    // document.body.style.overflow = 'hidden';
     }
     else {
       this.showWarningDialog();
@@ -363,7 +363,7 @@ displayDialog: any;
 
   ClosePopUp(){
     this.display=false
-    document.body.style.overflow = 'auto';
+    // document.body.style.overflow = 'auto';
   }
 }
 

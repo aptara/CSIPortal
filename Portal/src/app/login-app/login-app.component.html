@@ -7,18 +7,18 @@
                         <div>
                             <div class="p-5">
                                 <div class="mb-5">
-                                    <img src="assets/logo.png" alt="Image Alt Text" class="image" style="margin-left: 120px;width: 200px; height: 50px;">
+                                    <img src="assets/logo.png" alt="Image Alt Text" class="image" style="margin-left: 120px;width: 180px; height: 35px;">
                                 </div>                             
                                 <form [formGroup]="UserMasterDetails" (ngSubmit)="onsubmit()">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
+                                        <label for="exampleInputEmail1"><strong>Email ID</strong> </label>
                                         <input type="email" class="form-control" id="exampleInputEmail1" formControlName="EmailId">
                                     </div>
                                     <div class="form-group mb-5">
-                                        <label for="exampleInputPassword1">Password</label>
+                                        <label for="exampleInputPassword1"><strong>Password</strong> </label>
                                         <input type="password" class="form-control" id="exampleInputPassword1" formControlName="Password">
                                     </div>
-                                    <button type="submit" class="btn btn-theme">Login</button> 
+                                    <button type="submit" class="btn btn-theme"><strong>Login</strong></button> 
                                     <a routerLink="/ForgetPassward" style="margin-left: 300px;">Forgot Password?</a>                            
                                 </form>
                             </div>

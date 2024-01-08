@@ -13,8 +13,24 @@
       <div  class="mb3"  style="padding: 10px;">
         <h2
           style="background-color: #cfe2ff; font-family: 'Times New Roman', serif; font-size: 24px; font-weight: bold; text-align: left; padding: 10px;">
-          <strong>Customer Satisfaction Survey</strong>
+          <strong>Customer Satisfaction Survey Preview</strong>
         </h2>
+
+        <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
+          <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
+          <div class="col-6 mb-3 mt-3 ">
+            <label style="font-size: 20px"><strong>Client Name :</strong></label>
+            <label for="" value="text"  id="lblClientName" style="margin-left: 10px; font-size: 20px;"> {{resultData.Data[0].ClientName}}</label>
+            <!-- <input class="custom-input" type="text" value="{{resultData.Data[0].ClientName}}" style="margin-left: 120px; width: 300px;"
+              readonly> -->
+          </div>
+          <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
+          <div class="col-6 mb-3 mt-3 ">
+            <label style="font-size: 20px"><strong>Project Name :</strong></label>
+            <label for="" value="text"  id="lblProjectName" style="margin-left: 10px;font-size: 20px"> {{resultData.Data[0].ProjectName}}</label>
+            <!-- <input class="custom-input" type="text" value="{{resultData.Data[0].ProjectName}}" style="margin-left: 110px;  width: 300px;" readonly> -->
+          </div>
+        </div>
 
         <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
           <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
@@ -45,21 +61,7 @@
           </div>
         </div> -->
 
-        <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
-          <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
-          <div class="col-6 mb-3 mt-3 ">
-            <label style="font-size: 20px"><strong>Client Name :</strong></label>
-            <label for="" value="text"  id="lblClientName" style="margin-left: 10px; font-size: 20px;"> {{resultData.Data[0].ClientName}}</label>
-            <!-- <input class="custom-input" type="text" value="{{resultData.Data[0].ClientName}}" style="margin-left: 120px; width: 300px;"
-              readonly> -->
-          </div>
-          <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
-          <div class="col-6 mb-3 mt-3 ">
-            <label style="font-size: 20px"><strong>Project Name :</strong></label>
-            <label for="" value="text"  id="lblProjectName" style="margin-left: 10px;font-size: 20px"> {{resultData.Data[0].ProjectName}}</label>
-            <!-- <input class="custom-input" type="text" value="{{resultData.Data[0].ProjectName}}" style="margin-left: 110px;  width: 300px;" readonly> -->
-          </div>
-        </div>
+
         <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
           <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
           <div class="col-6 mb-3 mt-3 ">
