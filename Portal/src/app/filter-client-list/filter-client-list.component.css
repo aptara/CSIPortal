@@ -18,9 +18,13 @@
 .pTable{
   overflow: hidden;
 }
+
 /* *{
   margin:0px
- .ModalContent{
+
+}
+
+.ModalContent{
   margin-left: 200px;
   width: 800px;
 
