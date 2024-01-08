@@ -18,7 +18,7 @@
                                     {{SirName}}</strong></span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" type="submit" routerLink="/Login">Logout</a></li>
+                            <li><a class="dropdown-item" type="submit" routerLink="/Login" (click)="clearLocalStorage()">Logout</a></li>
                             <li><a class="dropdown-item" data-bs-toggle="modal" 
                                 data-bs-target="#changePassModal" (click)="toggleNavbar()">Change Password</a></li>
                         </ul>

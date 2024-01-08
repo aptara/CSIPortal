@@ -141,5 +141,8 @@ toggleNavbar() {
     };
   }
   
+  clearLocalStorage() {
+    localStorage.clear();
+  }
   
 }
