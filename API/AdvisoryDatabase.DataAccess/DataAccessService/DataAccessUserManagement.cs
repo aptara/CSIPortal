@@ -66,7 +66,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             switch (operation)
             {
                 case OperationType.Add:
-                    spName = "USP_AddUser";
+                    spName = "USP_UpdateUser";
                     break;
                 
             }
