@@ -59,7 +59,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
         }
     }
 
-    public class DataAccessGenerateRecentLink : DataAccessRepository<GenerateLink, Int32>
+    public class DataAccessGenerateResendLink : DataAccessRepository<GenerateLink, Int32>
     {
         protected override void FillParameters(OperationType operation, GenerateLink instance, List<DbParameter> parameters)
         {
@@ -80,7 +80,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             switch (operation)
             {
                 case OperationType.Add:
-                    spName = "USP_PostRecentGeneratedLinkMaster";
+                    spName = "USP_PostResendGeneratedLinkMaster";
                     break;
                 default:
                     spName = string.Empty;

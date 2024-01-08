@@ -28,11 +28,11 @@ namespace AdvisoryDatabase.WebAPI.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public APIResponse<GenerateLink> GenerateRecentLink([FromBody] GenerateLink obj)
+        public APIResponse<GenerateLink> GenerateResendLink([FromBody] GenerateLink obj)
         {
             AdvisoryDatabase.Business.Controllers.GenerateLinkController objGenerateLinkController = new Business.Controllers.GenerateLinkController();
 
-            return objGenerateLinkController.GenerateRecentLink(obj);
+            return objGenerateLinkController.GenerateResendLink(obj);
 
         }
     }

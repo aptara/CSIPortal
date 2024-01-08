@@ -46,12 +46,12 @@ namespace AdvisoryDatabase.Business.Controllers
         }
 
         
-        public APIResponse<GenerateLink> GenerateRecentLink(GenerateLink ObjInputParameters)
+        public APIResponse<GenerateLink> GenerateResendLink(GenerateLink ObjInputParameters)
         {
 
             try
             {
-                GenerateRecentLinkService service = new GenerateRecentLinkService();
+                GenerateResendLinkService service = new GenerateResendLinkService();
                 //return SuccessReponse(service.Add(ObjInputParameters));
                 ObjInputParameters.ClientId = service.Add(ObjInputParameters);
             }

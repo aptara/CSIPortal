@@ -70,6 +70,8 @@ export class MenuReadComponent {
   getEvaluationColor(submittedEvaluation: number, headerValue: number): string {
     if (headerValue > submittedEvaluation) {
       return 'white';
+    }else if (submittedEvaluation == 0) {
+      return 'gray';
     } else if (submittedEvaluation <= 7) {
       return 'red';
     } else if (submittedEvaluation === 8) {

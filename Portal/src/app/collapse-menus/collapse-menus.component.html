@@ -5,7 +5,8 @@
     </div>
   </nav>
 </div>
-<div class="container">
+<!-- [class.overlay-form]="display" -->
+<div class="container" >
   <form [formGroup]="AddQuestionAnswer" (ngSubmit)="onSubmit()">
     <div class="mb-2">
       <div class="mb3" style="padding: 10px;">
@@ -117,8 +118,8 @@
 
 
                         <td class="radio-cell" style="border-right: 1px solid #9aa09e;">
-                          <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="-"
-                            (click)="handleRadioButtonSelection('-', item.QuestionSerialNumber)">
+                          <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="0"
+                            (click)="handleRadioButtonSelection('0', item.QuestionSerialNumber)">
                         </td>
                         <td class="radio-cell">
                           <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="1"
@@ -225,7 +226,7 @@
      
       <p-toast key="global"></p-toast>
     </div>
-    <p-dialog [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '100vw'}">
+    <p-dialog [(visible)]="display" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '100vw'}">
       <h3>Survey Summary</h3>
       <div class="chart-container">
         <div class="question-column">

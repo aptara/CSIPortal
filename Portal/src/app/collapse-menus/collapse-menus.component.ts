@@ -35,6 +35,7 @@ export class CollapseMenusComponent {
   //   this.isAllAccordionsOpen = !this.isAllAccordionsOpen;
   // }
   isAccordionItemOpen: boolean[] = [];
+displayDialog: any;
   constructor(private service: GetQuestionDetailService,
     private fb: FormBuilder,
     private path: ActivatedRoute,
@@ -332,6 +333,7 @@ export class CollapseMenusComponent {
     // Check if the counts match
     if (accordianItemCount === selectedRankingsCount) {
     this.display = true;
+    document.body.style.overflow = 'hidden';
     }
     else {
       this.showWarningDialog();
@@ -345,6 +347,8 @@ export class CollapseMenusComponent {
   getEvaluationColor(submittedEvaluation: number, headerValue: number): string {
     if (headerValue > submittedEvaluation) {
       return 'white';
+    }else if (submittedEvaluation == 0) {
+      return 'gray';
     } else if (submittedEvaluation <= 7) {
       return 'red';
     } else if (submittedEvaluation === 1) {
@@ -359,6 +363,7 @@ export class CollapseMenusComponent {
 
   ClosePopUp(){
     this.display=false
+    document.body.style.overflow = 'auto';
   }
 }
 

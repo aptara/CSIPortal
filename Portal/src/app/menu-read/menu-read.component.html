@@ -188,9 +188,9 @@
 
 
                         <td class="radio-cell" #radioButtonGroup style="border-right: 1px solid #9aa09e;">
-                          <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="-"
-                            (click)="handleRadioButtonSelection('-', item.QuestionSerialNumber)"
-                            [checked]="selectedRadioValue === '-'" disabled>
+                          <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="0"
+                            (click)="handleRadioButtonSelection('0', item.QuestionSerialNumber)"
+                            [checked]="item.SubmittedEvaluation === 0" disabled>
                         </td>
                         <td class="radio-cell" #radioButtonGroup>
                           <input type="radio" [name]="'numericRadio-' + item.QuestionSerialNumber" value="1"

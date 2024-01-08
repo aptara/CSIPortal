@@ -216,7 +216,7 @@ export class FilterClientListComponent {
   }
 
   sendData(Client: any ){
-    this.service.submitRecentData(Client).subscribe({
+    this.service.submitResendData(Client).subscribe({
       next: (data: any) => {
         this.resultList = data.Data;  
         this.submitForm();   
