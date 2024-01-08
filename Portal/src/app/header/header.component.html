@@ -2,12 +2,16 @@
    
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
-            <a class="navbar-brand" routerLink="/Dashboard"><img src="assets/logo.jpg" alt="Image Alt Text"
-                    class="image"></a>
+            <a class="navbar-brand" routerLink="/Dashboard">
+                <img src="assets/logo.png" class="image" style="width: 100px; max-height: 400px;">
+            </a>
+      
+    
+    
 
-            <div class="collapse navbar-collapse" id="navbarScroll">
+            <div class="collapse navbar-collapse" id="navbarScroll" style="margin-left: 1500px !important;">
                 <ul class="navbar-nav">
-                    <li class="nav-item dropdown" style="margin-left: 1100px;">
+                    <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <span *ngIf="FirstName" class="user-name"><strong>{{ LoggedUserName }}

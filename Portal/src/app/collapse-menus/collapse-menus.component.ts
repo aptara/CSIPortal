@@ -351,7 +351,7 @@ displayDialog: any;
       return 'gray';
     } else if (submittedEvaluation <= 7) {
       return 'red';
-    } else if (submittedEvaluation === 1) {
+    } else if (submittedEvaluation === 0) {
       return 'gray';
     } else if (submittedEvaluation == 8) {
       return 'yellow';
