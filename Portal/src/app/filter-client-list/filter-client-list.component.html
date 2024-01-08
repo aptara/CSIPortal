@@ -256,7 +256,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" type="submit" (click)="submitModalForm($event)">Send</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" type="submit"  [disabled]="!linkModalData.get('ReviewerEmail').valid" (click)="submitModalForm($event)">Send</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeLinkModal()">Close</button>
         </div>
       </div>

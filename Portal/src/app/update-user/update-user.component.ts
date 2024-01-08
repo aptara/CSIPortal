@@ -24,7 +24,8 @@ export class UpdateUserComponent {
   isIncludeDeleted: any;
   storedFirstName:any;
   StoredData:any;
-  UsermasterId:any
+  UsermasterId:any;
+  RoleId:any;
   constructor(
     private service: UserManagement,
     private FilterClientListService: FilterClientListService,
@@ -61,7 +62,11 @@ export class UpdateUserComponent {
       this.Roles = res.Data;
     })
   }
-
+  isRoleDisabled(): boolean {
+    const roleValue = this.RoleId;
+    return roleValue === 3;
+  }
+  
   getProject() {
     this.FilterClientListService.GetProjectMasterDetails(this.isIncludeDeleted).subscribe(res => {
        this.Projects = res;      
@@ -115,6 +120,7 @@ export class UpdateUserComponent {
       this.StoredData = JSON.parse(this.storedFirstName);
       console.log(this.StoredData[0].UserMasterID);
       this.UsermasterId = this.StoredData[0].UserMasterID;
+      this.RoleId = this.StoredData[0].RoleId;
     }
   }
   //   onCheckboxChange(Project: any, e: any) {

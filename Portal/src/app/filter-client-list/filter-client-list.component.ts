@@ -195,20 +195,24 @@ export class FilterClientListComponent {
   //modal submit
   ModalButtonClicked:boolean = false
   submitModalForm(event: any) {
-    this.ModalButtonClicked = true
   console.log(this.linkModalData.value)
   this.linkModalData.controls.CreatedBy.setValue(this.UserMasterID)
   this.linkModalData.controls.LastUpdatedBy.setValue(this.UserMasterID)
+  if(this.linkModalData.controls.ReviewerEmail.valid){
     this.service.submitModalData(this.linkModalData.value).subscribe({
       next: (data: any) => {
-        this.resultList = data.Data;  
-        this.submitForm();   
+        this.resultList = data.Data; 
+        this.closeLinkModal()
+        this.submitForm();  
+       
       },
       error: (error: any) => {
         console.error('Error submitting form:', error);
       }
     });   
-    
+  }
+  
+  
   }
 
 //Email validation

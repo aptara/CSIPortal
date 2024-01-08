@@ -16,11 +16,10 @@
             <tr style="border: 1px solid #ddd; background-color: #f2f2f2; position: sticky; top: 0; z-index: 1;">
 
                 <th style="min-width:100px">Action</th>
-
+                <th style="min-width:100px; border: 1px solid #ddd;" field="ClientName" pResizableColumn
+                pSortableColumn="ClientName" style="min-width:200px">Client Name <p-sortIcon></p-sortIcon></th>
                 <th style="min-width:100px; border: 1px solid #ddd;" field="ProjectName" pResizableColumn
                     pSortableColumn="ProjectName" style="min-width:200px">Project Name <p-sortIcon></p-sortIcon></th>
-                <th style="min-width:100px; border: 1px solid #ddd;" field="ClientName" pResizableColumn
-                    pSortableColumn="ClientName" style="min-width:200px">Client Name <p-sortIcon></p-sortIcon></th>
                 <th style="min-width:100px; border: 2px solid #ddd;" field="IsActive" pResizableColumn
                     pSortableColumn="IsActive" style="min-width:200px">Status<p-sortIcon
                         field="IsActive"></p-sortIcon></th>
@@ -67,8 +66,9 @@
                     </span>
                  
                 </td>
-                <td>{{ client.ProjectName }}</td>
                 <td>{{ client.ClientName }}</td>
+                <td>{{ client.ProjectName }}</td>
+               
                 <td>{{ client.IsActive ? 'ACTIVE' : 'INACTIVE' }}</td>
             </tr>
         </ng-template>
