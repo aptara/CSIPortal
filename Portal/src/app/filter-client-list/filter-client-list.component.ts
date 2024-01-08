@@ -193,7 +193,9 @@ export class FilterClientListComponent {
   }
 
   //modal submit
+  ModalButtonClicked:boolean = false
   submitModalForm(event: any) {
+    this.ModalButtonClicked = true
   console.log(this.linkModalData.value)
   this.linkModalData.controls.CreatedBy.setValue(this.UserMasterID)
   this.linkModalData.controls.LastUpdatedBy.setValue(this.UserMasterID)
@@ -205,7 +207,8 @@ export class FilterClientListComponent {
       error: (error: any) => {
         console.error('Error submitting form:', error);
       }
-    });    
+    });   
+    
   }
 
 //Email validation

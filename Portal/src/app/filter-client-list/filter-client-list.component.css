@@ -19,6 +19,9 @@
   overflow: hidden;
 }
 
-*{
-  margin:0px
+
+
+ .ModalContent{
+  margin-left: 200px;
+  width: 800px;
  }

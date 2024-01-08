@@ -1,22 +1,23 @@
 
 
-        <form [formGroup]="projectMasterData" (ngSubmit)="OnSubmit()">
+        <form [formGroup]="projectMasterData" (ngSubmit)="OnSubmit()" class="myform">
             <div class="formbold-form-title">
                 <h2 class="">{{mode}} Project</h2>
             </div>
             <div class="row" >
+              
+                <div class="col-md-6 mb-3">
+                    <label for="role" class="form-label">Client:</label>
+                    <select class="form-select" id="role" name="role"  formControlName="ClientId" required>
+                        <option *ngFor="let client of clients" [value]="client.ClientId">{{ client.ClientName }}</option>
+                    </select>
+                </div>
                 <div class="col-md-6 mb-3">
                     <label class="form-label"> Project Name </label>
                     <input type="text" formControlName="ProjectName" class="form-control" required/>
                     <div *ngIf="projectMasterData.get('ProjectName').hasError('required') && projectMasterData.get('ProjectName').touched">
                         <span class="text-danger">Project Name is required.</span>
                     </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="role" class="form-label">Client:</label>
-                    <select class="form-select" id="role" name="role"  formControlName="ClientId" required>
-                        <option *ngFor="let client of clients" [value]="client.ClientId">{{ client.ClientName }}</option>
-                    </select>
                 </div>
             </div>
             <button class="formbold-btn">Save</button>

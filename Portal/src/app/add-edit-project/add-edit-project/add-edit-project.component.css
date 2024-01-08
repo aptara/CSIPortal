@@ -143,3 +143,6 @@
     cursor: not-allowed;
     background-color: lightgray;
   }
+  .myform{
+    margin: 20px;
+  }

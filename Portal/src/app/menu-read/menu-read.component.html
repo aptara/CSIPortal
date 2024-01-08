@@ -4,8 +4,8 @@
   <form [formGroup]="AddQuestionAnswer">
     <div class="mb-3" style="display: flex; justify-content: space-between; align-items: center;" *ngIf="!isPrintMode">
 
-      <button type="submit" class="btn btn-primary" style="margin-left:85% ;" (click)="navigateBack()">Home</button>
-      <button type="button" class="btn btn-secondary" (click)="printPreview()">Print Preview</button>
+      <button type="submit" class="btn btn-primary" style="margin-left:85% ;margin-top: 30px;" (click)="navigateBack()">Home</button>
+      <button type="button" class="btn btn-secondary" style="margin-top: 30px;" (click)="printPreview()">Print Preview</button>
     
     </div>
     
@@ -19,54 +19,60 @@
         <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
           <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
           <div class="col-6 mb-3 mt-3 ">
-            <label><strong>Reviewer Name</strong></label>
-            <input class="custom-input" type="text" value="{{resultData.Data[0].ReviewerName}}" style="margin-left: 95px; width: 300px;"
-              readonly>
+            <label style="font-size: 20px"><strong>Reviewer Name : </strong></label>
+            <label for="" value="text" id="lblReviewerName" style="margin-left: 10px;font-size: 20px"> {{resultData.Data[0].ReviewerName}}</label>
+            <!-- <input class="custom-input" type="text" value="{{resultData.Data[0].ReviewerName}}" style="margin-left: 95px; width: 300px;"
+              readonly> -->
           </div>
           <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
           <div class="col-6 mb-3 mt-3 ">
-            <label><strong>Reviewer Email</strong></label>
-            <input class="custom-input" type="text" value="{{resultData.Data[0].ReviewerEmail}}" style="margin-left: 100px;  width: 300px;" readonly>
+            <label style="font-size: 20px"><strong>Reviewer Email :</strong></label>
+            <label for="" value="text"  id="lblReviewerEmail" style="margin-left: 10px;font-size: 20px"> {{resultData.Data[0].ReviewerEmail}}</label>
+            <!-- <input class="custom-input" type="text" value="{{resultData.Data[0].ReviewerEmail}}" style="margin-left: 100px;  width: 300px;" readonly> -->
           </div>
         </div>
-        <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
-          <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
-          <div class="col-6 mb-3 mt-3 ">
+        <!-- <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
+           <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
+          <!-- <div class="col-6 mb-3 mt-3 ">
             <label><strong>Aptara Contact Name</strong></label>
             <input class="custom-input" type="text" value="{{resultData.Data[0].AptaraContactName}}" style="margin-left: 50px; width: 300px;"
               readonly>
-          </div>
-          <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
+          </div> 
+          <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> 
           <div class="col-6 mb-3 mt-3 ">
             <label><strong>Aptara Contact</strong></label>
             <input class="custom-input" type="text" value="{{resultData.Data[0].AptaraContact}}" style="margin-left: 100px;  width: 300px;" readonly>
           </div>
-        </div>
+        </div> -->
 
         <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
           <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
           <div class="col-6 mb-3 mt-3 ">
-            <label><strong>Client Name</strong></label>
-            <input class="custom-input" type="text" value="{{resultData.Data[0].ClientName}}" style="margin-left: 120px; width: 300px;"
-              readonly>
+            <label style="font-size: 20px"><strong>Client Name :</strong></label>
+            <label for="" value="text"  id="lblClientName" style="margin-left: 10px; font-size: 20px;"> {{resultData.Data[0].ClientName}}</label>
+            <!-- <input class="custom-input" type="text" value="{{resultData.Data[0].ClientName}}" style="margin-left: 120px; width: 300px;"
+              readonly> -->
           </div>
           <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
           <div class="col-6 mb-3 mt-3 ">
-            <label><strong>Project Name</strong></label>
-            <input class="custom-input" type="text" value="{{resultData.Data[0].ProjectName}}" style="margin-left: 110px;  width: 300px;" readonly>
+            <label style="font-size: 20px"><strong>Project Name :</strong></label>
+            <label for="" value="text"  id="lblProjectName" style="margin-left: 10px;font-size: 20px"> {{resultData.Data[0].ProjectName}}</label>
+            <!-- <input class="custom-input" type="text" value="{{resultData.Data[0].ProjectName}}" style="margin-left: 110px;  width: 300px;" readonly> -->
           </div>
         </div>
         <div class="content-text" *ngIf="resultData.Data" style="display: flex;">
           <!-- <span style="margin-right: 417px; margin-bottom: 5px;"><strong>Project:</strong> {{element.ProjectName}}</span> -->
           <div class="col-6 mb-3 mt-3 ">
-            <label><strong>Survey Created On</strong></label>
-            <input class="custom-input" type="text" value="{{resultData.Data[0].SurveyCreatedOn}}" style="margin-left: 70px; width: 300px;"
-              readonly>
+            <label style="font-size: 20px"><strong>Survey Created On :</strong></label>
+            <label for="" value="text"  id="lblSurveyCreatedOn" style="margin-left: 10px;font-size: 20px"> {{resultData.Data[0].SurveyCreatedOn}}</label>
+            <!-- <input class="custom-input" type="text" value="{{resultData.Data[0].SurveyCreatedOn}}" style="margin-left: 70px; width: 300px;" -->
+              <!-- readonly> -->
           </div>
           <!-- <span><strong>Aptara Contact:</strong> {{element.AptaraContact}}</span> -->
           <div class="col-6 mb-3 mt-3 ">
-            <label><strong>Survey Submitted On</strong></label>
-            <input class="custom-input" type="text" value="{{resultData.Data[0].SurveyLastUpdatedOn}}" style="margin-left: 30px;  width: 300px;" readonly>
+            <label  style="font-size: 20px"><strong>Survey Submitted On :</strong></label>
+            <label for="" value="text"  id="lblSurveyLastUpdatedOn" style="margin-left: 10px;font-size: 20px"> {{resultData.Data[0].SurveyLastUpdatedOn}}</label>
+            <!-- <input class="custom-input" type="text" value="{{resultData.Data[0].SurveyLastUpdatedOn}}" style="margin-left: 30px;  width: 300px;" readonly> -->
           </div>
         </div>
         <!-- Your input boxes go here -->
@@ -98,20 +104,20 @@
          
     </div> 
   </div>
-  <div class="chart-container">
+  <div class="chart-container"  style="margin-top: 30px !important;">
     <div class="question-column">
       <div class="evaluation-header">
        
-        <div class="evaluation-header-item left-align"><strong>Question</strong></div>
+        <div class="evaluation-header-item left-align" style="font-size: 20px"><strong>Question</strong></div>
       </div>
       <div *ngFor="let item of resultData.Data" class="evaluation-item">
        
-        <div class="evaluation-cell left-align">{{ item.QuestionSerialNumber }}.{{ item.Question }}</div>
+        <div class="evaluation-cell left-align"><strong>{{ item.QuestionSerialNumber }}.</strong>  {{ item.Question }}</div>
       </div>
     </div>
     <div class="evaluation-column">
       <div class="evaluation-header">
-        <div *ngFor="let i of getNumbersArray()" class="evaluation-header-item">{{ i }}</div>
+        <div *ngFor="let i of getNumbersArray()" class="evaluation-header-item"><strong>{{ i }}</strong></div>
       </div>
       <div *ngFor="let item of resultData.Data" class="evaluation-item">
         <div *ngFor="let i of getNumbersArray()" [style.background-color]="getEvaluationColor(item.SubmittedEvaluation, i)" class="evaluation-cell">
@@ -120,13 +126,13 @@
       </div>
     </div>
   </div>
-  
-  <div class="button-container">
+
+  <div class="button-container" style="margin-top: 30px !important;">
     <button pButton type="button" (click)="expandAll()" style="height: 30px;">Expand All</button>
     <button pButton type="button" (click)="collapseAll()" style="margin-left: 20px; height: 30px;">Collapse All</button>
   </div>
   
-    <div class="accordion" id="accordionExample">
+    <div class="accordion" id="accordionExample"  style="margin-top: 30px !important;">
       <div class="accordion-item" *ngFor="let item of accordianItems; let i = index">
         <h2 class="accordion-header">
           <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -135,7 +141,7 @@
               <div class="col-md">
                 <strong>{{item.QuestionSerialNumber}}. {{item.question}}</strong>
               </div>
-              <div class="col-md" style="position: absolute; left: 80%;">Submitted Evaluation :
+              <div class="col-md" style="position: absolute; left: 80%;"><strong>Submitted Evaluation :</strong> 
                 {{item.SubmittedEvaluation}}</div>
             </div>
           </button>
@@ -282,7 +288,7 @@
             </tbody>
             </table>
             <!-- <hr> -->
-            <span>Remark</span>
+            <span><strong>Remark</strong> </span>
             <textarea rows="4" cols="168" #txt placeholder="Enter your remark here..." readonly
               style="resize: none;">{{item.Remarks}}</textarea>
 

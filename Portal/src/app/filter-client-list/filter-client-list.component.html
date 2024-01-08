@@ -1,7 +1,5 @@
 <body>  
-
-  <div style="margin-left: 25px;" >
- 
+  <div style="margin-left: 25px;">
   <form (ngSubmit)="submitForm()" class="mt-4" #surveyForm="ngForm" novalidate>
     <h2>Customer Satisfaction Survey</h2>
     
@@ -31,16 +29,16 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="form-group col-md-3">
+    <div class="row" style="margin-top: 20px;">
+      <div class="form-group col-md-1" >
         <label for=""></label><br>
         <button pButton type="submit" class="p-button-info" >Search</button>
       </div>
       
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-2">
         <label for=""></label><br>
         <button  pButton type="button" class="p-button-info" data-bs-toggle="modal" data-bs-target="#linkModal" 
-          (click)="openLinkModal(clients)" style="margin-left :-200px;" >New Feedback Link</button>
+          (click)="openLinkModal(clients)"  >New Feedback Link</button>
       </div>
     </div>
   </form>
@@ -159,7 +157,7 @@
       </p-table>
     </div>
 
-<form [formGroup]="linkModalData" *ngIf="linkButtonClicked" >
+<form [formGroup]="linkModalData" *ngIf="linkButtonClicked" class="ModalContent" #myform>
   <div class="modal fade" id="linkModal" tabindex="-1" aria-labelledby="linkModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -208,7 +206,7 @@
             <div class="row">
               <div class="col">
                 <input type="text" class="form-control" formControlName="ReviewerEmail" id="ReviewerEmail">
-                <div *ngIf="linkModalData.get('ReviewerEmail').hasError('required') && linkModalData.get('ReviewerEmail').touched" class="text-danger">
+                <div *ngIf="linkModalData.get('ReviewerEmail').hasError('required') && linkModalData.get('ReviewerEmail').touched " class="text-danger">
                   Email is required.
                 </div>
                 <div *ngIf="linkModalData.get('ReviewerEmail').hasError('email') && linkModalData.get('ReviewerEmail').touched" class="text-danger">
@@ -217,7 +215,9 @@
                 <div *ngIf="linkModalData.get('ReviewerEmail').hasError('invalidEmails') && linkModalData.get('ReviewerEmail').touched" class="text-danger">
                   Invalid email addresses.
                 </div>
-               
+                <div *ngIf="ModalButtonClicked" class="text-danger">
+                  Please enter emil.
+                </div>
               </div>
             </div>        
         
@@ -250,13 +250,13 @@
           </div>
           <div class="row">
             <div class="col">
-              <textarea rows="3" cols="80" #txt placeholder="Enter your comment here..." class="form-control" formControlName="Remark">
+              <textarea rows="3" cols="80" #txt placeholder="Enter your comment here..." style="resize: none;" class="form-control" formControlName="Remark">
               </textarea>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submitModalForm($event)">Send</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" type="submit" (click)="submitModalForm($event)">Send</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeLinkModal()">Close</button>
         </div>
       </div>
