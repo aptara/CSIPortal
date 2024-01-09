@@ -18,14 +18,17 @@
 .pTable{
   overflow: hidden;
 }
-
-/* *{
+body{
   margin:0px
 
 }
+ /* *{
+  margin:0px
+
+} */
 
 .ModalContent{
-  margin-left: 200px;
+  margin-right: 2000px;
   width: 800px;
 
- } */
+ } 

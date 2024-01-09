@@ -1,5 +1,5 @@
 <div class="container-fluid Container-First" [ngClass]="{ 'hide-header': hideHeaderOnPrint }">
-  <app-header *ngIf="router.url!='/Login' && router.url!='/ThankYou' && router.url!='/UserDashboard/LinkGUID'  && router.url!='/SubmittedResponse'  && router.url!='/BadResponse'&& !router.url.startsWith('/Feedback/') && !router.url.startsWith('/ForgetPassward')"></app-header>
+  <app-header *ngIf="router.url!='/Login' && router.url!='/ThankYou' && !router.url.startsWith('/UserDashboard/')  && router.url!='/SubmittedResponse'  && router.url!='/BadResponse'&& !router.url.startsWith('/Feedback/') && !router.url.startsWith('/ForgetPassward')"></app-header>
 
   <div class="Main-fluid">
     <div class="Sidebar">

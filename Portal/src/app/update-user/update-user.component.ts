@@ -64,7 +64,7 @@ export class UpdateUserComponent {
   }
   isRoleDisabled(): boolean {
     const roleValue = this.RoleId;
-    return roleValue === 3;
+    return roleValue === '3';
   }
   
   getProject() {

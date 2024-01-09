@@ -126,6 +126,7 @@ export class AddClientComponent {
     //  this.ClientAdd.controls.ProjectId.setValue(this.tmId);
     if (this.clientId === null) {
       this.ClientAdd.controls.CreatedBy.setValue(this.UsermasterId);
+      this.ClientAdd.controls.LastUpdatedBy.setValue(this.UsermasterId);
       this.ClientAdd.controls.ProjectId.setValue(this.tmId);
       this.service.AddClientDetails(this.ClientAdd.value).subscribe({
         next: (data: any) => {

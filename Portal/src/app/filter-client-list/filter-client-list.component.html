@@ -48,8 +48,8 @@
   
 <div class="mt-4" style="margin: 25px;">
       <p-table #dt class="pTable" [value]="resultList" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[50]" [showCurrentPageReport]="true"
-      [resizableColumns]="true" styleClass="p-datatable-gridlines" scrollHeight="350px"
-      columnResizeMode="expand" class="table-bordered" [tableStyle]="{ 'min-height': '10rem; overflow: hidden;'}"
+      [resizableColumns]="true" styleClass="p-datatable-gridlines" scrollHeight="300px"
+      columnResizeMode="expand" class="table-bordered" [tableStyle]="{ 'height': '300px; '}"
       [globalFilterFields]="['ProjectName', 'ClientName', 'Email','ConatactName','IsSurveySubmittedOn','LinkGUID']">
       
       <ng-template pTemplate="caption">
@@ -68,7 +68,7 @@
       </ng-template>
       
       
-      <ng-template pTemplate="header">
+      <ng-template pTemplate="header" style="height: 10px;">
        
 
 
@@ -131,7 +131,6 @@
         <ng-template pTemplate="body" let-client>
           <tr >
             <td pFrozenColumn>
-          
               <!-- "View" button column -->
               <ng-container *ngIf="client.IsSurveySubmitted === 'No'">
                 <button pButton type="button" class="p-button-info" (click)="sendData(client)">Resend</button>
@@ -145,7 +144,7 @@
             <td>{{ client.ReviewerName }}</td>
             <td>{{ client.ReviewerEmail }}</td>
             <td>{{client.SurveyCreatedOn}}</td>
-            <td>{{ client.ClientDate }}</td> 
+            <td>{{client.ClientDate }}</td> 
             <td>{{ client.LinkGUID }}</td>
           </tr>
         </ng-template>

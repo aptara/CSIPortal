@@ -25,7 +25,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             switch (operation)
             {
                 case OperationType.GetAll:
-                    spName = "USP_GetClientList";
+                    spName = "USP_GetClientForDropdown";
                     break;
                 default:
                     spName = string.Empty;
@@ -40,8 +40,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             {
                 ClientId = data.Read<Int32>("ClientId"),
                 ClientName = data.ReadString("ClientName"),
-                ClientEmail= data.ReadString("ClientEmail"),
-                IsActive = data.Read<bool>("IsActive")
+            
             };
         }
     }

@@ -49,7 +49,8 @@ export class AddUserComponent {
       'Email': new FormControl('', [Validators.required, Validators.email]),
       'Role': new FormControl(this.SelectedRole),
       'ProjectId':new FormControl(''),
-      'CreatedBy':new FormControl('')
+      'CreatedBy':new FormControl(''),
+      'LastUpdatedBy':new FormControl('')
  
   });
   }
@@ -75,6 +76,7 @@ this.Projects = res;
 }
   submitForm(){
     this.UserAdd.controls.CreatedBy.setValue(this.UsermasterId)
+    this.UserAdd.controls.LastUpdatedBy.setValue(this.UsermasterId)
     this.UserAdd.controls.ProjectId.setValue(this.tmId);
     this.service.AddUserDetail(this.UserAdd.value).subscribe(res=>{
      

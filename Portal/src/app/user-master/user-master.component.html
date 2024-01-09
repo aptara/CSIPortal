@@ -1,42 +1,77 @@
-<button pButton routerLink="/AddUser">Add</button>
-<div class="checkbox">
-  <input type="checkbox" [(ngModel)]="isChecked" (change)="retrieveData()">
-  Include Deleted Records
-</div>
-<p-table [value]="users" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5]">
+<div class="mt-4" style="max-width: 1190px; overflow-y: auto;margin-left: 120px;">
+  <button class="btn btn-primary btn-lg" style="min-width: 150px;" routerLink="/AddUser">Add</button>
+  <br><br>
+  <div class="checkbox">
+    <input type="checkbox" [(ngModel)]="isChecked" (change)="retrieveData()">
+    Include Deleted Records
+  </div>
+  <p-table [value]="users" [paginator]="true" [rows]="20" [rowsPerPageOptions]="[20]" [showCurrentPageReport]="true"
+    [resizableColumns]="true" styleClass="p-datatable-gridlines" scrollHeight="350px" columnResizeMode="expand"
+    class="table-bordered" [tableStyle]="{'min-height': '10rem;overflow:auto;'}">
     <ng-template pTemplate="header">
-      <tr>
-        <th>Action</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Status</th>
-       
+      
+      
+      <tr style="border: 1px solid #ddd; background-color: #f2f2f2; position: sticky; top: 0; z-index: 1;">
+        <th style="min-width:100px">Action</th>
+        <th style="min-width:100px; border: 1px solid #ddd;" field="FirstName" pResizableColumn
+          pSortableColumn="FirstName" style="min-width:200px"> First Name <p-sortIcon></p-sortIcon></th>
+        <!-- <th>Last Name</th> -->
+        <th style="min-width:100px; border: 1px solid #ddd;" field="LastName" pResizableColumn
+          pSortableColumn="LastName" style="min-width:200px"> Last Name <p-sortIcon></p-sortIcon></th>
+        <th style="min-width:100px; border: 1px solid #ddd;" field="Email" pResizableColumn pSortableColumn="Email"
+          style="min-width:200px"> Email <p-sortIcon></p-sortIcon></th>
+        <th style="min-width:100px; border: 1px solid #ddd;" field="Role" pResizableColumn pSortableColumn="Role"
+          style="min-width:200px"> Role <p-sortIcon></p-sortIcon></th>
+          <th style="min-width:100px; border: 1px solid #ddd;" field="Status" pResizableColumn pSortableColumn="Status"
+          style="min-width:200px"> Status <p-sortIcon></p-sortIcon></th>
       </tr>
+      <tr style="position: sticky; top: 40px; z-index: 1;">
+        <th></th>
+        <th style="min-width:100px">
+          <div class="flex justify-content-between align-items-center">
+            <p-columnFilter field="FirstName" matchMode="contains"></p-columnFilter>
+          </div>
+        </th>
+        <th style="min-width:100px">
+          <div class="flex justify-content-between align-items-center">
+            <p-columnFilter field="LastName" matchMode="contains"></p-columnFilter>
+          </div>
+        </th>
+        <th style="min-width:100px">
+          <div class="flex justify-content-between align-items-center">
+            <p-columnFilter field="Email" matchMode="contains"></p-columnFilter>
+          </div>
+        </th>
+        <th style="min-width:100px">
+          <div class="flex justify-content-between align-items-center">
+            <p-columnFilter field="Role" matchMode="contains"></p-columnFilter>
+          </div>
+        </th>
+        <th style="min-width:100px">
+          <div class="flex justify-content-between align-items-center">
+            <p-columnFilter field="Status" matchMode="contains"></p-columnFilter>
+          </div>
+        </th>
+      </tr>
+
     </ng-template>
     <ng-template pTemplate="body" let-user>
       <tr>
         <td>
           <!-- <button pButton icon="pi pi-pencil" label="Edit" (click)="editUser(user.UserMasterID)"></button> -->
           <span class="edit-btn">
-            <i class="pi pi-check"
-            *ngIf="user.StatusID === '0'"
-            (click)="onUnableButtonClick(user.UserMasterID,$event)"  >
+            <i class="pi pi-check" *ngIf="user.StatusID === '0'"
+              (click)="onUnableButtonClick(user.UserMasterID,$event)">
             </i>
-        </span>
-        <span class="edit-btn">
-          <i class="pi pi-pencil"
-          *ngIf="user.StatusID === '1'"
-          (click)="editUser(user.UserMasterID)"  >
-          </i>
-      </span>
-      <span class="edit-btn" style="margin-left: 10px;">
-        <i class="pi pi-trash"
-        *ngIf="user.StatusID === '1'"
-        (click)="deleteUser(user.UserMasterID,$event)" >
-        </i>
-    </span>
+          </span>
+          <span class="edit-btn">
+            <i class="pi pi-pencil" *ngIf="user.StatusID === '1'" (click)="editUser(user.UserMasterID)">
+            </i>
+          </span>
+          <span class="edit-btn" style="margin-left: 10px;">
+            <i class="pi pi-trash" *ngIf="user.StatusID === '1'" (click)="deleteUser(user.UserMasterID,$event)">
+            </i>
+          </span>
           <!-- <button pButton icon="pi pi-trash" label="Delete" (click)="deleteUser(user.UserMasterID)"></button> -->
         </td>
         <td>{{ user.FirstName }}</td>
@@ -51,8 +86,14 @@
             INACTIVE
           </ng-template>
         </td>
-        
+
       </tr>
     </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+          <td colspan="8"><span class="text-danger">No Records found.</span></td>
+      </tr>
+  </ng-template>
   </p-table>
-  <p-confirmDialog></p-confirmDialog>
+</div>
+<p-confirmDialog></p-confirmDialog>

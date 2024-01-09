@@ -91,6 +91,7 @@ export class AddEditProjectComponent {
       
       if (this.projectMasterData.valid) {
         this.projectMasterData.controls['CreatedBy'].setValue(this.UsermasterId)
+        this.projectMasterData.controls['LastUpdatedBy'].setValue(this.UsermasterId)
         debugger
         console.log(this.projectMasterData.value);
         this.projectMasterData.ClientId = 0;
