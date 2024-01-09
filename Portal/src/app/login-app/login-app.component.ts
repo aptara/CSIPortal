@@ -40,7 +40,7 @@ export class LoginAppComponent {
         localStorage.setItem('loginDetails', JSON.stringify(this.loginDetails.Data));
         // Check each user's credentials
         const validUser = this.loginDetails.Data.find((user: UserData) =>
-          user.EmailId === this.UserMasterDetails.value.EmailId &&
+          user.EmailId.toLowerCase() === this.UserMasterDetails.value.EmailId.toLowerCase() &&
           user.Password === this.UserMasterDetails.value.Password
          
         );

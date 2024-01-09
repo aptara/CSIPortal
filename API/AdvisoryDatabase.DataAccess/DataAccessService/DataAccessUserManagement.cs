@@ -54,7 +54,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
         {
                     parameters.Add(DbHelper.CreateParameter("FirstName", instance.FirstName));
                     parameters.Add(DbHelper.CreateParameter("LastName", instance.LastName));
-                    parameters.Add(DbHelper.CreateParameter("EmailId", instance.Email));
+                    parameters.Add(DbHelper.CreateParameter("EmailId", instance.Email.ToLower()));
                     parameters.Add(DbHelper.CreateParameter("RoleId", instance.Role));
                     parameters.Add(DbHelper.CreateParameter("ProjectId", instance.ProjectId));
      
@@ -172,7 +172,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
                     parameters.Add(DbHelper.CreateParameter("UserMasterID", instance.UserMasterID));
                     parameters.Add(DbHelper.CreateParameter("FirstName", instance.FirstName));
                     parameters.Add(DbHelper.CreateParameter("LastName", instance.LastName));
-                    parameters.Add(DbHelper.CreateParameter("EmailId", instance.Email));
+                    parameters.Add(DbHelper.CreateParameter("EmailId", instance.Email.ToLower()));
                     parameters.Add(DbHelper.CreateParameter("RoleId", instance.Role));
                     parameters.Add(DbHelper.CreateParameter("ProjectId", instance.ProjectId));
 
