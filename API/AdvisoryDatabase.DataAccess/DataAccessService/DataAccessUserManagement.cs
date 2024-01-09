@@ -134,7 +134,7 @@ namespace AdvisoryDatabase.DataAccess.DataAccessService
             switch (operation)
             {
                 case OperationType.GetAll:
-                    spName = "USP_GetUserDetailById";
+                    spName = "USP_UpdateUser";
                     break;
                 default:
                     spName = string.Empty;

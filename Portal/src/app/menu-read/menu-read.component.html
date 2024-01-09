@@ -1,4 +1,4 @@
-<app-header *ngIf="!isPrintMode"></app-header>
+<app-header *ngIf="!isPrintMode" ></app-header>
 <div class="container">
 
   <form [formGroup]="AddQuestionAnswer">
@@ -140,11 +140,14 @@
           <button class="accordion-button" type="button" data-bs-toggle="collapse"
             [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="true" [attr.aria-controls]="'collapse' + i">
             <div class="row">
-              <div class="col-md">
-                <strong>{{item.QuestionSerialNumber}}. {{item.question}}</strong>
-              </div>
-              <div class="col-md" style="position: absolute; left: 80%;"><strong>Submitted Evaluation :</strong> 
-                {{item.SubmittedEvaluation}}</div>
+              <div class="col-md-12">
+                <span><strong>{{item.QuestionSerialNumber}}. {{item.question}}</strong></span>
+               </div>
+               <div>
+           <span style="margin-left: 1000px;">
+             <strong>Submitted Evaluation :</strong> 
+                {{item.SubmittedEvaluation}}
+              </span></div>
             </div>
           </button>
 
@@ -301,4 +304,4 @@
     </div>
   </form>
 </div>
-<app-footer *ngIf="!isPrintMode"></app-footer>
+<app-footer *ngIf="!isPrintMode"style="width: 100px;"></app-footer>

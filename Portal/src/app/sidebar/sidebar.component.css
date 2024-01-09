@@ -6,9 +6,10 @@
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s;
+    border-radius: 3px;
   }
   
   .nav-link:hover {
-    background-color: #a5a5a5; /* Set your desired hover background color */
+    background-color: #b5b3bd; /* Set your desired hover background color */
   }
   

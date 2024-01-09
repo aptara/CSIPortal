@@ -63,12 +63,13 @@ namespace AdvisoryDatabase.Business.Controllers
             try
             {
                 GetserInfoDetailById service = new GetserInfoDetailById();
+                
                 return SuccessReponse(service.GetAll(obj));
             }
             catch (Exception ex)
             {
                 var error = LogError(ex);
-                return Erroresponse<List<GetUserDetail>>(error);
+                return Erroresponse <List<GetUserDetail>>(error);
             }
         }
 
