@@ -89,80 +89,42 @@ displayDialog: any;
   storedData:any=[]
   ngOnInit() {
     this.storedData = localStorage.getItem('loginDetails');
-    if (this.storedData != null) {
-      this.GetQuestion()
-      this.GetDescription()
-      this.accordianItems.forEach(() => this.isAccordionItemOpen.push(true));
-      // Assuming you have a list of questions in `questionsList`
-      let sub = this.path.paramMap.subscribe(params => {
-        this.LinkGUID = 0;
-        this.LinkGUID = params.get('LinkGUID');
-      });
 
-      this.service.GetClient(this.LinkGUID).subscribe(res => {
-        this.header = res
-        console.log(this.header)
-        this.header.Data.forEach((Element: any) => {
-          if (Element.IsSurveySubmitted === 'Yes') {
-            window.location.href = '/SubmittedResponse';
-          }
-          else if (Element.InValidRequest === '0') {
-            console.log(Element.InValidRequest)
-            window.location.href = '/BadResponse';
-          }
-          else {
-            console.log(Element.ProjectName)
-            console.log(Element.ProjectID)
-            this.ProjectId = Element.ProjectID
-            this.ClientId = Element.ClientId
-            this.InValidRequest = Element.InValidRequest
-            this.ViewerName = Element.ReviewerName;
-            this.ViewerEmail = Element.ReviewerEmail;
-          }
-
-          this.list = Element.ProjectName
+        this.GetQuestion()
+        this.GetDescription()
+        this.accordianItems.forEach(() => this.isAccordionItemOpen.push(true));
+        // Assuming you have a list of questions in `questionsList`
+        let sub = this.path.paramMap.subscribe(params => {
+          this.LinkGUID = 0;
+          this.LinkGUID = params.get('LinkGUID');
         });
-      });         
-    }else{
-      window.location.href="/Login"
-    }
 
-    // this.GetQuestion()
-    // this.GetDescription()
-    // this.accordianItems.forEach(() => this.isAccordionItemOpen.push(true));
-    // // Assuming you have a list of questions in `questionsList`
-    // let sub = this.path.paramMap.subscribe(params => {
-    //   this.LinkGUID = 0;
-    //   this.LinkGUID = params.get('LinkGUID');
-    // });
+        this.service.GetClient(this.LinkGUID).subscribe(res => {
+          this.header = res
+          console.log(this.header)
+          this.header.Data.forEach((Element: any) => {
+            if (Element.IsSurveySubmitted === 'Yes') {
+              window.location.href = '/SubmittedResponse';
+            }
+            else if (Element.InValidRequest === '0') {
+              console.log(Element.InValidRequest)
+              window.location.href = '/BadResponse';
+            }
+            else {
+              console.log(Element.ProjectName)
+              console.log(Element.ProjectID)
+              this.ProjectId = Element.ProjectID
+              this.ClientId = Element.ClientId
+              this.InValidRequest = Element.InValidRequest
+              this.ViewerName = Element.ReviewerName;
+              this.ViewerEmail = Element.ReviewerEmail;
+            }
 
-
-    // this.service.GetClient(this.LinkGUID).subscribe(res => {
-    //   this.header = res
-    //   console.log(this.header)
-    //   this.header.Data.forEach((Element: any) => {
-    //     if (Element.IsSurveySubmitted === 'Yes') {
-    //       window.location.href = '/SubmittedResponse';
-    //     }
-    //     else if (Element.InValidRequest === '0') {
-    //       console.log(Element.InValidRequest)
-    //       window.location.href = '/BadResponse';
-    //     }
-    //     else {
-    //       console.log(Element.ProjectName)
-    //       console.log(Element.ProjectID)
-    //       this.ProjectId = Element.ProjectID
-    //       this.ClientId = Element.ClientId
-    //       this.InValidRequest = Element.InValidRequest
-    //       this.ViewerName = Element.ReviewerName;
-    //       this.ViewerEmail = Element.ReviewerEmail;
-    //     }
-
-    //     this.list = Element.ProjectName
-    //   });
-    // });
+            this.list = Element.ProjectName
+          });
+        });
+      }
   
-  }
 
 
   selectedEvaluation: string | null = null;

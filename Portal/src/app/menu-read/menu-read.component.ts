@@ -46,15 +46,29 @@ export class MenuReadComponent {
   resultData: any = [];
   selectedRadioValue: any;
   LinkGUID:any;
+  storedData: any = [];
   ngOnInit() {
-    this.accordianItems.forEach((item: { isOpen: boolean; }) => (item.isOpen = true));
+    this.storedData = localStorage.getItem('loginDetails');
+    if (this.storedData != null) {
+      this.accordianItems.forEach((item: { isOpen: boolean; }) => (item.isOpen = true));
     
-    this.AddQuestionAnswer = this.fb.group({});
-    this.sub = this.path.paramMap.subscribe(params => {
-      debugger
-      this.LinkGUID =params.get('LinkGUID');
-      this.GetSubmittedData(this.LinkGUID);    
-    });
+      this.AddQuestionAnswer = this.fb.group({});
+      this.sub = this.path.paramMap.subscribe(params => {
+        debugger
+        this.LinkGUID =params.get('LinkGUID');
+        this.GetSubmittedData(this.LinkGUID);    
+      });
+    }else {
+      window.location.href = "/Login"
+    }
+    // this.accordianItems.forEach((item: { isOpen: boolean; }) => (item.isOpen = true));
+    
+    // this.AddQuestionAnswer = this.fb.group({});
+    // this.sub = this.path.paramMap.subscribe(params => {
+    //   debugger
+    //   this.LinkGUID =params.get('LinkGUID');
+    //   this.GetSubmittedData(this.LinkGUID);    
+    // });
   }
 
 
